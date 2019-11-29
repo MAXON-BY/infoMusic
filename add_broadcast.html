@@ -1,0 +1,26 @@
+{% extends "basic.html" %}
+
+{% block container %}
+    <h3>Добавление сетки вещания</h3>
+    <form action={% url 'addBroadcastGrid' %} method="post">
+        {% csrf_token %}
+        {{ form.title.label_tag }}&nbsp;{{ form.title }} &nbsp; <br>
+        {{ form.annotation.label_tag }}&nbsp;{{ form.annotation }} <br>
+        {% if user.is_staff %}
+          {{ form.owner.label_tag }} &nbsp; {{ form.owner }} &nbsp; <br>
+        {% else %}
+          <input type="hidden" name="owner" value="{{ user.pk }}" id="id_owner">
+        {% endif %}
+
+        <input type="submit" value="Создать">
+    </form>
+    <div>
+        <a href="{% url 'addElemBroadcastGrid' %}?fromeditbroadcast=true"> Добавить время вещания</a>
+    </div>
+{% endblock %}
+
+{% block footer %}
+  <div class="container">
+
+	</div>
+{% endblock %}

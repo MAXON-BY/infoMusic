@@ -1,0 +1,17 @@
+{% extends "basic.html" %}
+
+{% block container %}
+    <h3>Загрузка файлов музыкальной композиции</h3>
+    <form enctype="multipart/form-data" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Загрузить файл">
+    </form>
+
+{% endblock %}
+
+{% block footer %}
+    <div class="container">
+
+	</div>
+{% endblock %}

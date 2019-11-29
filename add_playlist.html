@@ -1,0 +1,24 @@
+{% extends "basic.html" %}
+
+{% block container %}
+    <h3>Добавление плейлиста</h3>
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.title.label_tag }}&nbsp;{{ form.title }} &nbsp; {{ form.gentre.label_tag }}&nbsp;{{ form.gentre }} <br>
+        {% if user.is_staff %}
+          {{ form.owner.label_tag }} &nbsp; {{ form.owner }} <br>
+        {% else %}
+          <input type="hidden" name="owner" value="{{ user.pk }}" id="id_owner">
+        {% endif %}
+        {{ form.songs.label_tag }}&nbsp;{{ form.songs }}
+        <input type="submit" value="Создать">
+    </form>
+
+{% endblock %}
+
+{% block footer %}
+    <div class="container">
+
+	</div>
+{% endblock %}

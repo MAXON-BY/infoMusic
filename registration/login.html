@@ -1,0 +1,31 @@
+{% extends "basic.html" %}
+
+{% block  container %}
+<section>
+	<div class="container">
+
+    {% if user.is_authenticated %}
+        <p>Вы выполнили вход</p>
+    {% else %}
+        <h3 class="text-center">&nbsp;</h3>
+        <form method="POST" action="{% url 'login' %}">
+            <div class="form-group">
+                {% csrf_token %}
+								<div class="row m-5">
+	                {{form.username.label_tag}}{{ form.username }}<br>
+								</div>
+								<div class="row m-5">
+	                {{form.password.label_tag}}{{ form.password }}
+								</div>
+								<div class="row mx-5">
+	                <input type="hidden" name="next" value="{{ next }}">
+	                <input type="submit" class="btn btn-primary" value="Войти">
+								</div>
+            </div>
+        </form>
+
+    {% endif %}
+
+    </div>
+</section>
+{% endblock %}

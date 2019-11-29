@@ -1,0 +1,81 @@
+{% extends "basic.html" %}
+
+{% block container %}
+<div class="container container-fluid mx-3">
+    <h3>Редактирование сетки вещания</h3>
+    <form action={% url 'editBroadcastGrid' %} method="post">
+    <div class="form-group">
+        {% csrf_token %}
+        <input type="hidden" name="grid" value="{{ grid_obj.pk }}" id="pk">
+        {{ form.title.label_tag }}&nbsp;{{ form.title }} &nbsp; <br>
+        {{ form.annotation.label_tag }}&nbsp;{{ form.annotation }} <br>
+
+        {% if user.is_staff %}
+          {{ form.owner.label_tag }} &nbsp; {{ form.owner }} &nbsp; <br>
+        {% else %}
+          <input type="hidden" name="owner" value="{{ user.pk }}" id="id_owner">
+        {% endif %}
+
+        <div class="container p-3">
+        <h5>Выбор времени вещания:</h5>
+        {% for cell in cells %}
+        <div class="row border bg-light p-1 my-1">
+            <div class="col-1 border">
+                <div class="custom-control custom-switch">
+                  {% if cell.pk in grid_cells_pk %}
+    				        <input type="checkbox" class="custom-control-input checkbox-publish" checked id="cellSwitch_{{ cell.pk }}">
+        					{% else %}
+      					    <input type="checkbox" class="custom-control-input checkbox-publish" id="cellSwitch_{{ cell.pk }}">
+        					{% endif %}
+        					<label class="custom-control-label" for="cellSwitch_{{ cell.pk }}"> </label>
+        				</div>
+            </div>
+            <div class="col-2 border border-dark">
+                {{ cell.playlist.title }}
+            </div>
+            <div class="col-1">
+            </div>
+            {% if cell.pk in grid_cells_pk %}
+                <div class="col-3 border border-dark bg-info" id="Col1_cellSwitch_{{ cell.pk }}">
+            {% else %}
+                <div class="col-3 border border-dark" id="Col1_cellSwitch_{{ cell.pk }}">
+            {% endif %}
+                {{ cell.time_start }}
+                </div>
+
+            {% if cell.pk in grid_cells_pk %}
+                <div class="col-3 border border-dark bg-info" id="Col2_cellSwitch_{{ cell.pk }}">
+            {% else %}
+                <div class="col-3 border border-dark" id="Col2_cellSwitch_{{ cell.pk }}">
+            {% endif %}
+                {{ cell.time_stop }}
+                </div>
+            <div class="col-2 text-right">
+                <a class="btn btn-outline-danger btn-sm btn-del-elem" href="#" role="button" id="delBtn_{{ cell.pk }}">Удалить!</a>
+            </div>
+          </div>
+          {% endfor%}
+
+        <div class="alert alert-success fade show" role="alert">
+            Изменения успешно внесены!
+        </div>
+
+        <div class="alert alert-danger fade show" role="alert">
+            При добавлении времени вещания не прошла проверка пересечения диапазонов времени!
+        </div>
+    </div>
+    <input type="submit" value="Обновить">
+    </div>
+    </form>
+    <div>
+        <a href="{% url 'addElemBroadcastGrid' %}?fromeditbroadcast=true&grid={{ grid_obj.pk }}"> Добавить время вещания</a>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block footer %}
+  <div class="container">
+
+	</div>
+{% endblock %}

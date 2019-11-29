@@ -1,0 +1,111 @@
+{% extends "basic.html" %}
+
+{% block container %}
+  <h3>Список объектов</h3>
+	<section>
+
+		<div>
+			<table cellspacing="2" border="1" cellpadding="5"width="100%">
+				<thead>
+				    <tr>
+				        <th>#</th>
+				        <th>Наименование</th>
+				        <th>Включен</th>
+				        <th>IP-адрес</th>
+				        <th>Описание</th>
+				        <th>Группа</th>
+				        <th>Статус</th>
+                <th>Проверка</th>
+      					{% if user.is_staff %}
+      					     <th>Пользователь</th>
+      					{% endif %}
+				    </tr>
+				</thead>
+				<tbody>
+					{% for depot in depots %}
+						<tr>
+							<td> {{ depot.pk }} </td>
+							<td><a href="/add_object/?object={{ depot.pk }}"> {{ depot.title }} </a></td>
+							<td> {% if depot.active %}
+							        <input type="checkbox" checked class="" id="activeSwitch_{{ depot.pk }}" disabled>
+							     {% else %}
+							        <input type="checkbox" class="" id="activeSwitch_{{ depot.pk }}" disabled>
+							     {% endif %}
+							</td>
+							<td> {{ depot.ip_address }} </td>
+							<td> {{ depot.annotation }} </td>
+							<td> {{ depot.group.title }} </td>
+							<td> {% if depot.active %}
+                    {% if depot.status == 'online' %}
+                      <a href="{% url 'ObjectStatus' depot.pk %}">
+                      <font color="green">
+                    {% else %}
+                      <font color="red">
+                    {% endif %}
+                      {{ depot.status }} </font>
+                      {% if depot.status == 'online' %}
+                        </a>
+                      {% endif%}
+							     {% else %}
+							        &ensp;
+							     {% endif %}
+							</td>
+              <td>{% if depot.active %}
+							        {{ depot.last_check|date:"d.m.Y H:i:s" }}
+							     {% else %}
+							        &ensp;
+							     {% endif %}
+							</td>
+							{% if user.is_staff %}
+							<td> {{ depot.owner }} </td>
+							{% endif %}
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+
+		</div>
+	</section>
+
+	<section>
+    <div>
+        <nav aria-label="Page navigation">
+            <ul class="pagination justify-content-center">
+                {% if page.has_previous %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ page.previous_page_number }}" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                </li>
+
+                <li class="page-item"><a class="page-link" href="?page={{ page.previous_page_number }}">{{page.previous_page_number}}</a></li>
+                {% endif %}
+
+                <li class="page-item active"><a class="page-link" href="#">{{ page.number }}<span class="sr-only">(current)</span></a></li>
+
+                {% if page.has_next %}
+                <li class="page-item"><a class="page-link" href="?page={{ page.next_page_number }}">{{ page.next_page_number }}</a></li>
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ page.next_page_number }}" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </li>
+                {% endif %}
+            </ul>
+        </nav>
+    </div>
+    </section>
+    <p>
+    {% if user.is_staff %}
+       <a href="/add_object/"> Добавить объект </a> &ensp;
+    {% endif %}
+
+{% endblock %}
+
+{% block footer %}
+  <div class="container">
+
+	</div>
+{% endblock %}

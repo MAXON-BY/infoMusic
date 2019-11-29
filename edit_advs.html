@@ -1,0 +1,35 @@
+{% extends "basic.html" %}
+
+{% block container %}
+    <h3>Изменение рекламного ролика</h3>
+    
+    {% if form.subject.errors %}
+    <ol>
+    {% for error in form.subject.errors %}
+        <li><strong>{{ error|escape }}</strong></li>
+    {% endfor %}
+    </ol>
+{% endif %}
+
+    <form action={% url 'editAdv' %} enctype="multipart/form-data" method="post">
+        <input type="hidden" name="pk" value="{{ advs.pk }}" id="pk">
+        {% csrf_token %}
+        {{ form.title.label_tag }}&nbsp;{{ form.title }} &nbsp; <br>
+        {{ form.annotation.label_tag }}&nbsp;{{ form.annotation }} <br>
+        {{ form.file.label_tag }}&nbsp;{{ form.file }} <br>
+        {% if user.is_staff %}
+          {{ form.owner.label_tag }} &nbsp; {{ form.owner }} &nbsp; <br>
+        {% else %}
+          <input type="hidden" name="owner" value="{{ user.pk }}" id="id_owner">
+        {% endif %}
+
+        <input type="submit" value="Обновить рекламу">
+    </form>
+
+{% endblock %}
+
+{% block footer %}
+    <div class="container">
+
+	</div>
+{% endblock %}

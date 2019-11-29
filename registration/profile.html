@@ -1,0 +1,31 @@
+{% extends "basic.html" %}
+
+{% block title %} Профиль пользователя {{user.username}} {% endblock %}
+
+{% block container %}
+ <div class="container-fluid m-3">
+  <h3>Профиль пользователя <b>{{ user.username }}</b></h3>
+  <div class="row my-1">
+    <div class="col">
+      {{ user.first_name }} &nbsp; {{ user.last_name }} <br>
+    </div>
+  </div>
+  <div class="row my-1">
+    <div class="col">
+      {{ user.email }}
+    </div>
+  </div>
+  <div class="row my-1">
+    <div class="col">
+      {{ prof.phone }}
+    </div>
+  </div>
+  <div class="row my-1">
+    <div class="col">
+      Последний визит {{ user.last_login|date:"d.m.Y H:i" }}
+    </div>
+  <div>
+</div>
+
+
+{% endblock %}

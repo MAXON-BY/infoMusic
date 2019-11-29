@@ -1,0 +1,28 @@
+{% extends "basic.html" %}
+
+{% block container %}
+    <h3>Добавление времени вещания</h3>
+    <form action={% url 'addElemBroadcastGrid' %} method="post">
+        {% csrf_token %}
+        <input type="hidden" name="returntoaddbroadcastgrid" value="{{ returntoaddbroadcastgrid }}">
+        <input type="hidden" name="grid" value="{{ grid }}">
+        {{ form.title.label_tag }}&nbsp;{{ form.title }} &nbsp; <br>
+        {{ form.playlist.label_tag }}&nbsp;{{ form.playlist }} &nbsp; <br>
+        {{ form.time_start.label_tag }}&nbsp;{{ form.time_start }} &nbsp; {{ form.time_stop.label_tag }}&nbsp;{{ form.time_stop }} &nbsp;<br>
+
+        {% if user.is_staff %}
+          {{ form.owner.label_tag }} &nbsp; {{ form.owner }} &nbsp; <br>
+        {% else %}
+          <input type="hidden" name="owner" value="{{ user.pk }}" id="id_owner">
+        {% endif %}
+
+        <input type="submit" value="Создать">
+    </form>
+
+{% endblock %}
+
+{% block footer %}
+  <div class="container">
+
+	</div>
+{% endblock %}

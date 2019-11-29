@@ -1,0 +1,33 @@
+{% extends "basic.html" %}
+
+{% block container %}
+    <h3>Добавление группы объектов</h3>
+    {% if form.subject.errors %}
+    <ol>
+    {% for error in form.subject.errors %}
+        <li><strong>{{ error|escape }}</strong></li>
+    {% endfor %}
+    </ol>
+    {% endif %}
+    <form action={% url 'addGrObject' %} method="post">
+        {% csrf_token %}
+        {{form.title.label_tag }}&nbsp;{{ form.title }} &nbsp; {{form.freq_sync.label_tag}}{{ form.freq_sync }}<br>
+        {{form.annotation.label_tag }} &nbsp; {{ form.annotation }} <br>
+        {{form.adv.label_tag }} &nbsp; {{ form.adv }} &nbsp; {{form.freq_ad.label_tag }}&nbsp;{{ form.freq_ad }} <br>
+<!--        {{form.playlist.label_tag }} &nbsp; {{ form.playlist }} &nbsp;  -->
+        {{form.broadcast_grid.label_tag }}&nbsp;{{ form.broadcast_grid }} &nbsp; <br>
+        {% if user.is_staff %}
+          {{ form.owner.label_tag }}&nbsp;{{ form.owner }} &nbsp; <br>
+        {% else %}
+          <input type="hidden" name="owner" value="{{ user.pk }}" id="id_owner">
+        {% endif %}
+        <input type="submit" value="Создать">
+    </form>
+
+{% endblock %}
+
+{% block footer %}
+    <div class="container">
+
+	</div>
+{% endblock %}

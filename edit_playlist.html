@@ -1,0 +1,145 @@
+{% extends "basic.html" %}
+
+{% block container %}
+    <h3>Изменение плейлиста</h3>
+	<section class="mb-4">
+	    <div class="container-fluid">
+        <form action="{% url 'editPlaylistFull' %}" method="post">
+        {% csrf_token %}
+        <input type="hidden" name="pk" value="{{ playlist.pk }}" id="pk">
+        <div class="row mb-3">
+            <div class="col">
+                <label for="inputPlaylistTitle">Наименование плейлиста</label>
+                <input type="text" name="inputPlaylistTitle" class="form-control" id="inputPlaylistTitle" value="{{ playlist.title }}">
+            </div>
+            <div class="col">
+                <label for="inputPlaylistGentre">Жанр плейлиста</label>
+                <input type="text" name="inputPlaylistGentre" class="form-control" id="inputPlaylistGentre" value="{{ playlist.gentre }}">
+            </div>
+        </div>
+        <div class="row">
+          {% if user.is_staff %}
+            <div class="col">
+              <label for="id_owner">Owner:</label>&nbsp;
+              <select name="owner" id="id_owner">
+                <option value="">---------</option>
+                {% for owner in owners %}
+                  {% if owner.pk == playlist.owner.pk %}
+                    <option value="{{ owner.pk }}" selected>{{ owner.username }}</option>
+                  {% else %}
+                    <option value="{{ owner.pk }}">{{ owner.username }}</option>
+                  {% endif %}
+                {% endfor %}
+              </select>
+            </div>
+            <div class="col">
+              <button type="submit" class="btn btn-primary">Изменить</button>
+            </div>
+          {% else %}
+            {% if playlist.owner.pk == 1 %}
+<!--              <button type="submit" class="btn btn-primary" disabled>Изменить</button> -->
+            {% else %}
+              <button type="submit" class="btn btn-primary">Изменить</button>
+            {% endif %}
+          {% endif %}
+        </div>
+        </form>
+
+        <section>
+            <div class="container-fluid">
+
+            <div class="row mb-3">
+            <div class="col">
+                {% if depots %}
+                <div class="dropdown">
+                <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Используется на объектах:
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    {% for depot in depots %}
+                        <a class="dropdown-item" href="#">{{ depot.title }}</a>
+                    {% endfor %}
+                </div>
+                </div>
+                {% endif %}
+            </div>
+
+            <div class="col">
+                {% if groupdepots %}
+                <div class="dropdown">
+                <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Используется в группах:
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    {% for groupdepot in groupdepots %}
+                        <a class="dropdown-item" href="#">{{ groupdepot.title }}</a>
+                    {% endfor %}
+                </div>
+                </div>
+                {% endif %}
+            </div>
+            </div>
+            </div>
+        </section>
+    </div>
+    <p>
+
+    <div class="container-fluid">
+        <div class="row mb-1">
+        <div class="col">
+		    <form method="post" action="#">
+            {% csrf_token %}
+		    <table border="1" width="99%">
+		        <thead>
+		            <tr><td colspan="2">Всего композиций в плейлисте: {{ count_playlist_songs }}</td></tr>
+		        </thead>
+		        {% for playlist_song in playlist_songs %}
+		        <tr>
+		            <td> <input type="checkbox" name="del_song" value="{{ playlist_song.pk }}"> </td>
+		            <td> {{ playlist_song.file_name }} </td>
+		        </tr>
+		        {% endfor %}
+            {% if user.is_staff %}
+              <tr><td colspan="2"><input type="submit" value="Удалить"></td></tr>
+            {% else %}
+              {% if user == playlist.owner %}
+		            <tr><td colspan="2"><input type="submit" value="Удалить"></td></tr>
+              {% endif %}
+            {% endif %}
+		    </table>
+		    </form>
+		</div>
+        <div class="col">
+		    <form method="post" action="#">
+	        {% csrf_token %}
+		    <table border="1" width="99%">
+		        <thead>
+		            <tr><td colspan="2">Можно добавить композиций в плейлист: {{ count_all_songs }}</td></tr>
+		        </thead>
+		        {% for all_song in all_songs %}
+		        <tr>
+		            <td> <input type="checkbox" name="add_song" value="{{ all_song.pk }}"> </td>
+		            <td> {{ all_song.file_name }} </td>
+		        </tr>
+		        {% endfor %}
+            {% if user.is_staff %}
+		          <tr><td colspan="2"><input type="submit" value="Добавить"></td></tr>
+            {% else %}
+              {% if user == playlist.owner %}
+                <tr><td colspan="2"><input type="submit" value="Добавить"></td></tr>
+              {% endif %}
+            {% endif %}
+		    </table>
+		    </form>
+		 </div>
+		</div>
+	</div>
+
+	</section>
+{% endblock %}
+
+{% block footer %}
+    <div class="container">
+
+	</div>
+{% endblock %}
