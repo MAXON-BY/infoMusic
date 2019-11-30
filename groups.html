@@ -1,74 +1,96 @@
 {% extends "basic.html" %}
 
 {% block container %}
-  <h3>Список групп объектов</h3>
-	<section>
 
-		<div>
-			<table cellspacing="2" border="1" cellpadding="5"width="100%">
-				<thead>
-				    <tr>
-				        <th>#</th>
-				        <th>Наименование</th>
-				        <th>Описание</th>
-                {% if user.is_staff %}
-      					     <th>Пользователь</th>
-      					{% endif %}
-				    </tr>
-				</thead>
-				<tbody>
-					{% for group in groups %}
-						<tr>
-							<td> {{ group.pk }} </td>
-							<td><a href="{% url 'editGrObject' %}?group={{ group.pk }}"> {{ group.title }} </a></td>
-							<td> {{ group.annotation }} </td>
-              {% if user.is_staff %}
-      				    <td> {{ group.owner }} </td>
-      				{% endif %}
-						</tr>
-					{% endfor %}
-				</tbody>
-			</table>
+    <main id="main">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
 
-		</div>
-	</section>
+                    <div class="title-page">
+                        <h1>Список групп объектов</h1>
+                    </div>
+                    <section>
+                        <div class="table-wrap">
+                            <table cellspacing="2" border="1" cellpadding="5"width="100%">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Наименование</th>
+                                        <th>Объекты</th>
+                                <th>Сетка вещания</th>
+                                <th>Рекламный ролик</th>
+                                {% if user.is_staff %}
+                                             <th>Пользователь</th>
+                                        {% endif %}
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for group in groups %}
+                                        <tr>
+                                            <td> {{ forloop.counter }} </td>
+                                            <td><a href="{% url 'editGrObject' %}?group={{ group.pk }}"> {{ group.title }} </a></td>
+                              <!-- <td> {{ group.depot_set.all }} </td> -->
+                              <td>
+                                {% if group.depot_set.all %}
+                                  {% for g in group.depot_set.all|slice:'0:2' %}
+                                    {{ g.title }} &#8194;
+                                  {% endfor %}
+                                  {% if group.depot_set.all|length > 2 %}
+                                    &hellip;
+                                  {% endif %}
+                                {% else %}
+                                  &#8194;
+                                {% endif %}
+                              </td>
+                              <td> {{ group.broadcast_grid }} </td>
+                              <td> {{ group.adv }} </td>
+                                            <!-- <td> {{ group.annotation }} </td> -->
+                              {% if user.is_staff %}
+                                        <td> {{ group.owner }} </td>
+                                    {% endif %}
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </section>
 
-	<section>
-    <div>
-        <nav aria-label="Page navigation">
-            <ul class="pagination justify-content-center">
-                {% if page.has_previous %}
-                <li class="page-item">
-                    <a class="page-link" href="?page={{ page.previous_page_number }}" aria-label="Previous">
-                        <span aria-hidden="true">&laquo;</span>
-                        <span class="sr-only">Previous</span>
-                    </a>
-                </li>
+                    <section>
+                        <div>
+                            <nav aria-label="Page navigation">
+                                <ul class="pagination justify-content-center">
+                                    {% if page.has_previous %}
+                                    <li class="page-item">
+                                        <a class="page-link" href="?page={{ page.previous_page_number }}" aria-label="Previous">
+                                            <span aria-hidden="true">&laquo;</span>
+                                            <span class="sr-only">Previous</span>
+                                        </a>
+                                    </li>
 
-                <li class="page-item"><a class="page-link" href="?page={{ page.previous_page_number }}">{{page.previous_page_number}}</a></li>
-                {% endif %}
+                                    <li class="page-item"><a class="page-link" href="?page={{ page.previous_page_number }}">{{page.previous_page_number}}</a></li>
+                                    {% endif %}
 
-                <li class="page-item active"><a class="page-link" href="#">{{ page.number }}<span class="sr-only">(current)</span></a></li>
+                                    <li class="page-item active"><a class="page-link" href="#">{{ page.number }}<span class="sr-only">(current)</span></a></li>
 
-                {% if page.has_next %}
-                <li class="page-item"><a class="page-link" href="?page={{ page.next_page_number }}">{{ page.next_page_number }}</a></li>
-                <li class="page-item">
-                    <a class="page-link" href="?page={{ page.next_page_number }}" aria-label="Next">
-                        <span aria-hidden="true">&raquo;</span>
-                        <span class="sr-only">Next</span>
-                    </a>
-                </li>
-                {% endif %}
-            </ul>
-        </nav>
-    </div>
-    </section>
-    <p>
+                                    {% if page.has_next %}
+                                    <li class="page-item"><a class="page-link" href="?page={{ page.next_page_number }}">{{ page.next_page_number }}</a></li>
+                                    <li class="page-item">
+                                        <a class="page-link" href="?page={{ page.next_page_number }}" aria-label="Next">
+                                            <span aria-hidden="true">&raquo;</span>
+                                            <span class="sr-only">Next</span>
+                                        </a>
+                                    </li>
+                                    {% endif %}
+                                </ul>
+                            </nav>
+                        </div>
+                    </section>
 
-	   <a href="{% url 'addGrObject' %}"> Добавить группу </a>
-{% endblock %}
+                    <p><a href="{% url 'addGrObject' %}"> Добавить группу </a></p>
+                </div>
+            </div>
+        </div>
+    </main>
 
-{% block footer %}
-  <div class="container">
-	</div>
 {% endblock %}

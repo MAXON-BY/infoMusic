@@ -1,37 +1,46 @@
-
+{% load static %}
 {% block mnu %}
   {% if user.is_authenticated %}
-    <section>
-      <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarText">
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item active"> <a class="nav-link" href="{% url 'listObjects' %}"> Главная </a>
-            </li>
-            <li class="nav-item"> <a class="nav-link" href="{% url 'listGrObjects' %}"> Группы объектов </a>
-            </li>
-            <li class="nav-item"> <a class="nav-link" href="{% url 'index' %}"> Композиции </a>
-            </li>
-            <li class="nav-item"> <a class="nav-link" href="{% url 'listPlaylist' %}"> Плейлисты </a>
-            </li>
-            <li class="nav-item"> <a class="nav-link" href="{% url 'listBroadcastGrid' %}"> Сетки вещания </a>
-            </li>
-            <li class="nav-item"> <a class="nav-link" href="{% url 'listAdv' %}"> Рекламные объявления </a>
-            </li>
-          </ul>
-          {% if user.is_authenticated %}
-          <span class="navbar-text">
-            <a class="nav-link" href="{% url 'profile' %}">{{ user.username }}</a>
-          </span>
-          <span class="navbar-text">
-            <a class="nav-link" href="{% url 'logout' %}">Выход</a>
-          </span>
-          {% endif %}
+    <header id="header">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+
+            <nav class="navbar navbar-expand-lg">
+              <a class="navbar-brand" href="#">
+                <img src="{% static 'img/logo-musicinfo.png' %}" alt="musicinfo" style="width:30px;">
+              </a>
+
+              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarText">
+                <ul class="navbar-nav mr-auto">
+                  <li class="nav-item active"><a class="nav-link" href="{% url 'listObjects' %}"> Главная </a></li>
+                  <li class="nav-item"><a class="nav-link" href="{% url 'listGrObjects' %}"> Группы объектов </a></li>
+                  <li class="nav-item"><a class="nav-link" href="{% url 'index' %}"> Композиции </a></li>
+                  <li class="nav-item"><a class="nav-link" href="{% url 'listPlaylist' %}"> Плейлисты </a></li>
+                  <li class="nav-item"><a class="nav-link" href="{% url 'listBroadcastGrid' %}"> Сетки вещания </a></li>
+                  <li class="nav-item"><a class="nav-link" href="{% url 'listAdv' %}"> Рекламные объявления </a></li>
+                </ul>
+
+                {% if user.is_authenticated %}
+                <span class="navbar-text user-info">
+                  <a class="nav-link" href="{% url 'profile' %}">
+                    {{ user.username }}
+                    <img src="{% static 'img/user.png' %}" alt="user logo" style="width: 30px">
+                  </a>
+                </span>
+                <span class="navbar-text">
+                  <a class="nav-link" href="{% url 'logout' %}">Выход</a>
+                </span>
+                {% endif %}
+              </div>
+            </nav>
+
+          </div>
         </div>
-      </nav>
-    </section>
-  <p>
+      </div>
+    </header>
   {% endif %}
 {% endblock %}
