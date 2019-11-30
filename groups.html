@@ -30,24 +30,24 @@
                                         <tr>
                                             <td> {{ forloop.counter }} </td>
                                             <td><a href="{% url 'editGrObject' %}?group={{ group.pk }}"> {{ group.title }} </a></td>
-                              <!-- <td> {{ group.depot_set.all }} </td> -->
-                              <td>
-                                {% if group.depot_set.all %}
-                                  {% for g in group.depot_set.all|slice:'0:2' %}
-                                    {{ g.title }} &#8194;
-                                  {% endfor %}
-                                  {% if group.depot_set.all|length > 2 %}
-                                    &hellip;
-                                  {% endif %}
-                                {% else %}
-                                  &#8194;
-                                {% endif %}
-                              </td>
-                              <td> {{ group.broadcast_grid }} </td>
-                              <td> {{ group.adv }} </td>
-                                            <!-- <td> {{ group.annotation }} </td> -->
-                              {% if user.is_staff %}
-                                        <td> {{ group.owner }} </td>
+                                              <!-- <td> {{ group.depot_set.all }} </td> -->
+                                              <td>
+                                                  {% if group.depot_set.all %}
+                                                  {% for g in group.depot_set.all|slice:'0:2' %}
+                                                  <span class="objects">{{ g.title }}</span>&#8194;
+                                                  {% endfor %}
+                                                  {% if group.depot_set.all|length > 2 %}
+                                                  &hellip;
+                                                  {% endif %}
+                                                  {% else %}
+                                                  &#8194;
+                                                  {% endif %}
+                                              </td>
+                                              <td> {{ group.broadcast_grid }} </td>
+                                              <td> {{ group.adv }} </td>
+                                                            <!-- <td> {{ group.annotation }} </td> -->
+                                              {% if user.is_staff %}
+                                            <td> {{ group.owner }} </td>
                                     {% endif %}
                                         </tr>
                                     {% endfor %}
@@ -87,7 +87,7 @@
                         </div>
                     </section>
 
-                    <p><a href="{% url 'addGrObject' %}"> Добавить группу </a></p>
+                    <p class="btn-form"><a class="btn" href="{% url 'addGrObject' %}">Добавить группу +</a></p>
                 </div>
             </div>
         </div>
