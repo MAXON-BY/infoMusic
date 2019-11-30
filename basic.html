@@ -184,10 +184,10 @@
 
 
     main#main{
-        height: calc(100vh - 128px);
+        min-height: calc(100vh - 128px);
         padding-top: 30px;
         padding-bottom: 50px;
-        min-height: 600px;
+        /*min-height: 600px;*/
     }
     main .table-wrap{
         overflow: hidden;
@@ -225,8 +225,11 @@
     main .page-item.active .page-link {
         color: #fff;
         background: #61D0AF;
+        border-radius: 2px;
     }
-
+    main .page-item{
+        margin: 0 6px;
+    }
     footer#footer{
         background: #868686;
         font-size: 12px;

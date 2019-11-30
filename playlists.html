@@ -1,82 +1,100 @@
 {% extends "basic.html" %}
 
 {% block container %}
-  <h3>Перечень плейлистов</h3>
-	<section>
+<main id="main">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="title-page">
+                    <h1>Перечень плейлистов</h1>
+                </div>
+                <section>
 
-		<div>
-			<table cellspacing="2" border="1" cellpadding="5"width="100%">
-				<thead>
-				    <tr>
-				        <th>#</th>
-				        <th>Наименование</th>
-				        <th>Жанр</th>
-				        <th>Композиций</th>
-                {% if user.is_staff %}
-                  <th>Пользователь</th>
-                {% endif %}
-				    </tr>
-				</thead>
-				<tbody>
-				    {% for playlist in playlists %}
-				    <tr>
-				        <td> {{ playlist.pk }} </td>
-						<td>
-                <a href="/edit_playlist/?playlist={{ playlist.pk }}"> {{ playlist.title }} </a>
-            </td>
-						<td> {{ playlist.gentre }} </td>
-						<td> {{ playlist.count_songs }} </td>
-            {% if user.is_staff %}
-              <td> {{ playlist.owner }} </td>
-            {% endif %}
-				  	</tr>
-				    {% endfor %}
-				</tbody>
-			</table>
-		</div>
-	</section>
+                    <div>
+                        <table cellspacing="2" border="1" cellpadding="5"width="100%">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Наименование</th>
+                                    <th>Жанр</th>
+                            <th>Сетки вещания</th>
+                                    <th>Композиций</th>
+                            {% if user.is_staff %}
+                              <th>Пользователь</th>
+                            {% endif %}
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for playlist in playlists %}
+                                <tr>
+                                <td> {{ forloop.counter }} </td>
+                                        <td>
+                                <a href="/edit_playlist/?playlist={{ playlist.pk }}"> {{ playlist.title }} </a>
+                            </td>
+                                        <td> {{ playlist.gentre }} </td>
+                            <td>
+                              {% if playlist.elembroadcastgrid_set.all %}
+                                {% for e in playlist.elembroadcastgrid_set.all %}
+                                  {% if e.broadcastgrid_set.all %}
+                                    {% for ee in e.broadcastgrid_set.all|slice:'0:2' %}
+                                      &ldquo;{{ ee.title }}&rdquo;&#8194;
+                                    {% endfor %}
+                                    {% if e.broadcastgrid_set.all|length >= 3 %}
+                                      &hellip;
+                                    {% endif%}
+                                  {% else %}
+                                    &#8194;
+                                  {% endif %}
+                                {% endfor %}
+                              {% else %}
+                                &#8194;
+                              {% endif %}
+                            </td>
+                                        <td> {{ playlist.count_songs }} </td>
+                            {% if user.is_staff %}
+                              <td> {{ playlist.owner }} </td>
+                            {% endif %}
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
 
-	<section>
-    <div>
-        <nav aria-label="Page navigation">
-            <ul class="pagination justify-content-center">
-                {% if page.has_previous %}
-                <li class="page-item">
-                    <a class="page-link" href="?page={{ page.previous_page_number }}" aria-label="Previous">
-                        <span aria-hidden="true">&laquo;</span>
-                        <span class="sr-only">Previous</span>
-                    </a>
-                </li>
+                <section>
+                <div>
+                    <nav aria-label="Page navigation">
+                        <ul class="pagination justify-content-center">
+                            {% if page.has_previous %}
+                            <li class="page-item">
+                                <a class="page-link" href="?page={{ page.previous_page_number }}" aria-label="Previous">
+                                    <span aria-hidden="true">&laquo;</span>
+                                    <span class="sr-only">Previous</span>
+                                </a>
+                            </li>
 
-                <li class="page-item"><a class="page-link" href="?page={{ page.previous_page_number }}">{{page.previous_page_number}}</a></li>
-                {% endif %}
+                            <li class="page-item"><a class="page-link" href="?page={{ page.previous_page_number }}">{{page.previous_page_number}}</a></li>
+                            {% endif %}
 
-                <li class="page-item active"><a class="page-link" href="#">{{ page.number }}<span class="sr-only">(current)</span></a></li>
+                            <li class="page-item active"><a class="page-link" href="#">{{ page.number }}<span class="sr-only">(current)</span></a></li>
 
-                {% if page.has_next %}
-                <li class="page-item"><a class="page-link" href="?page={{ page.next_page_number }}">{{ page.next_page_number }}</a></li>
-                <li class="page-item">
-                    <a class="page-link" href="?page={{ page.next_page_number }}" aria-label="Next">
-                        <span aria-hidden="true">&raquo;</span>
-                        <span class="sr-only">Next</span>
-                    </a>
-                </li>
-                {% endif %}
-            </ul>
-        </nav>
+                            {% if page.has_next %}
+                            <li class="page-item"><a class="page-link" href="?page={{ page.next_page_number }}">{{ page.next_page_number }}</a></li>
+                            <li class="page-item">
+                                <a class="page-link" href="?page={{ page.next_page_number }}" aria-label="Next">
+                                    <span aria-hidden="true">&raquo;</span>
+                                    <span class="sr-only">Next</span>
+                                </a>
+                            </li>
+                            {% endif %}
+                        </ul>
+                    </nav>
+                </div>
+                </section>
+
+                <p class="btn-form"><a class="btn" href="/add_playlist/">Добавить плейлист +</a></p>
+            </div>
+        </div>
     </div>
-    </section>
-
-	<section>
-    <div>
-    	<p>
-    	<a href="/add_playlist/"> Добавить плейлист </a>
-    </div>
-  </section>
-{% endblock %}
-
-{% block footer %}
-  <div class="container">
-
-	</div>
+</main>
 {% endblock %}
