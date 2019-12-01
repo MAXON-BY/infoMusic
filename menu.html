@@ -1,6 +1,6 @@
 {% load static %}
 {% block mnu %}
-  {% if user.is_authenticated %}
+
     <header id="header">
       <div class="container">
         <div class="row">
@@ -11,6 +11,7 @@
                 <img src="{% static 'img/logo-musicinfo.png' %}" alt="musicinfo" style="width:30px;">
               </a>
 
+              {% if user.is_authenticated %}
               <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
               </button>
@@ -36,11 +37,11 @@
                 </span>
                 {% endif %}
               </div>
+              {% endif %}
             </nav>
 
           </div>
         </div>
       </div>
     </header>
-  {% endif %}
 {% endblock %}

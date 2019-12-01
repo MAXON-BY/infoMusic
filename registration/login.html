@@ -1,31 +1,40 @@
 {% extends "basic.html" %}
 
 {% block  container %}
-<section>
-	<div class="container">
+<main id="main" class="main-authorization">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
 
-    {% if user.is_authenticated %}
-        <p>Вы выполнили вход</p>
-    {% else %}
-        <h3 class="text-center">&nbsp;</h3>
-        <form method="POST" action="{% url 'login' %}">
-            <div class="form-group">
-                {% csrf_token %}
-								<div class="row m-5">
-	                {{form.username.label_tag}}{{ form.username }}<br>
-								</div>
-								<div class="row m-5">
-	                {{form.password.label_tag}}{{ form.password }}
-								</div>
-								<div class="row mx-5">
-	                <input type="hidden" name="next" value="{{ next }}">
-	                <input type="submit" class="btn btn-primary" value="Войти">
-								</div>
+                <section class="block-authorization-wrap">
+                    <div class="block-authorization">
+                        {% if user.is_authenticated %}
+                        <p>Вы выполнили вход</p>
+                        {% else %}
+                        <h1>Авторизация</h1>
+                        <form method="POST" action="{% url 'login' %}">
+                            <div class="form-group">
+                                {% csrf_token %}
+                                <div class="input-wrap">
+                                    {{ form.username }}
+                                </div>
+                                <div class="input-wrap">
+                                    {{ form.password }}
+                                </div>
+                                <div class="btns-form">
+                                    <input type="hidden" name="next" value="{{ next }}">
+                                    <input type="submit" class="btn" value="Войти">
+                                    <p class="form-link"><a href="#">Восстановить пароль</a></p>
+                                </div>
+                            </div>
+                        </form>
+
+                        {% endif %}
+                    </div>
+                </section>
+
             </div>
-        </form>
-
-    {% endif %}
-
+        </div>
     </div>
-</section>
+</main>
 {% endblock %}
