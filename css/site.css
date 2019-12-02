@@ -353,6 +353,18 @@ main .form-link a:hover{
     color: #868686;
     transition: 0.3s;
 }
+main .form-wrap .inner-form{
+    display: flex;
+    justify-content: space-between;
+}
+main .form-wrap .inner-form .form-part{
+    width: 48%;
+}
+main .form-wrap .inner-form .form-part.between{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+}
 footer#footer{
     background: #868686;
     font-size: 12px;
