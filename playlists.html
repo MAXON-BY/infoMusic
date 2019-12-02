@@ -37,7 +37,7 @@
                                 {% for e in playlist.elembroadcastgrid_set.all %}
                                   {% if e.broadcastgrid_set.all %}
                                     {% for ee in e.broadcastgrid_set.all|slice:'0:2' %}
-                                      &ldquo;{{ ee.title }}&rdquo;&#8194;
+                                      <a href="{% url 'editBroadcastGrid' %}?grid={{ ee.pk }}">{{ ee.title }}</a> &#8194;
                                     {% endfor %}
                                     {% if e.broadcastgrid_set.all|length >= 3 %}
                                       &hellip;

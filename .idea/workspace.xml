@@ -3,12 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="7edf0813-08ac-436b-9da6-883d13d33a56" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/advs.html" beforeDir="false" afterPath="$PROJECT_DIR$/advs.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/basic.html" beforeDir="false" afterPath="$PROJECT_DIR$/basic.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/css/site.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/site.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/menu.html" beforeDir="false" afterPath="$PROJECT_DIR$/menu.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/add_group.html" beforeDir="false" afterPath="$PROJECT_DIR$/add_group.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/add_object.html" beforeDir="false" afterPath="$PROJECT_DIR$/add_object.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/edit_object.html" beforeDir="false" afterPath="$PROJECT_DIR$/edit_object.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/objects.html" beforeDir="false" afterPath="$PROJECT_DIR$/objects.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/registration/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/registration/login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/playlists.html" beforeDir="false" afterPath="$PROJECT_DIR$/playlists.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/registration/profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/registration/profile.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../react-theory-webformyself/src/components/404/NotFoundPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/../react-theory-webformyself/src/components/404/NotFoundPage.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../react-theory-webformyself/src/components/About/About.css" beforeDir="false" afterPath="$PROJECT_DIR$/../react-theory-webformyself/src/components/About/About.css" afterDir="false" />
@@ -31,23 +30,34 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.437268">
+    <splitter split-orientation="horizontal" split-proportion="0.8782421">
       <split-first>
         <leaf>
           <file pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/basic.html">
+            <entry file="file://$PROJECT_DIR$/edit_object.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="85">
-                  <caret line="5" column="105" selection-start-line="5" selection-start-column="33" selection-end-line="5" selection-end-column="105" />
+                <state relative-caret-position="799">
+                  <caret line="47" column="35" lean-forward="true" selection-start-line="47" selection-start-column="35" selection-end-line="47" selection-end-column="35" />
+                  <folding>
+                    <element signature="e#720#726#0" expanded="true" />
+                    <element signature="e#923#929#0" expanded="true" />
+                    <element signature="e#1026#1032#0" expanded="true" />
+                    <element signature="e#1071#1077#0" expanded="true" />
+                    <element signature="e#1320#1326#0" expanded="true" />
+                    <element signature="e#1610#1616#0" expanded="true" />
+                    <element signature="e#1824#1830#0" expanded="true" />
+                    <element signature="e#1939#1945#0" expanded="true" />
+                    <element signature="e#1962#1968#0" expanded="true" />
+                  </folding>
                 </state>
               </provider>
             </entry>
           </file>
           <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/registration/login.html">
+            <entry file="file://$PROJECT_DIR$/groups.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="391">
-                  <caret line="23" column="53" selection-start-line="23" selection-start-column="44" selection-end-line="23" selection-end-column="53" />
+                <state relative-caret-position="528">
+                  <caret line="93" column="11" lean-forward="true" selection-start-line="90" selection-start-column="16" selection-end-line="93" selection-end-column="11" />
                 </state>
               </provider>
             </entry>
@@ -68,7 +78,7 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/menu.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="338">
+                <state relative-caret-position="459">
                   <caret line="27" column="25" selection-start-line="27" selection-start-column="25" selection-end-line="27" selection-end-column="25" />
                   <folding>
                     <element signature="n#style#0;n#img#0;n#a#0;n#nav#0;n#div#0;n#div#0;n#div#0;n#header#0;n#!!top" expanded="true" />
@@ -98,6 +108,7 @@
       <find>Список рекламных роликов</find>
       <find>Профиль пользователя</find>
       <find>Имя пользователя</find>
+      <find>Добавление группы объектов</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -118,6 +129,8 @@
         <option value="$PROJECT_DIR$/menu.html" />
         <option value="$PROJECT_DIR$/registration/login.html" />
         <option value="$PROJECT_DIR$/css/site.css" />
+        <option value="$PROJECT_DIR$/add_group.html" />
+        <option value="$PROJECT_DIR$/edit_object.html" />
       </list>
     </option>
   </component>
@@ -188,19 +201,19 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1575058949186</updated>
-      <workItem from="1575058950559" duration="67629000" />
+      <workItem from="1575058950559" duration="71970000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="67629000" />
+    <option name="totallyTimeSpent" value="71970000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Favorites" side_tool="true" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.14638783" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.12040558" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Docker" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" />
@@ -247,9 +260,6 @@
     <entry file="file://$PROJECT_DIR$/add_broadcast.html">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/add_group.html">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/add_object.html">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -263,12 +273,6 @@
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/edit_broadcast.html">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/edit_group.html">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/edit_object.html">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/edit_playlist.html">
@@ -301,24 +305,6 @@
             <element signature="n#section#0;n#!!top" />
             <element signature="n#section#1;n#!!top" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/advs.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="73" selection-start-line="73" selection-end-line="73" />
-          <folding>
-            <element signature="n#table#0;n#div#0;n#section#0;n#!!top" />
-            <element signature="n#section#1;n#!!top" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/groups.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="377">
-          <caret line="26" column="32" selection-start-line="26" selection-start-column="32" selection-end-line="26" selection-end-column="32" />
         </state>
       </provider>
     </entry>
@@ -363,16 +349,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/registration/login.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="23" column="53" selection-start-line="23" selection-start-column="44" selection-end-line="23" selection-end-column="53" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/menu.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="338">
+        <state relative-caret-position="459">
           <caret line="27" column="25" selection-start-line="27" selection-start-column="25" selection-end-line="27" selection-end-column="25" />
           <folding>
             <element signature="n#style#0;n#img#0;n#a#0;n#nav#0;n#div#0;n#div#0;n#div#0;n#header#0;n#!!top" expanded="true" />
@@ -381,10 +360,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/basic.html">
+    <entry file="file://$PROJECT_DIR$/advs.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="105" selection-start-line="5" selection-start-column="33" selection-end-line="5" selection-end-column="105" />
+        <state relative-caret-position="474">
+          <caret line="73" selection-start-line="73" selection-end-line="73" />
         </state>
       </provider>
     </entry>
@@ -392,6 +371,59 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="457">
           <caret line="268" column="34" selection-start-line="268" selection-start-column="34" selection-end-line="268" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/basic.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="18" lean-forward="true" selection-start-line="18" selection-end-line="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/edit_group.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="6" lean-forward="true" selection-start-line="3" selection-start-column="6" selection-end-line="3" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/registration/login.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" selection-start-line="3" selection-end-line="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/add_group.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="14" column="46" lean-forward="true" selection-start-line="14" selection-start-column="46" selection-end-line="14" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/groups.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="528">
+          <caret line="93" column="11" lean-forward="true" selection-start-line="90" selection-start-column="16" selection-end-line="93" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/edit_object.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="799">
+          <caret line="47" column="35" lean-forward="true" selection-start-line="47" selection-start-column="35" selection-end-line="47" selection-end-column="35" />
+          <folding>
+            <element signature="e#720#726#0" expanded="true" />
+            <element signature="e#923#929#0" expanded="true" />
+            <element signature="e#1026#1032#0" expanded="true" />
+            <element signature="e#1071#1077#0" expanded="true" />
+            <element signature="e#1320#1326#0" expanded="true" />
+            <element signature="e#1610#1616#0" expanded="true" />
+            <element signature="e#1824#1830#0" expanded="true" />
+            <element signature="e#1939#1945#0" expanded="true" />
+            <element signature="e#1962#1968#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

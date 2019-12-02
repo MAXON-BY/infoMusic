@@ -11,16 +11,20 @@
     {% endif %}
     <form action={% url 'addObject' %} method="post">
         {% csrf_token %}
-          {{ form.title.label_tag }}&nbsp;{{ form.title }} &nbsp; {{ form.active.label_tag }}&nbsp;{{ form.active }} <br>
-          {{ form.ip_address.label_tag }}&nbsp;{{ form.ip_address }} &nbsp; {{ form.port_mpd.label_tag }}&nbsp;{{ form.port_mpd }} <br>
-          {{ form.music_directory.label_tag }}&nbsp;{{ form.music_directory }} <br>
+          {{ form.title.label_tag }}&nbsp;{{ form.title }} &nbsp; <br>
+          <p>{{ form.active.label_tag }}&nbsp;{{ form.active }}</p>
+          {{ form.ip_address.label_tag }}&nbsp;{{ form.ip_address }}<br>
+
           {{ form.state.label_tag }}&nbsp;{{ form.state }} &nbsp; {{ form.town.label_tag }}&nbsp;{{ form.town }} &nbsp; {{ form.post_address.label_tag }}&nbsp;{{ form.post_address }} &nbsp; <br>
 <!--          {{ form.playlist.label_tag }}&nbsp;{{ form.playlist }} &nbsp; {{ form.time_start.label_tag }}&nbsp;{{ form.time_start }} &nbsp; {{ form.time_stop.label_tag }}&nbsp;{{ form.time_stop }} &nbsp; <br> -->
           {{ form.annotation.label_tag }}&nbsp;{{ form.annotation }} <br>
-          {{ form.dep_format.label_tag }}&nbsp;{{ form.dep_format }} &nbsp; {{ form.gentre.label_tag }}&nbsp;{{ form.gentre }} <br>
+          {{ form.dep_format.label_tag }}&nbsp;{{ form.dep_format }} <br>
+          {{form.play_work.label_tag}}{{ form.play_work }}<br>
+          {{form.time_start.label_tag}}{{ form.time_start }} &nbsp; {{form.time_stop.label_tag}}{{ form.time_stop }}<br>
+
           {{ form.adv.label_tag }}&nbsp;{{ form.adv }} &nbsp; {{ form.freq_ad.label_tag }}&nbsp;{{ form.freq_ad }} <br>
           {{ form.group.label_tag }}&nbsp;{{ form.group }} &nbsp; {{ form.broadcast_grid.label_tag }}&nbsp;{{ form.broadcast_grid }} <br>
-          {{ form.cur_volume.label_tag }}&nbsp;{{ form.cur_volume }} <br> {{ form.freq_sync_day.label_tag }}&nbsp;{{ form.freq_sync_day }} <br>
+          {{ form.freq_sync_day.label_tag }}&nbsp;{{ form.freq_sync_day }} <br>
           {% if user.is_staff %}
             {{ form.owner.label_tag }}&nbsp;{{ form.owner }} &nbsp; <br>
           {% else %}

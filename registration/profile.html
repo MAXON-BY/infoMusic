@@ -27,7 +27,7 @@
                                 <div class="profile-descr-noedit">
                                     <div class="row">
                                         <div class="col">
-                                            <p class="profile-login">{{user.username}}</p>
+                                            <p class="profile-login">{{ user.username }}</p>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -42,7 +42,7 @@
                                     </div>
                                     <div class="row">
                                         <div class="col">
-                                            <p class="profile-text">Компания</p>
+                                            <p class="profile-text">{{ prof.0.name_company }}</p>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -52,7 +52,7 @@
                                     </div>
                                     <div class="row">
                                         <div class="col">
-                                            <p class="profile-contacts phone">{{ prof.phone }}</p>
+                                            <p class="profile-contacts phone">{{ prof.0.phone }}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -76,7 +76,7 @@
                                         </div>
                                         <div class="row my-1">
                                             <div class="col">
-                                                <input value="Компания">
+                                                <input value="{{ prof.0.name_company }}">
                                             </div>
                                         </div>
                                         <div class="row my-1">
@@ -86,7 +86,7 @@
                                         </div>
                                         <div class="row my-1">
                                             <div class="col">
-                                                <input value="{{ prof.phone }}" />
+                                                <input value="{{ prof.0.phone }}" />
                                             </div>
                                         </div>
                                     </form>
@@ -114,4 +114,5 @@
         </div>
     </div>
 </main>
+{{debug}}
 {% endblock %}

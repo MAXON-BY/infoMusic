@@ -26,8 +26,11 @@
                                     <th>Область</th>
                                     <th>Город</th>
                                     <!-- <th>Формат</th> -->
-                                    <th>Жанр</th>
-                                    <!-- <th>Группа</th> -->
+                                    <th>Формат</th>
+                                    <th>Сетка вещания</th>
+                                    <th>Реклама</th>
+                                    <th>Открытие</th>
+                                    <th>Закрытие</th>
                                     <th>Статус</th>
                                     <!-- <th>Проверка</th> -->
                                     {% if user.is_staff %}
@@ -46,14 +49,41 @@
                                         <input type="checkbox" class="" id="activeSwitch_{{ depot.pk }}" disabled>
                                         {% endif %}
                                     </td>
-                                    <td> {{ depot.group.title }} </td>
+                                    <td> <a href="{% url 'editGrObject' %}?group={{depot.group.pk}}">{{ depot.group.title }}</a> </td>
                                     <!-- <td> {{ depot.ip_address }} </td> -->
                                     <!-- <td> {{ depot.annotation }} </td> -->
                                     <td> {{ depot.state }} </td>
                                     <td> {{ depot.town }} </td>
                                     <!-- <td> {{ depot.dep_format }} </td> -->
-                                    <td> {{ depot.gentre }} </td>
-                                    <!-- <td> {{ depot.group.title }} </td> -->
+                                    <td> {{ depot.dep_format }} </td>
+                                    <td>
+                                      {% if depot.broadcast_grid == None %}
+                                        &ensp;
+                                      {% else %}
+                                        <a href="{% url 'editBroadcastGrid' %}?grid={{ depot.broadcast_grid.pk }}">{{ depot.broadcast_grid }}</a>
+                                      {% endif %}
+                                    </td>
+                                    <td>
+                                      {% if depot.adv == None %}
+                                        &ensp;
+                                      {% else %}
+                                        <a href="{% url 'editAdv' %}?adv={{ depot.adv.pk }}">{{ depot.adv }}</a>
+                                      {% endif %}
+                                    </td>
+                                    <td>
+                                      {% if depot.time_start == None %}
+                                        &ensp;
+                                      {% else %}
+                                        {{ depot.time_start }}
+                                      {% endif %}
+                                    </td>
+                                    <td>
+                                      {% if depot.time_stop == None %}
+                                        &ensp;
+                                      {% else %}
+                                        {{ depot.time_stop }}
+                                      {% endif %}
+                                    </td>
                                     <td> {% if depot.active %}
                                         {% if depot.status == 'online' %}
                                         <a href="{% url 'ObjectStatus' depot.pk %}">

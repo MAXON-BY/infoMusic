@@ -9,7 +9,7 @@
     {% endfor %}
     </ol>
     {% endif %}
-    <form action={% url 'addGrObject' %} method="post">
+    <form action="{% url 'addGrObject' %}" method="post">
         {% csrf_token %}
         {{form.title.label_tag }}&nbsp;{{ form.title }} &nbsp; {{form.freq_sync.label_tag}}{{ form.freq_sync }}<br>
         {{form.annotation.label_tag }} &nbsp; {{ form.annotation }} <br>
