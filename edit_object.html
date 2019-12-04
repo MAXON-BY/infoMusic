@@ -2,10 +2,10 @@
 
 {% block container %}
 
-<main id="main">
+<main id="main" class="edit-add">
     <div class="container">
         <div class="row">
-            <div class="col-12">
+            <div class="col-8">
 
                 <div class="title-page">
                     <h1>Название объекта (редактируем)</h1>
@@ -18,47 +18,87 @@
                             <div class="form-part">
                                 <input type="hidden" name="pk" value="{{ obj_object.pk }}" id="pk">
 
+
+                                <p>Общие сведения:</p>
                                 <div>
-                                    <label class="" for="id_title">{{ form.title.label }}</label>
                                     {{ form.title }}
                                 </div>
-
+                                <div class="input-time">
+                                    <!--  Время  -->
+                                    <p>Время работы с:{{ form.time_start }} по {{ form.time_stop }}</p>
+                                </div>
                                 <div>
+                                    <!--  Формат объекта  -->
+                                    {{ form.dep_format }}
+                                </div>
+                                <div>
+                                    <!--  Описание  -->
+                                    {{ form.annotation }}
+                                </div>
+
+
+                                <p>Настройки:</p>
+                                <div>
+                                    <!--  IP  -->
+                                    {{ form.ip_address }}
+                                </div>
+                                <div>
+                                    <!--  Объект активен  -->
+                                    {{ form.active }}
+                                    <label class="form-check-label" for="id_active">{{ form.active.label }}</label>
+                                </div>
+                                <div>
+                                    <!--  Воспроизводить только в рабочее время  -->
                                     {{ form.active }}
                                     <label class="form-check-label" for="id_active">{{ form.active.label }}</label>
                                 </div>
 
-                                <div>
-                                    {{form.ip_address.label_tag}}{{ form.ip_address }} &nbsp;
-                                </div>
 
-                                <div>
-                                    {{form.dep_format.label_tag}}{{ form.dep_format }}
-                                </div>
-
-
-                                {{form.annotation.label_tag}}{{ form.annotation }}<br>
-                                {{form.play_work.label_tag}}{{ form.play_work }}<br>
-                                {{form.time_start.label_tag}}{{ form.time_start }} &nbsp; {{form.time_stop.label_tag}}{{ form.time_stop }}<br>
-                                {{form.group.label_tag}}{{ form.group }} &nbsp;<br>
-                                {{form.broadcast_grid.label_tag}}{{ form.broadcast_grid }}<br>
-                                {{form.freq_ad.label_tag}}{{ form.freq_ad }} &nbsp; {{form.adv.label_tag}}{{ form.adv }}<br>
-
-                                {% if user.is_staff %}
-                                {{ form.owner.label_tag }}&nbsp;{{ form.owner }} &nbsp; <br>
-                                {% else %}
-                                <input type="hidden" name="owner" value="{{ user.pk }}" id="id_owner">
-                                {% endif %}
-
-                                <div class="row border bg-light p-1 my-1">
-                                    <div class="col form-group">
-                                        <label class="my-1 mr-2" for="id_freq_sync_day">{{ form.freq_sync_day.label }}</label>
-                                        {{ form.freq_sync_day }}
+                                <div class="select-wrap">
+                                    <div class="item-sel">
+                                        {{form.play_work.label_tag}}
+                                        {{ form.play_work }}
+                                    </div>
+                                    <div class="item-sel">
+                                        {{form.play_work.label_tag}}
+                                        {{ form.play_work }}
+                                    </div>
+                                    <div class="item-sel">
+                                        {{form.play_work.label_tag}}
+                                        {{ form.play_work }}
+                                    </div>
+                                    <div class="item-sel">
+                                        {{form.play_work.label_tag}}
+                                        {{ form.play_work }}
+                                    </div>
+                                    <div class="item-sel">
+                                        {{form.freq_ad.label_tag}}
+                                        {{ form.freq_ad }}
+                                    </div>
+                                    <div class="item-sel">
+                                        {{form.play_work.label_tag}}
+                                        {{ form.play_work }}
                                     </div>
                                 </div>
+
+
+<!--                                {{form.group.label_tag}}{{ form.group }} &nbsp;<br>-->
+<!--                                {{form.broadcast_grid.label_tag}}{{ form.broadcast_grid }}<br>-->
+<!--                                {{form.freq_ad.label_tag}}{{ form.freq_ad }} &nbsp; {{form.adv.label_tag}}{{ form.adv }}<br>-->
+
+<!--                                {% if user.is_staff %}-->
+<!--                                    {{ form.owner.label_tag }}&nbsp;{{ form.owner }} &nbsp; <br>-->
+<!--                                {% else %}-->
+<!--                                    <input type="hidden" name="owner" value="{{ user.pk }}" id="id_owner">-->
+<!--                                {% endif %}-->
+
+<!--                                <label class="my-1 mr-2" for="id_freq_sync_day">{{ form.freq_sync_day.label }}</label>-->
+<!--                                {{ form.freq_sync_day }}-->
                             </div>
+
                             <div class="form-part between">
                                 <div class="inputs-wrap">
+                                    <p>Адрес объекта:</p>
                                     {{ form.state }}
                                     {{ form.town }}
                                     {{ form.post_address }}
@@ -66,9 +106,9 @@
 
                                 {% if obj_object.active %}
                                 <div class="form-wrap-btns">
-                                    <p><input class="btn btn-primary" type="submit" value="Обновить"></p>
-                                    <p><a href="{% url 'sync_all' obj_object.pk %}" class="btn btn-primary btn-sm btn-block active" role="button" aria-pressed="true">Синхронизация</a></p>
-                                    <p><a href="{% url 'ObjectStatus' obj_object.pk %}" class="btn btn-primary btn-sm btn-block active" role="button" aria-pressed="true">Управление</a></p>
+                                    <p><input class="btn" style="margin: 0;" type="submit" value="Обновить"></p>
+                                    <p><a href="{% url 'sync_all' obj_object.pk %}" class="btn" role="button" aria-pressed="true">Синхронизация</a></p>
+                                    <p><a href="{% url 'ObjectStatus' obj_object.pk %}" class="btn" role="button" aria-pressed="true">Управление</a></p>
                                 </div>
                                 {% endif %}
                             </div>

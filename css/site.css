@@ -365,6 +365,24 @@ main .form-wrap .inner-form .form-part.between{
     justify-content: space-between;
     flex-direction: column;
 }
+main#main.edit-add{
+    max-width: 1360px;
+    background: #E5E5E5;
+    margin: 0 auto;
+}
+main#main.edit-add .row{
+    justify-content: center;
+}
+main#main.edit-add{
+    display: flex;
+}
+main#main.edit-add .input-time input{
+    margin-bottom: 0;
+    width: 72px;
+}
+main#main.edit-add .form-wrap-btns{
+    text-align: right;
+}
 footer#footer{
     background: #868686;
     font-size: 12px;
