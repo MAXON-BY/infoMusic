@@ -30,6 +30,9 @@ input:-ms-input-placeholder {color: #E3E3E3; !important;}
 input::-ms-input-placeholder {color: #E3E3E3; !important;}
 input::placeholder {color: #E3E3E3; !important;}
 
+a{
+    color: #61D0AF;
+}
 a:hover {
     color: #868686;
 }
@@ -57,6 +60,39 @@ h4{
     font-size: 12px;
     line-height: 14px;
     color: #61D0AF;
+}
+
+select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    padding-right: 30px !important;
+    position: relative;
+}
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    opacity: 1;
+    margin: 0;
+    background-color: #61D0AF;
+}
+input[type=number]{
+    -moz-appearance: textfield;
+}
+.select {
+    position: relative;
+}
+.select:after {
+    content: url("../img/select.png");
+    padding: 0 8px;
+    font-size: 12px;
+    position: absolute;
+    right: 0px;
+    top: 4px;
+    z-index: 1;
+    text-align: center;
+    pointer-events: none;
+    box-sizing: border-box;
 }
 
 .form-control {
@@ -250,6 +286,7 @@ main .profile-user{
 main .profile-user .profile-descr{
     width: 100%;
 }
+main select,
 main input{
     width: 100%;
     background: #FFFFFF;
@@ -263,6 +300,7 @@ main input{
     margin-bottom: 7px;
 }
 .form-control:focus,
+main select:focus,
 main input:focus{
     color: #868686;
     outline: #61D0AF;
@@ -357,8 +395,23 @@ main .form-wrap .inner-form{
     display: flex;
     justify-content: space-between;
 }
+main .form-wrap .inner-form p{
+    font-size: 16px;
+    line-height: 19px;
+    color: #868686;
+}
 main .form-wrap .inner-form .form-part{
     width: 48%;
+}
+main#main.edit-add .form-wrap-btns,
+main .form-wrap .inner-form .form-part .input-time,
+main .form-wrap .inner-form .form-part .form-control,
+main .form-wrap .inner-form .form-part input{
+    margin-bottom: 30px !important;
+}
+main#main.edit-add .form-wrap-btns input,
+main .form-wrap .inner-form .form-part .input-time input{
+    margin-bottom: 0 !important;
 }
 main .form-wrap .inner-form .form-part.between{
     display: flex;
@@ -369,19 +422,129 @@ main#main.edit-add{
     max-width: 1360px;
     background: #E5E5E5;
     margin: 0 auto;
+    display: flex;
+    position: relative;
+}
+main#main.edit-add .bread{
+    position: absolute;
+    top: 9px;
+    left: 10px;
+}
+main#main.edit-add .bread a,
+main#main.edit-add .bread{
+    font-size: 12px;
+    line-height: 14px;
+    color: #868686;
+}
+main#main.edit-add .bread a:hover,
+main#main.edit-add .bread span{
+    text-decoration-line: underline;
+    color: #61D0AF;
 }
 main#main.edit-add .row{
     justify-content: center;
-}
-main#main.edit-add{
-    display: flex;
 }
 main#main.edit-add .input-time input{
     margin-bottom: 0;
     width: 72px;
 }
+main#main.edit-add .input-check{
+    margin-bottom: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+main#main.edit-add .input-check p{
+    margin: 0;
+}
+main#main.edit-add .input-check input[type="checkbox"]{
+    position: static;
+    margin: 0 !important;
+    width: 20px;
+    height: 20px;
+}
+main#main.edit-add .input-check .check-wrap{
+    display: block;
+    position: relative;
+    margin: 0px;
+    cursor: pointer;
+    font-size: 22px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    height: 20px;
+    width: 20px;
+}
+main#main.edit-add .input-check .check-wrap input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 20px;
+    width: 20px;
+}
+main#main.edit-add .input-check .check-wrap .checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 20px;
+    width: 20px;
+    background: #FFFFFF;
+    border: 2px solid #61D0AF;
+    box-sizing: border-box;
+    box-shadow: inset 2px 2px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 2px;
+}
+main#main.edit-add .input-check .check-wrap input:checked ~ .checkmark {
+    background-color: #61D0AF;
+    border: none;
+    box-shadow: none;
+}
+main#main.edit-add .input-check .check-wrap .checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+main#main.edit-add .input-check .check-wrap input:checked ~ .checkmark:after {
+    display: block;
+}
+main#main.edit-add .input-check .check-wrap .checkmark:after {
+    left: 7px;
+    top: 4px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+main#main.edit-add textarea.form-control {
+    height: auto;
+    min-height: 90px;
+}
 main#main.edit-add .form-wrap-btns{
     text-align: right;
+}
+main#main.edit-add .form-wrap-btns p:last-child{
+    margin: 0;
+}
+main#main.edit-add .select-wrap{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+main#main.edit-add .select-wrap .item-sel{
+    width: 47%;
+}
+main#main.edit-add .select-wrap .item-sel > *{
+    width: 100%;
+}
+main#main.edit-add .select-wrap .item-sel > p{
+    margin-bottom: 7px;
+}
+main#main.edit-add .input-time p{
+    margin: 0;
 }
 footer#footer{
     background: #868686;

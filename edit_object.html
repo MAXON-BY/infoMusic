@@ -3,12 +3,17 @@
 {% block container %}
 
 <main id="main" class="edit-add">
+
+    <div class="bread">
+        <a href="/objects">Список объектов</a> / <span>Название объекта</span>
+    </div>
+
     <div class="container">
         <div class="row">
             <div class="col-8">
 
                 <div class="title-page">
-                    <h1>Название объекта (редактируем)</h1>
+                    <h1>Название объекта</h1>
                 </div>
 
                 <section class="form-wrap">
@@ -20,64 +25,70 @@
 
 
                                 <p>Общие сведения:</p>
-                                <div>
+                                <div class="input-title">
                                     {{ form.title }}
                                 </div>
                                 <div class="input-time">
                                     <!--  Время  -->
                                     <p>Время работы с:{{ form.time_start }} по {{ form.time_stop }}</p>
                                 </div>
-                                <div>
+                                <div class="input-format">
                                     <!--  Формат объекта  -->
                                     {{ form.dep_format }}
                                 </div>
-                                <div>
+                                <div class="input-descr">
                                     <!--  Описание  -->
                                     {{ form.annotation }}
                                 </div>
 
 
                                 <p>Настройки:</p>
-                                <div>
+                                <div class="input-ip">
                                     <!--  IP  -->
                                     {{ form.ip_address }}
                                 </div>
-                                <div>
+                                <div class="input-check">
                                     <!--  Объект активен  -->
-                                    {{ form.active }}
-                                    <label class="form-check-label" for="id_active">{{ form.active.label }}</label>
+                                    <p>Объект активен:</p>
+                                    <label class="check-wrap" for="id_active">
+                                        {{ form.active }}
+                                        <span class="checkmark"></span>
+                                    </label>
                                 </div>
-                                <div>
+                                <div class="input-check">
                                     <!--  Воспроизводить только в рабочее время  -->
-                                    {{ form.active }}
-                                    <label class="form-check-label" for="id_active">{{ form.active.label }}</label>
+                                    <p>Воспроизводить только в рабочее время:</p>
+                                    <label class="check-wrap" for="id_active">
+                                        {{ form.active }}
+                                        <span class="checkmark"></span>
+                                    </label>
                                 </div>
 
 
                                 <div class="select-wrap">
                                     <div class="item-sel">
-                                        {{form.play_work.label_tag}}
-                                        {{ form.play_work }}
+                                        <p>Синхронизация:</p>
+                                        <span class="select">{{ form.play_work }}</span>
                                     </div>
                                     <div class="item-sel">
-                                        {{form.play_work.label_tag}}
-                                        {{ form.play_work }}
+                                        <p>Плейлист:</p>
+                                        <span class="select">{{ form.play_work }}</span>
                                     </div>
                                     <div class="item-sel">
-                                        {{form.play_work.label_tag}}
-                                        {{ form.play_work }}
+                                        <p>Adv:</p>
+                                        <span class="select">{{ form.play_work }}</span>
                                     </div>
                                     <div class="item-sel">
-                                        {{form.play_work.label_tag}}
-                                        {{ form.play_work }}
+                                        <p>Группа:</p>
+                                        <span class="select">{{ form.play_work }}</span>
                                     </div>
                                     <div class="item-sel">
-                                        {{form.freq_ad.label_tag}}
-                                        {{ form.freq_ad }}
+                                        <p>Freq ad:</p>
+                                        <span class="number">{{ form.freq_ad }}</span>
                                     </div>
                                     <div class="item-sel">
-                                        {{form.play_work.label_tag}}
-                                        {{ form.play_work }}
+                                        <p>Broadcast grid:</p>
+                                        <span class="select">{{ form.play_work }}</span>
                                     </div>
                                 </div>
 
