@@ -95,7 +95,7 @@ input[type=number]{
     box-sizing: border-box;
 }
 
-.form-control {
+textarea, .form-control {
     width: 100%;
     background: #FFFFFF;
     border: none;
@@ -519,7 +519,7 @@ main#main.edit-add .input-check .check-wrap .checkmark:after {
     -ms-transform: rotate(45deg);
     transform: rotate(45deg);
 }
-main#main.edit-add textarea.form-control {
+main#main.edit-add textarea {
     height: auto;
     min-height: 90px;
 }
