@@ -254,11 +254,25 @@ main .btn{
     transition: 0.3s;
     max-width: 210px;
     width: 100%;
+    cursor: pointer;
 }
 main .btn:hover{
     color: #fff;
     background: #49ab8d;
     transition: 0.3s;
+}
+main #res{
+    margin-bottom: 10px !important;
+}
+main input[type="file"]{
+    display: none;
+}
+main label[for="file"]{
+    margin-bottom: 30px;
+}
+main .input-file div{
+    display: flex;
+    justify-content: flex-end;
 }
 main .pagination{
     padding-top: 33px;
@@ -307,6 +321,7 @@ main input:focus{
     box-shadow: 0 0 0 2px #61D0AF;
     outline-color: #61D0AF;
 }
+
 main .profile-edit{
     min-width: 210px;
     display: flex;

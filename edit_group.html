@@ -1,27 +1,84 @@
 {% extends "basic.html" %}
 
 {% block container %}
-    <h3>Изменение группы объектов</h3>
-    <form action={% url 'editGrObject' %} method="post">
-        {% csrf_token %}
-        <input type="hidden" name="group" value="{{ obj_object.pk }}" id="pk">
-          {{form.title.label_tag }}&nbsp;{{ form.title }} &nbsp; {{form.freq_sync.label_tag}}{{ form.freq_sync }}<br>
-          {{form.annotation.label_tag }} &nbsp; {{ form.annotation }} <br>
-          {{form.adv.label_tag }} &nbsp; {{ form.adv }} &nbsp; {{form.freq_ad.label_tag }}&nbsp;{{ form.freq_ad }} <br>
-<!--          {{form.playlist.label_tag }} &nbsp; {{ form.playlist }} &nbsp; -->
-          {{form.broadcast_grid.label_tag }}&nbsp;{{ form.broadcast_grid }} &nbsp; <br>
-          {% if user.is_staff %}
-            {{ form.owner.label_tag }}&nbsp;{{ form.owner }} &nbsp; <br>
-          {% else %}
-            <input type="hidden" name="owner" value="{{ user.pk }}" id="id_owner">
-          {% endif %}
-        <input type="submit" value="Обновить">
-    </form>
+<main id="main" class="edit-add">
 
-{% endblock %}
+    <div class="bread">
+        <a href="/gr_objects">Группы объектов</a> / <span>Изменить группу</span>
+    </div>
 
-{% block footer %}
-  <div class="container">
+    <div class="container">
+        <div class="row">
+            <div class="col-8">
 
-	</div>
+                <div class="title-page">
+                    <h1>Изменить группу</h1>
+                </div>
+
+                <section class="form-wrap">
+                    <form action="{% url 'editGrObject' %}" method="post">
+                        {% csrf_token %}
+
+                        <div class="inner-form">
+                            <div class="form-part">
+                                <div class="input-title">
+                                    {{ form.title }}
+                                </div>
+
+                                <div class="select-wrap">
+                                    <div class="item-sel">
+                                        <p>Объекты:</p>
+                                        <span class="select">{{ form.adv }}</span>
+                                    </div>
+                                    <div class="item-sel">
+                                        <p>_____</p>
+                                        <span>_____</span>
+                                    </div>
+                                    <div class="item-sel">
+                                        <p>Плейлист:</p>
+                                        <span class="select">{{ form.adv }}</span>
+                                    </div>
+                                    <div class="item-sel">
+                                        <p>Рекламный ролик:</p>
+                                        <span class="select">{{ form.adv }}</span>
+                                    </div>
+                                    <div class="item-sel">
+                                        <p>Владелец:</p>
+                                        <span class="select">{{ form.owner }}</span>
+                                    </div>
+                                    <div class="item-sel">
+                                        <p>Freq ad:</p>
+                                        <span class="number">{{ form.freq_ad }}</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-part between">
+                                <div class="input-descr">
+                                    <!--  Описание  -->
+                                    {{ form.annotation }}
+                                </div>
+
+                                <div class="form-wrap-btns">
+                                    <p><input class="btn" type="hidden" name="owner" value="{{ user.pk }}" id="id_owner"></p>
+                                    <p><input class="btn" type="submit" value="Обновить"></p>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+
+                    {% if form.subject.errors %}
+                    <ol>
+                        {% for error in form.subject.errors %}
+                        <li><strong>{{ error|escape }}</strong></li>
+                        {% endfor %}
+                    </ol>
+                    {% endif %}
+                </section>
+
+            </div>
+        </div>
+    </div>
+</main>
+
 {% endblock %}

@@ -1,35 +1,79 @@
 {% extends "basic.html" %}
 
 {% block container %}
-    <h3>Изменение рекламного ролика</h3>
-    
-    {% if form.subject.errors %}
-    <ol>
-    {% for error in form.subject.errors %}
-        <li><strong>{{ error|escape }}</strong></li>
-    {% endfor %}
-    </ol>
-{% endif %}
+<main id="main" class="edit-add">
 
-    <form action={% url 'editAdv' %} enctype="multipart/form-data" method="post">
-        <input type="hidden" name="pk" value="{{ advs.pk }}" id="pk">
-        {% csrf_token %}
-        {{ form.title.label_tag }}&nbsp;{{ form.title }} &nbsp; <br>
-        {{ form.annotation.label_tag }}&nbsp;{{ form.annotation }} <br>
-        {{ form.file.label_tag }}&nbsp;{{ form.file }} <br>
-        {% if user.is_staff %}
-          {{ form.owner.label_tag }} &nbsp; {{ form.owner }} &nbsp; <br>
-        {% else %}
-          <input type="hidden" name="owner" value="{{ user.pk }}" id="id_owner">
-        {% endif %}
+    <div class="bread">
+        <a href="/adv">Сетки вещания</a> / <span>Название рекламы</span>
+    </div>
 
-        <input type="submit" value="Обновить рекламу">
-    </form>
-
-{% endblock %}
-
-{% block footer %}
     <div class="container">
+        <div class="row">
+            <div class="col-8">
 
-	</div>
+                <div class="title-page">
+                    <h1>Изменение рекламного ролика</h1>
+                </div>
+
+                <section class="form-wrap">
+                    <form action="{% url 'editAdv' %}" enctype="multipart/form-data" method="post">
+                        <input type="hidden" name="pk" value="{{ advs.pk }}" id="pk">
+                        {% csrf_token %}
+
+                        <div class="inner-form">
+                            <div class="form-part">
+
+                                <div class="input-file">
+                                    <p>Название файла:</p>
+                                    <input type="text" id="res" disabled placeholder="Название файла">
+                                    <div>
+                                        <input type="file" name="file" id="file"/>
+                                        <label class="btn" for="file">Загрузить</label>
+                                    </div>
+                                </div>
+                                <div class="input-title">
+                                    <!--  Наименование ролика  -->
+                                    {{ form.title }}
+                                </div>
+
+                                <div class="select-wrap">
+                                    <div class="item-sel">
+                                        <p>Группы:</p>
+                                        <span class="select">{{ form.owner }}</span>
+                                    </div>
+                                    <div class="item-sel">
+                                        <p>_____</p>
+                                        <span>_____</span>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="form-part between">
+                                <div class="input-descr">
+                                    <!--  Описание  -->
+                                    {{ form.annotation }}
+                                </div>
+
+                                <div class="form-wrap-btns">
+                                    <p><input class="btn" type="reset" value="Удалить"></p>
+                                    <p><input class="btn" type="submit" value="Сохранить"></p>
+                                </div>
+                            </div>
+                    </form>
+
+                    {% if form.subject.errors %}
+                    <ol>
+                        {% for error in form.subject.errors %}
+                        <li><strong>{{ error|escape }}</strong></li>
+                        {% endfor %}
+                    </ol>
+                    {% endif %}
+                </section>
+
+            </div>
+        </div>
+    </div>
+</main>
+
 {% endblock %}
