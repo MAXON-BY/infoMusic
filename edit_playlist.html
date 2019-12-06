@@ -109,37 +109,55 @@
 		    </table>
 		    </form>
 		</div>
-        <div class="col">
-		    <form method="post" action="#">
-	        {% csrf_token %}
-		    <table border="1" width="99%">
-		        <thead>
-		            <tr><td colspan="2">Можно добавить композиций в плейлист: {{ count_all_songs }}</td></tr>
-		        </thead>
-		        {% for all_song in all_songs %}
-		        <tr>
-		            <td> <input type="checkbox" name="add_song" value="{{ all_song.pk }}"> </td>
-		            <td> {{ all_song.file_name }} </td>
-		        </tr>
-		        {% endfor %}
-            {% if user.is_staff %}
-		          <tr><td colspan="2"><input type="submit" value="Добавить"></td></tr>
-            {% else %}
-              {% if user == playlist.owner %}
-                <tr><td colspan="2"><input type="submit" value="Добавить"></td></tr>
-              {% endif %}
-            {% endif %}
-		    </table>
-		    </form>
+      <div class="col">
+        <!-- кнопка вызова окна -->
+        {% if user.is_staff or user == playlist.owner %}
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">
+            Добавить композиции
+          </button>
+        {% endif %}
 		 </div>
 		</div>
 	</div>
 
+
+        <div class="container">
+          <!-- код окна -->
+          <div class="modal fade bd-example-modal-lg" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLongTitle">Выберите композиции для добавления</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <form method="post" action="#">
+                {% csrf_token %}
+                <!-- таблица окна -->
+                <div class="modal-body">
+                  <div class="container-fluid">
+                    {% for all_song in all_songs %}
+                    <div class="row">
+                      <div class="col-1">
+                        <input type="checkbox" name="add_song" value="{{ all_song.pk }}">
+                      </div>
+                      <div class="col">
+                        {{ all_song.file_name }}
+                      </div>
+                    </div>
+                    {% endfor %}
+                  </div>
+                </div>
+                <!-- конец таблицы -->
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
+                  <button type="submit" class="btn btn-primary">Добавить выбранные</button>
+                </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
 	</section>
-{% endblock %}
-
-{% block footer %}
-    <div class="container">
-
-	</div>
 {% endblock %}
