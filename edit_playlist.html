@@ -1,163 +1,146 @@
 {% extends "basic.html" %}
 
 {% block container %}
-    <h3>Изменение плейлиста</h3>
-	<section class="mb-4">
-	    <div class="container-fluid">
-        <form action="{% url 'editPlaylistFull' %}" method="post">
-        {% csrf_token %}
-        <input type="hidden" name="pk" value="{{ playlist.pk }}" id="pk">
-        <div class="row mb-3">
-            <div class="col">
-                <label for="inputPlaylistTitle">Наименование плейлиста</label>
-                <input type="text" name="inputPlaylistTitle" class="form-control" id="inputPlaylistTitle" value="{{ playlist.title }}">
-            </div>
-            <div class="col">
-                <label for="inputPlaylistGentre">Жанр плейлиста</label>
-                <input type="text" name="inputPlaylistGentre" class="form-control" id="inputPlaylistGentre" value="{{ playlist.gentre }}">
-            </div>
-        </div>
-        <div class="row">
-          {% if user.is_staff %}
-            <div class="col">
-              <label for="id_owner">Owner:</label>&nbsp;
-              <select name="owner" id="id_owner">
-                <option value="">---------</option>
-                {% for owner in owners %}
-                  {% if owner.pk == playlist.owner.pk %}
-                    <option value="{{ owner.pk }}" selected>{{ owner.username }}</option>
-                  {% else %}
-                    <option value="{{ owner.pk }}">{{ owner.username }}</option>
-                  {% endif %}
-                {% endfor %}
-              </select>
-            </div>
-            <div class="col">
-              <button type="submit" class="btn btn-primary">Изменить</button>
-            </div>
-          {% else %}
-            {% if playlist.owner.pk == 1 %}
-<!--              <button type="submit" class="btn btn-primary" disabled>Изменить</button> -->
-            {% else %}
-              <button type="submit" class="btn btn-primary">Изменить</button>
-            {% endif %}
-          {% endif %}
-        </div>
-        </form>
+<main id="main" class="edit-add">
 
-        <section>
-            <div class="container-fluid">
-
-            <div class="row mb-3">
-            <div class="col">
-                {% if depots %}
-                <div class="dropdown">
-                <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Используется на объектах:
-                </button>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    {% for depot in depots %}
-                        <a class="dropdown-item" href="#">{{ depot.title }}</a>
-                    {% endfor %}
-                </div>
-                </div>
-                {% endif %}
-            </div>
-
-            <div class="col">
-                {% if groupdepots %}
-                <div class="dropdown">
-                <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Используется в группах:
-                </button>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    {% for groupdepot in groupdepots %}
-                        <a class="dropdown-item" href="#">{{ groupdepot.title }}</a>
-                    {% endfor %}
-                </div>
-                </div>
-                {% endif %}
-            </div>
-            </div>
-            </div>
-        </section>
+    <div class="bread">
+        <a href="/playlists">Плейлисты</a> / <span>Изменить плейлист</span>
     </div>
-    <p>
 
-    <div class="container-fluid">
-        <div class="row mb-1">
-        <div class="col">
-		    <form method="post" action="#">
-            {% csrf_token %}
-		    <table border="1" width="99%">
-		        <thead>
-		            <tr><td colspan="2">Всего композиций в плейлисте: {{ count_playlist_songs }}</td></tr>
-		        </thead>
-		        {% for playlist_song in playlist_songs %}
-		        <tr>
-		            <td> <input type="checkbox" name="del_song" value="{{ playlist_song.pk }}"> </td>
-		            <td> {{ playlist_song.file_name }} </td>
-		        </tr>
-		        {% endfor %}
-            {% if user.is_staff %}
-              <tr><td colspan="2"><input type="submit" value="Удалить"></td></tr>
-            {% else %}
-              {% if user == playlist.owner %}
-		            <tr><td colspan="2"><input type="submit" value="Удалить"></td></tr>
-              {% endif %}
-            {% endif %}
-		    </table>
-		    </form>
-		</div>
-      <div class="col">
-        <!-- кнопка вызова окна -->
-        {% if user.is_staff or user == playlist.owner %}
-          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">
-            Добавить композиции
-          </button>
-        {% endif %}
-		 </div>
-		</div>
-	</div>
+    <div class="container">
+        <div class="row">
+            <div class="col-8">
 
-
-        <div class="container">
-          <!-- код окна -->
-          <div class="modal fade bd-example-modal-lg" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-            <div class="modal-dialog modal-lg" role="document">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLongTitle">Выберите композиции для добавления</h5>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
+                <div class="title-page">
+                    <h1>Изменить плейлист</h1>
                 </div>
-                <form method="post" action="#">
-                {% csrf_token %}
-                <!-- таблица окна -->
-                <div class="modal-body">
-                  <div class="container-fluid">
-                    {% for all_song in all_songs %}
-                    <div class="row">
-                      <div class="col-1">
-                        <input type="checkbox" name="add_song" value="{{ all_song.pk }}">
-                      </div>
-                      <div class="col">
-                        {{ all_song.file_name }}
-                      </div>
+
+                <section class="form-wrap">
+
+                    <form action="{% url 'editPlaylistFull' %}" method="post">
+                        {% csrf_token %}
+                        <div class="inner-form">
+                            <div class="form-part">
+                                <div class="input-title">
+                                    <!--  Наименование ролика  -->
+                                    <input type="text" name="inputPlaylistTitle" class="form-control"
+                                           id="inputPlaylistTitle" value="{{ playlist.title }}">
+                                </div>
+
+                                <div class="select-wrap">
+                                    <div class="item-sel">
+                                        <p>Жанр:</p>
+                                        <span class="select">
+                                            <select name="" id="">
+                                              <option value="">---------</option>
+                                              <option value=""> Одежда </option>
+                                              <option value="" selected=""> Реклама 1 </option>
+                                              <option value=""> Реклама тестовая </option>
+                                              <option value=""> Тестовая реклама Админ </option>
+                                            </select>
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div class="playlist-wrap">
+                                    {{ form.songs }}
+                                </div>
+                            </div>
+
+                            <div class="form-part between">
+                                <div class="input-descr">
+                                    <!--  Описание  -->
+                                    <textarea name="annotation" rows="2" class="form-control" placeholder="Примечание"
+                                              required=""
+                                              id="id_annotation">10.8.0.2 Магазин на ходится в Минске</textarea>
+                                </div>
+
+                                <div class="form-wrap-btns">
+                                    <p><!-- кнопка вызова окна -->
+                                        {% if user.is_staff or user == playlist.owner %}
+                                        <button type="button" class="btn btn-primary" data-toggle="modal"
+                                                data-target="#exampleModalLong">
+                                            Добавить композиции
+                                        </button>
+                                        {% endif %}
+                                    </p>
+                                    <p><input class="btn" type="submit" value="Создать"></p>
+                                </div>
+                            </div>
+
+                        </div>
+                    </form>
+
+                    <!-- POPUP WINDOW FORM -->
+                    <div class="container">
+                        <div class="modal fade bd-example-modal-lg" id="exampleModalLong" tabindex="-1" role="dialog"
+                             aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                            <div class="modal-dialog modal-lg" role="document">
+                                <div class="modal-content">
+
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLongTitle">Добавить композицию</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+
+                                    <form method="post" action="#">
+                                        {% csrf_token %}
+                                        <!-- таблица окна -->
+                                        <div class="modal-body">
+                                            <div class="container">
+                                                <div class="row">
+                                                    <div class="col">
+
+                                                        <div class="search-wrap">
+                                                            <input type="text"
+                                                                   placeholder="Начните вводить название композиции"
+                                                                   name="search">
+                                                            <button type="submit"><i class="fa fa-search"></i></button>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="container list-songs-wrap">
+                                                <div class="list-songs">
+                                                    {% for all_song in all_songs %}
+                                                    <div class="song">
+                                                        <div class="row">
+                                                            <div class="col">
+                                                                <span class="song-music">{{ all_song.file_name }}</span>
+                                                            </div>
+                                                            <div class="col-2">
+                                                                <span class="song-time">4:23</span>
+                                                                <label class="check-wrap" for="{{ all_song.pk }}">
+                                                                    <input type="checkbox" name="add_song" class="form-control" id="{{ all_song.pk }}" value="{{ all_song.pk }}">
+                                                                    <span class="checkmark"></span>
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {% endfor %}
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- конец таблицы -->
+                                        <div class="modal-footer">
+                                            <button type="submit" class="btn btn-white">Ок</button>
+                                        </div>
+
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    {% endfor %}
-                  </div>
-                </div>
-                <!-- конец таблицы -->
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
-                  <button type="submit" class="btn btn-primary">Добавить выбранные</button>
-                </div>
-                </form>
-              </div>
+
+                </section>
+
             </div>
-          </div>
         </div>
-	</section>
+    </div>
+</main>
 {% endblock %}

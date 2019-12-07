@@ -2,8 +2,29 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7edf0813-08ac-436b-9da6-883d13d33a56" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/add_adv.html" beforeDir="false" afterPath="$PROJECT_DIR$/add_adv.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/add_group.html" beforeDir="false" afterPath="$PROJECT_DIR$/add_group.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/add_object.html" beforeDir="false" afterPath="$PROJECT_DIR$/add_object.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/add_playlist.html" beforeDir="false" afterPath="$PROJECT_DIR$/add_playlist.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/advs.html" beforeDir="false" afterPath="$PROJECT_DIR$/advs.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/basic.html" beforeDir="false" afterPath="$PROJECT_DIR$/basic.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/broadcasts.html" beforeDir="false" afterPath="$PROJECT_DIR$/broadcasts.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/css/site.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/site.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/edit_advs.html" beforeDir="false" afterPath="$PROJECT_DIR$/edit_advs.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/edit_group.html" beforeDir="false" afterPath="$PROJECT_DIR$/edit_group.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/edit_object.html" beforeDir="false" afterPath="$PROJECT_DIR$/edit_object.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/edit_playlist.html" beforeDir="false" afterPath="$PROJECT_DIR$/edit_playlist.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/groups.html" beforeDir="false" afterPath="$PROJECT_DIR$/groups.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/bootstrap.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/bootstrap.min.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/menu.html" beforeDir="false" afterPath="$PROJECT_DIR$/menu.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/music.html" beforeDir="false" afterPath="$PROJECT_DIR$/music.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/objects.html" beforeDir="false" afterPath="$PROJECT_DIR$/objects.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/playlists.html" beforeDir="false" afterPath="$PROJECT_DIR$/playlists.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/registration/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/registration/login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/registration/profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/registration/profile.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../react-theory-webformyself/src/components/404/NotFoundPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/../react-theory-webformyself/src/components/404/NotFoundPage.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../react-theory-webformyself/src/components/About/About.css" beforeDir="false" afterPath="$PROJECT_DIR$/../react-theory-webformyself/src/components/About/About.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../react-theory-webformyself/src/components/About/About.js" beforeDir="false" afterPath="$PROJECT_DIR$/../react-theory-webformyself/src/components/About/About.js" afterDir="false" />
@@ -25,13 +46,13 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.14052045">
+    <splitter split-orientation="horizontal" split-proportion="0.42081785">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/add_object.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="526">
+                <state>
                   <caret line="74" column="76" selection-start-line="74" selection-start-column="76" selection-end-line="74" selection-end-column="76" />
                   <folding>
                     <element signature="n#div#2;n#div#0;n#div#0;n#form#0;n#section#0;n#div#0;n#div#0;n#div#1;n#main#0;n#!!top" />
@@ -47,8 +68,12 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/add_playlist.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="408">
-                  <caret line="43" column="47" selection-start-line="43" selection-start-column="47" selection-end-line="43" selection-end-column="47" />
+                <state relative-caret-position="374">
+                  <caret line="125" column="26" selection-start-line="125" selection-start-column="26" selection-end-line="125" selection-end-column="26" />
+                  <folding>
+                    <element signature="n#form#0;n#section#0;n#div#0;n#div#0;n#div#1;n#main#0;n#!!top" />
+                    <element signature="n#div#0;n#section#0;n#div#0;n#div#0;n#div#1;n#main#0;n#!!top" />
+                  </folding>
                 </state>
               </provider>
             </entry>
@@ -57,23 +82,33 @@
       </split-first>
       <split-second>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file pinned="false" current-in-tab="false">
+          <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/css/site.css">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="150">
-                  <caret line="267" column="18" selection-start-line="267" selection-start-column="18" selection-end-line="267" selection-end-column="18" />
+                <state relative-caret-position="475">
+                  <caret line="37" selection-start-line="37" selection-end-line="37" />
                 </state>
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="true">
+          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/edit_playlist.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="410">
-                  <caret line="125" column="18" selection-start-line="125" selection-start-column="18" selection-end-line="125" selection-end-column="18" />
+                <state relative-caret-position="322">
+                  <caret line="137" column="26" lean-forward="true" selection-start-line="73" selection-start-column="20" selection-end-line="137" selection-end-column="26" />
                   <folding>
-                    <element signature="n#div#0;n#div#2;n#section#0;n#!!top" />
+                    <element signature="n#form#0;n#section#0;n#div#0;n#div#0;n#div#1;n#main#0;n#!!top" />
+                    <element signature="n#div#0;n#section#0;n#div#0;n#div#0;n#div#1;n#main#0;n#!!top" />
                   </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/basic.html">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="153">
+                  <caret line="9" column="117" selection-start-line="9" selection-start-column="117" selection-end-line="9" selection-end-column="117" />
                 </state>
               </provider>
             </entry>
@@ -116,7 +151,6 @@
         <option value="$PROJECT_DIR$/broadcasts.html" />
         <option value="$PROJECT_DIR$/advs.html" />
         <option value="$PROJECT_DIR$/objects.html" />
-        <option value="$PROJECT_DIR$/basic.html" />
         <option value="$PROJECT_DIR$/registration/profile.html" />
         <option value="$PROJECT_DIR$/menu.html" />
         <option value="$PROJECT_DIR$/registration/login.html" />
@@ -125,11 +159,12 @@
         <option value="$PROJECT_DIR$/add_group.html" />
         <option value="$PROJECT_DIR$/edit_group.html" />
         <option value="$PROJECT_DIR$/js/site.js" />
-        <option value="$PROJECT_DIR$/css/site.css" />
         <option value="$PROJECT_DIR$/edit_advs.html" />
         <option value="$PROJECT_DIR$/add_adv.html" />
-        <option value="$PROJECT_DIR$/add_playlist.html" />
+        <option value="$PROJECT_DIR$/basic.html" />
         <option value="$PROJECT_DIR$/edit_playlist.html" />
+        <option value="$PROJECT_DIR$/add_playlist.html" />
+        <option value="$PROJECT_DIR$/css/site.css" />
       </list>
     </option>
   </component>
@@ -207,12 +242,21 @@
       <workItem from="1575534463148" duration="3570000" />
       <workItem from="1575560392203" duration="21275000" />
       <workItem from="1575634702535" duration="594000" />
-      <workItem from="1575649469963" duration="6619000" />
+      <workItem from="1575649469963" duration="11295000" />
+      <workItem from="1575671116451" duration="590000" />
+      <workItem from="1575704425598" duration="1733000" />
+      <workItem from="1575706193921" duration="674000" />
+      <workItem from="1575721213336" duration="301000" />
+      <workItem from="1575722786247" duration="1677000" />
+      <workItem from="1575724502375" duration="2266000" />
+      <workItem from="1575726817684" duration="1786000" />
+      <workItem from="1575728906711" duration="1687000" />
+      <workItem from="1575730850863" duration="1243000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="130773000" />
+    <option name="totallyTimeSpent" value="147406000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
@@ -318,13 +362,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/basic.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="18" lean-forward="true" selection-start-line="18" selection-end-line="18" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/registration/login.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
@@ -406,13 +443,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/css/site.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="267" column="18" selection-start-line="267" selection-start-column="18" selection-end-line="267" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/edit_advs.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="266">
@@ -437,7 +467,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/add_object.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="526">
+        <state>
           <caret line="74" column="76" selection-start-line="74" selection-start-column="76" selection-end-line="74" selection-end-column="76" />
           <folding>
             <element signature="n#div#2;n#div#0;n#div#0;n#form#0;n#section#0;n#div#0;n#div#0;n#div#1;n#main#0;n#!!top" />
@@ -449,20 +479,39 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/add_playlist.html">
+    <entry file="file://$PROJECT_DIR$/basic.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="43" column="47" selection-start-line="43" selection-start-column="47" selection-end-line="43" selection-end-column="47" />
+        <state relative-caret-position="153">
+          <caret line="9" column="117" selection-start-line="9" selection-start-column="117" selection-end-line="9" selection-end-column="117" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/edit_playlist.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="410">
-          <caret line="125" column="18" selection-start-line="125" selection-start-column="18" selection-end-line="125" selection-end-column="18" />
+        <state relative-caret-position="322">
+          <caret line="137" column="26" lean-forward="true" selection-start-line="73" selection-start-column="20" selection-end-line="137" selection-end-column="26" />
           <folding>
-            <element signature="n#div#0;n#div#2;n#section#0;n#!!top" />
+            <element signature="n#form#0;n#section#0;n#div#0;n#div#0;n#div#1;n#main#0;n#!!top" />
+            <element signature="n#div#0;n#section#0;n#div#0;n#div#0;n#div#1;n#main#0;n#!!top" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/add_playlist.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="125" column="26" selection-start-line="125" selection-start-column="26" selection-end-line="125" selection-end-column="26" />
+          <folding>
+            <element signature="n#form#0;n#section#0;n#div#0;n#div#0;n#div#1;n#main#0;n#!!top" />
+            <element signature="n#div#0;n#section#0;n#div#0;n#div#0;n#div#1;n#main#0;n#!!top" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/css/site.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="475">
+          <caret line="37" selection-start-line="37" selection-end-line="37" />
         </state>
       </provider>
     </entry>

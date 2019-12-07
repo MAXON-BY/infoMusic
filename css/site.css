@@ -19,6 +19,26 @@
     }
 }
 
+::-webkit-scrollbar{
+    width:12px;
+}
+::-webkit-scrollbar-thumb{
+    border-width:1px 1px 1px 2px;
+    border-color: #777;
+    background-color: #aaa;
+}
+::-webkit-scrollbar-thumb:hover{
+    border-width: 1px 1px 1px 2px;
+    border-color: #555;
+    background-color: #777;
+}
+::-webkit-scrollbar-track{
+    border-width:0;
+}
+::-webkit-scrollbar-track:hover{
+    border-left: solid 1px #aaa;
+    background-color: #eee;
+}
 
 body{
     font-family: 'Roboto', sans-serif;
@@ -38,6 +58,15 @@ a:hover {
 }
 .btn{
     border: none;
+}
+.close {
+    font-weight: 300;
+    color: #fff;
+    text-shadow: none;
+    opacity: 1;
+}
+.modal {
+    top: 8%;
 }
 
 h1{
@@ -261,6 +290,9 @@ main .btn:hover{
     background: #49ab8d;
     transition: 0.3s;
 }
+main .btn.btn-white{
+    border: 3px solid #FFFFFF;
+}
 main #res{
     margin-bottom: 10px !important;
 }
@@ -273,6 +305,80 @@ main label[for="file"]{
 main .input-file div{
     display: flex;
     justify-content: flex-end;
+}
+main .search-wrap button {
+    width: 40px;
+    height: 30px;
+    color: #868686;
+    border: none;
+    border-left: none;
+    cursor: pointer;
+    position: absolute;
+    right: 0;
+    top: 0;
+    background-color: transparent;
+}
+main .search-wrap{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    position: relative;
+}
+main .modal-content {
+    background: #61D0AF;
+    border-radius: 5px;
+}
+main .modal-title {
+    font-size: 24px;
+    line-height: 28px;
+    text-align: center;
+    color: #FFFFFF;
+}
+main .modal-header {
+    justify-content: center;
+    border-bottom: none;
+    position: relative;
+    padding-bottom: 0;
+}
+main .modal-header .close {
+    padding: 0.5rem 1rem;
+    margin: auto;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+main .modal-footer {
+    justify-content: center;
+    border-top: none;
+    padding-top: 0px;
+}
+main .list-songs{
+    background: #fff;
+    padding: 6px 10px;
+    height: 400px;
+    overflow-x: hidden;
+}
+main .list-songs .song{
+    border-bottom: 1px solid #E3E3E3;
+}
+main .list-songs .song .col{
+    overflow: hidden;
+}
+main .list-songs .song .col-2{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-width: 85px;
+}
+main .list-songs .song .song-music,
+main .list-songs .song .song-time{
+    font-size: 12px;
+    line-height: 14px;
+    color: #868686;
+    white-space: nowrap;
+}
+main .modal-body {
+    padding: 1rem 5px;
 }
 main .pagination{
     padding-top: 33px;
@@ -472,13 +578,13 @@ main#main.edit-add .input-check{
 main#main.edit-add .input-check p{
     margin: 0;
 }
-main#main.edit-add .input-check input[type="checkbox"]{
+main#main.edit-add  input[type="checkbox"]{
     position: static;
     margin: 0 !important;
     width: 20px;
     height: 20px;
 }
-main#main.edit-add .input-check .check-wrap{
+main#main.edit-add .check-wrap{
     display: block;
     position: relative;
     margin: 0px;
@@ -491,14 +597,14 @@ main#main.edit-add .input-check .check-wrap{
     height: 20px;
     width: 20px;
 }
-main#main.edit-add .input-check .check-wrap input {
+main#main.edit-add .check-wrap input {
     position: absolute;
     opacity: 0;
     cursor: pointer;
     height: 20px;
     width: 20px;
 }
-main#main.edit-add .input-check .check-wrap .checkmark {
+main#main.edit-add .check-wrap .checkmark {
     position: absolute;
     top: 0;
     left: 0;
@@ -510,20 +616,20 @@ main#main.edit-add .input-check .check-wrap .checkmark {
     box-shadow: inset 2px 2px 4px rgba(0, 0, 0, 0.25);
     border-radius: 2px;
 }
-main#main.edit-add .input-check .check-wrap input:checked ~ .checkmark {
+main#main.edit-add .check-wrap input:checked ~ .checkmark {
     background-color: #61D0AF;
     border: none;
     box-shadow: none;
 }
-main#main.edit-add .input-check .check-wrap .checkmark:after {
+main#main.edit-add .check-wrap .checkmark:after {
     content: "";
     position: absolute;
     display: none;
 }
-main#main.edit-add .input-check .check-wrap input:checked ~ .checkmark:after {
+main#main.edit-add .check-wrap input:checked ~ .checkmark:after {
     display: block;
 }
-main#main.edit-add .input-check .check-wrap .checkmark:after {
+main#main.edit-add .check-wrap .checkmark:after {
     left: 7px;
     top: 4px;
     width: 5px;
@@ -611,4 +717,10 @@ footer#footer .footer-contacts p img{
 
 .alert{
     display: none;
+}
+
+@media (min-width: 992px){
+    .modal-lg, .modal-xl {
+        max-width: 600px;
+    }
 }

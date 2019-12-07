@@ -45,13 +45,85 @@
                                 </div>
 
                                 <div class="form-wrap-btns">
-                                    <p><a class="btn" href="#">Добавить композиции</a></p>
+                                    <p><!-- кнопка вызова окна -->
+                                        {% if user.is_staff or user == playlist.owner %}
+                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">
+                                            Добавить композиции
+                                        </button>
+                                        {% endif %}
+                                    </p>
                                     <p><input class="btn" type="submit" value="Создать"></p>
                                 </div>
                             </div>
 
                         </div>
                     </form>
+
+                    <!-- POPUP WINDOW FORM -->
+                    <div class="container">
+                        <div class="modal fade bd-example-modal-lg" id="exampleModalLong" tabindex="-1" role="dialog"
+                             aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                            <div class="modal-dialog modal-lg" role="document">
+                                <div class="modal-content">
+
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLongTitle">Добавить композицию</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+
+                                    <form method="post" action="#">
+                                        {% csrf_token %}
+                                        <!-- таблица окна -->
+                                        <div class="modal-body">
+                                            <div class="container">
+                                                <div class="row">
+                                                    <div class="col">
+
+                                                        <div class="search-wrap">
+                                                            <input type="text"
+                                                                   placeholder="Начните вводить название композиции"
+                                                                   name="search">
+                                                            <button type="submit"><i class="fa fa-search"></i></button>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="container list-songs-wrap">
+                                                <div class="list-songs">
+                                                    {% for all_song in all_songs %}
+                                                    <div class="song">
+                                                        <div class="row">
+                                                            <div class="col">
+                                                                <span class="song-music">{{ all_song.file_name }}</span>
+                                                            </div>
+                                                            <div class="col-2">
+                                                                <span class="song-time">4:23</span>
+                                                                <label class="check-wrap" for="{{ all_song.pk }}">
+                                                                    <input type="checkbox" name="add_song" class="form-control" id="{{ all_song.pk }}" value="{{ all_song.pk }}">
+                                                                    <span class="checkmark"></span>
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {% endfor %}
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- конец таблицы -->
+                                        <div class="modal-footer">
+                                            <button type="submit" class="btn btn-white">Ок</button>
+                                        </div>
+
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
                 </section>
 
