@@ -12,13 +12,13 @@
             <div class="col-8">
 
                 <div class="title-page">
-                    <h1>Изменить группу</h1>
+                    <h1>{{ obj_object.title }}</h1>
                 </div>
 
                 <section class="form-wrap">
                     <form action="{% url 'editGrObject' %}" method="post">
                         {% csrf_token %}
-
+                        <input type="hidden" name="group" value="{{ obj_object.pk }}" id="id_group">
                         <div class="inner-form">
                             <div class="form-part">
                                 <div class="input-title">
@@ -28,28 +28,39 @@
                                 <div class="select-wrap">
                                     <div class="item-sel">
                                         <p>Объекты:</p>
-                                        <span class="select">{{ form.adv }}</span>
                                     </div>
                                     <div class="item-sel">
-                                        <p>_____</p>
-                                        <span>_____</span>
+                                      {% if obj_object.depot_set.all %}
+                                        {% for g in obj_object.depot_set.all %}
+                                          <p>{{ g.title }}</p>
+                                          <!-- <span class="objects">{{ g.title }}</span> -->
+                                        {% endfor %}
+                                      {% endif %}
                                     </div>
                                     <div class="item-sel">
                                         <p>Плейлист:</p>
-                                        <span class="select">{{ form.adv }}</span>
+                                        <span class="select">{{ form.playlist }}</span>
+                                    </div>
+                                    <div class="item-sel">
+                                        <p>Сетка вещания:</p>
+                                        <span class="select">{{ form.broadcast_grid }}</span>
                                     </div>
                                     <div class="item-sel">
                                         <p>Рекламный ролик:</p>
                                         <span class="select">{{ form.adv }}</span>
                                     </div>
                                     <div class="item-sel">
-                                        <p>Владелец:</p>
-                                        <span class="select">{{ form.owner }}</span>
-                                    </div>
-                                    <div class="item-sel">
-                                        <p>Freq ad:</p>
+                                        <p>Частота рекламы:</p>
                                         <span class="number">{{ form.freq_ad }}</span>
                                     </div>
+                                    {% if user.is_staff %}
+                                      <div class="item-sel">
+                                          <p>Владелец:</p>
+                                          <span class="select">{{ form.owner }}</span>
+                                      </div>
+                                    {% else %}
+                                      <input type="hidden" name="owner" value="{{ user.pk }}" id="id_owner">
+                                    {% endif %}
                                 </div>
                             </div>
 
@@ -60,19 +71,14 @@
                                 </div>
 
                                 <div class="form-wrap-btns">
-                                    <p><input class="btn" type="hidden" name="owner" value="{{ user.pk }}" id="id_owner"></p>
                                     <p><input class="btn" type="submit" value="Обновить"></p>
                                 </div>
                             </div>
                         </div>
                     </form>
 
-                    {% if form.subject.errors %}
-                    <ol>
-                        {% for error in form.subject.errors %}
-                        <li><strong>{{ error|escape }}</strong></li>
-                        {% endfor %}
-                    </ol>
+                    {% if form.errors %}
+                      {{ form.errors }}
                     {% endif %}
                 </section>
 

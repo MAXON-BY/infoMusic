@@ -5,7 +5,7 @@
 <main id="main" class="edit-add">
 
     <div class="bread">
-        <a href="/objects">Список объектов</a> / <span>Название объекта</span>
+        <a href="/objects">Список объектов</a> / <span>{{ obj_object.title }}</span>
     </div>
 
     <div class="container">
@@ -13,7 +13,7 @@
             <div class="col-8">
 
                 <div class="title-page">
-                    <h1>Название объекта</h1>
+                    <h1>{{ obj_object.title }}</h1>
                 </div>
 
                 <section class="form-wrap">
@@ -58,8 +58,8 @@
                                 <div class="input-check">
                                     <!--  Воспроизводить только в рабочее время  -->
                                     <p>Воспроизводить только в рабочее время:</p>
-                                    <label class="check-wrap" for="id_active">
-                                        {{ form.active }}
+                                    <label class="check-wrap" for="id_play_work">
+                                        {{ form.play_work }}
                                         <span class="checkmark"></span>
                                     </label>
                                 </div>
@@ -68,27 +68,35 @@
                                 <div class="select-wrap">
                                     <div class="item-sel">
                                         <p>Синхронизация:</p>
-                                        <span class="select">{{ form.play_work }}</span>
+                                        <span class="select">{{ form.freq_sync_day }}</span>
                                     </div>
                                     <div class="item-sel">
                                         <p>Плейлист:</p>
-                                        <span class="select">{{ form.play_work }}</span>
+                                        <span class="select">{{ form.playlist }}</span>
                                     </div>
                                     <div class="item-sel">
-                                        <p>Adv:</p>
-                                        <span class="select">{{ form.play_work }}</span>
+                                        <p>Реклама:</p>
+                                        <span class="select">{{ form.adv }}</span>
                                     </div>
                                     <div class="item-sel">
                                         <p>Группа:</p>
-                                        <span class="select">{{ form.play_work }}</span>
+                                        <span class="select">{{ form.group }}</span>
                                     </div>
                                     <div class="item-sel">
-                                        <p>Freq ad:</p>
+                                        <p>Частота рекламы:</p>
                                         <span class="number">{{ form.freq_ad }}</span>
                                     </div>
                                     <div class="item-sel">
-                                        <p>Broadcast grid:</p>
-                                        <span class="select">{{ form.play_work }}</span>
+                                        <p>Сетка вещания:</p>
+                                        <span class="select">{{ form.broadcast_grid }}</span>
+                                    </div>
+                                    <div class="item-sel">
+                                      {% if user.is_staff %}
+                                        <p>Владелец объекта:</p>
+                                        <span class="select"> {{ form.owner }} </span>
+                                      {% else %}
+                                        <input type="hidden" name="owner" value="{{ user.pk }}" id="id_owner">
+                                      {% endif %}
                                     </div>
                                 </div>
 
@@ -115,13 +123,13 @@
                                     {{ form.post_address }}
                                 </div>
 
-                                {% if obj_object.active %}
                                 <div class="form-wrap-btns">
-                                    <p><input class="btn" style="margin: 0;" type="submit" value="Обновить"></p>
+                                  <p><input class="btn" style="margin: 0;" type="submit" value="Обновить"></p>
+                                  {% if obj_object.active %}
                                     <p><a href="{% url 'sync_all' obj_object.pk %}" class="btn" role="button" aria-pressed="true">Синхронизация</a></p>
                                     <p><a href="{% url 'ObjectStatus' obj_object.pk %}" class="btn" role="button" aria-pressed="true">Управление</a></p>
+                                  {% endif %}
                                 </div>
-                                {% endif %}
                             </div>
                         </div>
                     </form>

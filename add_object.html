@@ -55,8 +55,8 @@
                                 <div class="input-check">
                                     <!--  Воспроизводить только в рабочее время  -->
                                     <p>Воспроизводить только в рабочее время:</p>
-                                    <label class="check-wrap" for="id_active">
-                                        {{ form.active }}
+                                    <label class="check-wrap" for="id_play_work">
+                                        {{ form.play_work }}
                                         <span class="checkmark"></span>
                                     </label>
                                 </div>
@@ -64,27 +64,35 @@
                                 <div class="select-wrap">
                                     <div class="item-sel">
                                         <p>Синхронизация:</p>
-                                        <span class="select">{{ form.play_work }}</span>
+                                        <span class="select">{{ form.freq_sync_day }}</span>
                                     </div>
                                     <div class="item-sel">
                                         <p>Плейлист:</p>
-                                        <span class="select">{{ form.play_work }}</span>
+                                        <span class="select">{{ form.playlist }}</span>
                                     </div>
                                     <div class="item-sel">
-                                        <p>Adv:</p>
-                                        <span class="select">{{ form.play_work }}</span>
+                                        <p>Реклама:</p>
+                                        <span class="select">{{ form.adv }}</span>
                                     </div>
                                     <div class="item-sel">
                                         <p>Группа:</p>
-                                        <span class="select">{{ form.play_work }}</span>
+                                        <span class="select">{{ form.group }}</span>
                                     </div>
                                     <div class="item-sel">
-                                        <p>Freq ad:</p>
+                                        <p>Частота рекламы:</p>
                                         <span class="number">{{ form.freq_ad }}</span>
                                     </div>
                                     <div class="item-sel">
-                                        <p>Broadcast grid:</p>
-                                        <span class="select">{{ form.play_work }}</span>
+                                        <p>Сетка вещания:</p>
+                                        <span class="select">{{ form.broadcast_grid }}</span>
+                                    </div>
+                                    <div class="item-sel">
+                                      {% if user.is_staff %}
+                                        <p>Владелец объекта:</p>
+                                        <span class="select"> {{ form.owner }} </span>
+                                      {% else %}
+                                        <input type="hidden" name="owner" value="{{ user.pk }}" id="id_owner">
+                                      {% endif %}
                                     </div>
                                 </div>
                             </div>
@@ -98,7 +106,7 @@
                                 </div>
 
                                 <div class="form-wrap-btns">
-                                    <p><a href="#" class="btn" role="button" aria-pressed="true">Управление</a></p>
+                                    <!-- <p><a href="#" class="btn" role="button" aria-pressed="true">Управление</a></p> -->
                                     <p><input class="btn" style="margin: 0;" type="submit" value="Создать"></p>
                                 </div>
                             </div>
@@ -106,12 +114,8 @@
                     </form>
                 </section>
 
-                {% if form.subject.errors %}
-                <ol>
-                    {% for error in form.subject.errors %}
-                    <li><strong>{{ error|escape }}</strong></li>
-                    {% endfor %}
-                </ol>
+                {% if form.errors %}
+                  {{ form.errors }}
                 {% endif %}
             </div>
         </div>

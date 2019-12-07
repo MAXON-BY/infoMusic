@@ -8,7 +8,7 @@
                 <div class="col-12">
 
                     <div class="title-page">
-                        <h1>Список групп объектов</h1>
+                        <h1>Группы объектов</h1>
                     </div>
                     <section>
                         <div class="table-wrap">
@@ -16,12 +16,12 @@
                                 <thead>
                                     <tr>
                                         <th>#</th>
-                                        <th>Наименование</th>
+                                        <th>Наименование <a href="{% url 'listGrObjects' %}?sort=title&dir=up">&uarr;</a> <a href="{% url 'listGrObjects' %}?sort=title&dir=down">&darr;</a> </th>
                                         <th>Объекты</th>
-                                <th>Сетка вещания</th>
-                                <th>Рекламный ролик</th>
-                                {% if user.is_staff %}
-                                             <th>Пользователь</th>
+                                        <th>Сетка вещания <a href="{% url 'listGrObjects' %}?sort=broadcast_grid&dir=up">&uarr;</a> <a href="{% url 'listGrObjects' %}?sort=broadcast_grid&dir=down">&darr;</a> </th>
+                                        <th>Рекламный ролик <a href="{% url 'listGrObjects' %}?sort=adv&dir=up">&uarr;</a> <a href="{% url 'listGrObjects' %}?sort=adv&dir=down">&darr;</a> </th>
+                                        {% if user.is_staff %}
+                                             <th>Пользователь <a href="{% url 'listGrObjects' %}?sort=owner&dir=up">&uarr;</a> <a href="{% url 'listGrObjects' %}?sort=owner&dir=down">&darr;</a> </th>
                                         {% endif %}
                                     </tr>
                                 </thead>
@@ -43,9 +43,17 @@
                                                   &#8194;
                                                   {% endif %}
                                               </td>
-                                              <td> {{ group.broadcast_grid }} </td>
-                                              <td> {{ group.adv }} </td>
-                                                            <!-- <td> {{ group.annotation }} </td> -->
+                                              <td>
+                                                {% if group.broadcast_grid %}
+                                                  {{ group.broadcast_grid }}
+                                                {% endif %}
+                                              </td>
+                                              <td> 
+                                                {% if group.adv %}
+                                                  {{ group.adv }}
+                                                {% endif %}
+                                              </td>
+
                                               {% if user.is_staff %}
                                             <td> {{ group.owner }} </td>
                                     {% endif %}

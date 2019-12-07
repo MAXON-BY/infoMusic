@@ -7,7 +7,7 @@
             <div class="col-12">
 
                 <div class="title-page">
-                    <h1>Перечень сеток вещания</h1>
+                    <h1>Сетки вещания</h1>
                 </div>
 
                 <section>
@@ -16,10 +16,10 @@
 				<thead>
 				    <tr>
 				        <th>#</th>
-				        <th>Наименование</th>
-				        <th>Описание</th>
+				        <th>Наименование <a href="{% url 'listBroadcastGrid' %}?sort=title&dir=up">&uarr;</a> <a href="{% url 'listBroadcastGrid' %}?sort=title&dir=down">&darr;</a> </th>
+				        <th>Описание <a href="{% url 'listBroadcastGrid' %}?sort=annotation&dir=up">&uarr;</a> <a href="{% url 'listBroadcastGrid' %}?sort=annotation&dir=down">&darr;</a> </th>
                 {% if user.is_staff %}
-      					     <th>Пользователь</th>
+      					     <th>Пользователь <a href="{% url 'listBroadcastGrid' %}?sort=owner&dir=up">&uarr;</a> <a href="{% url 'listBroadcastGrid' %}?sort=owner&dir=down">&darr;</a> </th>
       					{% endif %}
 				    </tr>
 				</thead>

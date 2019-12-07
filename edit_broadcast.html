@@ -19,7 +19,7 @@
         <div class="container p-3">
         <h5>Выбор времени вещания:</h5>
         {% for cell in cells %}
-        <div class="row border bg-light p-1 my-1">
+            <div class="row border bg-light p-1 my-1">
             <div class="col-1 border">
                 <div class="custom-control custom-switch">
                   {% if cell.pk in grid_cells_pk %}
@@ -33,8 +33,7 @@
             <div class="col-2 border border-dark">
                 {{ cell.playlist.title }}
             </div>
-            <div class="col-1">
-            </div>
+            <div class="col-1">___</div>
             {% if cell.pk in grid_cells_pk %}
                 <div class="col-3 border border-dark bg-info" id="Col1_cellSwitch_{{ cell.pk }}">
             {% else %}
@@ -59,10 +58,10 @@
         <div class="alert alert-success fade show" role="alert">
             Изменения успешно внесены!
         </div>
-
         <div class="alert alert-danger fade show" role="alert">
             При добавлении времени вещания не прошла проверка пересечения диапазонов времени!
         </div>
+
     </div>
     <input type="submit" value="Обновить">
     </div>

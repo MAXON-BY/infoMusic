@@ -7,7 +7,7 @@
             <div class="col-12">
 
                 <div class="title-page">
-                    <h1>Список рекламных роликов</h1>
+                    <h1>Рекламные ролики</h1>
                 </div>
 
                 <section>
@@ -16,11 +16,11 @@
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>Наименование</th>
-                                    <th>Описание</th>
+                                    <th>Наименование <a href="{% url 'listAdv' %}?sort=title&dir=up">&uarr;</a> <a href="{% url 'listAdv' %}?sort=title&dir=down">&darr;</a> </th>
+                                    <th>Описание <a href="{% url 'listAdv' %}?sort=annotation&dir=up">&uarr;</a> <a href="{% url 'listAdv' %}?sort=annotation&dir=down">&darr;</a> </th>
                                     <th>#</th>
-                            {% if user.is_staff %}
-                                         <th>Пользователь</th>
+                                    {% if user.is_staff %}
+                                         <th>Пользователь <a href="{% url 'listAdv' %}?sort=owner&dir=up">&uarr;</a> <a href="{% url 'listAdv' %}?sort=owner&dir=down">&darr;</a> </th>
                                     {% endif %}
                                 </tr>
                             </thead>
@@ -71,7 +71,7 @@
         </nav>
     </div>
     </section>
-                
+
                 <p class="btn-form"><a class="btn" href="{% url 'addAdv' %}">Добавить рекламное объявление</a></p>
 
             </div>

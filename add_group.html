@@ -12,7 +12,7 @@
             <div class="col-8">
 
                 <div class="title-page">
-                    <h1>Добавить группу</h1>
+                    <h1>Добавление группы объектов</h1>
                 </div>
 
                 <section class="form-wrap">
@@ -26,28 +26,29 @@
                                 </div>
 
                                 <div class="select-wrap">
-                                    <div class="item-sel">
-                                        <p>Объекты:</p>
-                                        <span class="select">{{ form.adv }}</span>
-                                    </div>
-                                    <div class="item-sel">
-                                        <p>_____</p>
-                                        <span>_____</span>
-                                    </div>
+
                                     <div class="item-sel">
                                         <p>Плейлист:</p>
-                                        <span class="select">{{ form.adv }}</span>
+                                        <span class="select">{{ form.playlist }}</span>
                                     </div>
+                                    <div class="item-sel">
+                                        <p>Сетка вещания:</p>
+                                        <span class="select">{{ form.broadcast_grid }}</span>
+                                    </div>
+                                    {% if user.is_staff %}
+                                      <div class="item-sel">
+                                          <p>Владелец:</p>
+                                          <span class="select">{{ form.owner }}</span>
+                                      </div>
+                                    {% else %}
+                                      <input type="hidden" name="owner" value="{{ user.pk }}" id="id_owner">
+                                    {% endif %}
                                     <div class="item-sel">
                                         <p>Рекламный ролик:</p>
                                         <span class="select">{{ form.adv }}</span>
                                     </div>
                                     <div class="item-sel">
-                                        <p>Владелец:</p>
-                                        <span class="select">{{ form.owner }}</span>
-                                    </div>
-                                    <div class="item-sel">
-                                        <p>Freq ad:</p>
+                                        <p>Частота рекламы:</p>
                                         <span class="number">{{ form.freq_ad }}</span>
                                     </div>
                                 </div>
@@ -60,19 +61,14 @@
                                 </div>
 
                                 <div class="form-wrap-btns">
-                                    <p><input class="btn" type="hidden" name="owner" value="{{ user.pk }}" id="id_owner"></p>
                                     <p><input class="btn" type="submit" value="Создать"></p>
                                 </div>
                             </div>
                         </div>
                     </form>
 
-                    {% if form.subject.errors %}
-                    <ol>
-                        {% for error in form.subject.errors %}
-                        <li><strong>{{ error|escape }}</strong></li>
-                        {% endfor %}
-                    </ol>
+                    {% if form.errors %}
+                      {{ form.errors }}
                     {% endif %}
                 </section>
 

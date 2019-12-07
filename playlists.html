@@ -15,45 +15,45 @@
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>Наименование</th>
-                                    <th>Жанр</th>
-                            <th>Сетки вещания</th>
-                                    <th>Композиций</th>
-                            {% if user.is_staff %}
-                              <th>Пользователь</th>
-                            {% endif %}
+                                    <th>Наименование <a href="{% url 'listPlaylist' %}?sort=title&dir=up">&uarr;</a> <a href="{% url 'listPlaylist' %}?sort=title&dir=down">&darr;</a> </th>
+                                    <th>Жанр <a href="{% url 'listPlaylist' %}?sort=gentre&dir=up">&uarr;</a> <a href="{% url 'listPlaylist' %}?sort=gentre&dir=down">&darr;</a> </th>
+                                    <th>Сетки вещания</th>
+                                    <th>Композиций <a href="{% url 'listPlaylist' %}?sort=count_songs&dir=up">&uarr;</a> <a href="{% url 'listPlaylist' %}?sort=count_songs&dir=down">&darr;</a> </th>
+                                    {% if user.is_staff %}
+                                      <th>Пользователь <a href="{% url 'listPlaylist' %}?sort=owner&dir=up">&uarr;</a> <a href="{% url 'listPlaylist' %}?sort=owner&dir=down">&darr;</a> </th>
+                                    {% endif %}
                                 </tr>
                             </thead>
                             <tbody>
                                 {% for playlist in playlists %}
                                 <tr>
-                                <td> {{ forloop.counter }} </td>
-                                        <td>
-                                <a href="/edit_playlist/?playlist={{ playlist.pk }}"> {{ playlist.title }} </a>
-                            </td>
-                                        <td> {{ playlist.gentre }} </td>
-                            <td>
-                              {% if playlist.elembroadcastgrid_set.all %}
-                                {% for e in playlist.elembroadcastgrid_set.all %}
-                                  {% if e.broadcastgrid_set.all %}
-                                    {% for ee in e.broadcastgrid_set.all|slice:'0:2' %}
-                                      <a href="{% url 'editBroadcastGrid' %}?grid={{ ee.pk }}">{{ ee.title }}</a> &#8194;
-                                    {% endfor %}
-                                    {% if e.broadcastgrid_set.all|length >= 3 %}
-                                      &hellip;
-                                    {% endif%}
-                                  {% else %}
-                                    &#8194;
+                                  <td> {{ forloop.counter }} </td>
+                                  <td>
+                                    <a href="/edit_playlist/?playlist={{ playlist.pk }}"> {{ playlist.title }} </a>
+                                  </td>
+                                  <td> {{ playlist.gentre }} </td>
+                                  <td>
+                                    {% if playlist.elembroadcastgrid_set.all %}
+                                      {% for e in playlist.elembroadcastgrid_set.all %}
+                                        {% if e.broadcastgrid_set.all %}
+                                          {% for ee in e.broadcastgrid_set.all|slice:'0:2' %}
+                                            <a href="{% url 'editBroadcastGrid' %}?grid={{ ee.pk }}">{{ ee.title }}</a> &#8194;
+                                          {% endfor %}
+                                          {% if e.broadcastgrid_set.all|length >= 3 %}
+                                            &hellip;
+                                          {% endif%}
+                                        {% else %}
+                                          &#8194;
+                                        {% endif %}
+                                      {% endfor %}
+                                    {% else %}
+                                      &#8194;
+                                    {% endif %}
+                                  </td>
+                                  <td> {{ playlist.count_songs }} </td>
+                                  {% if user.is_staff %}
+                                    <td> {{ playlist.owner }} </td>
                                   {% endif %}
-                                {% endfor %}
-                              {% else %}
-                                &#8194;
-                              {% endif %}
-                            </td>
-                                        <td> {{ playlist.count_songs }} </td>
-                            {% if user.is_staff %}
-                              <td> {{ playlist.owner }} </td>
-                            {% endif %}
                                 </tr>
                                 {% endfor %}
                             </tbody>
