@@ -15,12 +15,12 @@
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>Наименование <a href="{% url 'listPlaylist' %}?sort=title&dir=up">&uarr;</a> <a href="{% url 'listPlaylist' %}?sort=title&dir=down">&darr;</a> </th>
-                                    <th>Жанр <a href="{% url 'listPlaylist' %}?sort=gentre&dir=up">&uarr;</a> <a href="{% url 'listPlaylist' %}?sort=gentre&dir=down">&darr;</a> </th>
+                                    <th><div class="block-th"><span class="name-th">Наименование</span><span class="sort-th"><a class="sort-th-up" href="{% url 'listPlaylist' %}?sort=title&dir=up"></a><a class="sort-th-down" href="{% url 'listPlaylist' %}?sort=title&dir=down"></a></span></div></th>
+                                    <th><div class="block-th"><span class="name-th">Жанр</span><span class="sort-th"><a class="sort-th-up" href="{% url 'listPlaylist' %}?sort=gentre&dir=up"></a><a class="sort-th-down" href="{% url 'listPlaylist' %}?sort=gentre&dir=down"></a></span></div></th>
                                     <th>Сетки вещания</th>
-                                    <th>Композиций <a href="{% url 'listPlaylist' %}?sort=count_songs&dir=up">&uarr;</a> <a href="{% url 'listPlaylist' %}?sort=count_songs&dir=down">&darr;</a> </th>
+                                    <th><div class="block-th"><span class="name-th">Композиций</span><span class="sort-th"><a class="sort-th-up" href="{% url 'listPlaylist' %}?sort=count_songs&dir=up"></a><a class="sort-th-down" href="{% url 'listPlaylist' %}?sort=count_songs&dir=down"></a></span></div></th>
                                     {% if user.is_staff %}
-                                      <th>Пользователь <a href="{% url 'listPlaylist' %}?sort=owner&dir=up">&uarr;</a> <a href="{% url 'listPlaylist' %}?sort=owner&dir=down">&darr;</a> </th>
+                                      <th><div class="block-th"><span class="name-th">Пользователь</span><span class="sort-th"><a class="sort-th-up" href="{% url 'listPlaylist' %}?sort=owner&dir=up"></a><a class="sort-th-down" href="{% url 'listPlaylist' %}?sort=owner&dir=down"></a></span></div></th>
                                     {% endif %}
                                 </tr>
                             </thead>

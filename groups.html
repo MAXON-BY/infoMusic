@@ -16,12 +16,12 @@
                                 <thead>
                                     <tr>
                                         <th>#</th>
-                                        <th>Наименование <a href="{% url 'listGrObjects' %}?sort=title&dir=up">&uarr;</a> <a href="{% url 'listGrObjects' %}?sort=title&dir=down">&darr;</a> </th>
+                                        <th><div class="block-th"><span class="name-th">Наименование</span><span class="sort-th"><a class="sort-th-up" href="{% url 'listGrObjects' %}?sort=title&dir=up"></a><a class="sort-th-down" href="{% url 'listGrObjects' %}?sort=title&dir=down"></a></span></div></th>
                                         <th>Объекты</th>
-                                        <th>Сетка вещания <a href="{% url 'listGrObjects' %}?sort=broadcast_grid&dir=up">&uarr;</a> <a href="{% url 'listGrObjects' %}?sort=broadcast_grid&dir=down">&darr;</a> </th>
-                                        <th>Рекламный ролик <a href="{% url 'listGrObjects' %}?sort=adv&dir=up">&uarr;</a> <a href="{% url 'listGrObjects' %}?sort=adv&dir=down">&darr;</a> </th>
+                                        <th><div class="block-th"><span class="name-th">Сетка вещания</span><span class="sort-th"><a class="sort-th-up" href="{% url 'listGrObjects' %}?sort=broadcast_grid&dir=up"></a><a class="sort-th-down" href="{% url 'listGrObjects' %}?sort=broadcast_grid&dir=down"></a></span></div></th>
+                                        <th><div class="block-th"><span class="name-th">Рекламный ролик</span><span class="sort-th"><a class="sort-th-up" href="{% url 'listGrObjects' %}?sort=adv&dir=up"></a><a class="sort-th-down" href="{% url 'listGrObjects' %}?sort=adv&dir=down"></a></span></div></th>
                                         {% if user.is_staff %}
-                                             <th>Пользователь <a href="{% url 'listGrObjects' %}?sort=owner&dir=up">&uarr;</a> <a href="{% url 'listGrObjects' %}?sort=owner&dir=down">&darr;</a> </th>
+                                             <th><div class="block-th"><span class="name-th">Пользователь</span><span class="sort-th"><a class="sort-th-up" href="{% url 'listGrObjects' %}?sort=owner&dir=up"></a><a class="sort-th-down" href="{% url 'listGrObjects' %}?sort=owner&dir=down"></a></span></div></th>
                                         {% endif %}
                                     </tr>
                                 </thead>

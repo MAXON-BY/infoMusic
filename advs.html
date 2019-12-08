@@ -16,11 +16,11 @@
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>Наименование <a href="{% url 'listAdv' %}?sort=title&dir=up">&uarr;</a> <a href="{% url 'listAdv' %}?sort=title&dir=down">&darr;</a> </th>
-                                    <th>Описание <a href="{% url 'listAdv' %}?sort=annotation&dir=up">&uarr;</a> <a href="{% url 'listAdv' %}?sort=annotation&dir=down">&darr;</a> </th>
+                                    <th><div class="block-th"><span class="name-th">Наименование</span><span class="sort-th"><a class="sort-th-up" href="{% url 'listAdv' %}?sort=title&dir=up"></a><a class="sort-th-down" href="{% url 'listAdv' %}?sort=title&dir=down"></a></span></div></th>
+                                    <th><div class="block-th"><span class="name-th">Описание</span><span class="sort-th"><a class="sort-th-up" href="{% url 'listAdv' %}?sort=annotation&dir=up"></a><a class="sort-th-down" href="{% url 'listAdv' %}?sort=annotation&dir=down"></a></span></div></th>
                                     <th>#</th>
                                     {% if user.is_staff %}
-                                         <th>Пользователь <a href="{% url 'listAdv' %}?sort=owner&dir=up">&uarr;</a> <a href="{% url 'listAdv' %}?sort=owner&dir=down">&darr;</a> </th>
+                                         <th><div class="block-th"><span class="name-th">Пользователь</span><span class="sort-th"><a class="sort-th-up" href="{% url 'listAdv' %}?sort=owner&dir=up"></a><a class="sort-th-down" href="{% url 'listAdv' %}?sort=owner&dir=down"></a></span></div></th>
                                     {% endif %}
                                 </tr>
                             </thead>
@@ -72,7 +72,7 @@
     </div>
     </section>
 
-                <p class="btn-form"><a class="btn" href="{% url 'addAdv' %}">Добавить рекламное объявление</a></p>
+                <p class="btn-form"><a class="btn" href="{% url 'addAdv' %}">Добавить ролик +</a></p>
 
             </div>
         </div>

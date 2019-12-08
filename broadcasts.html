@@ -16,10 +16,10 @@
 				<thead>
 				    <tr>
 				        <th>#</th>
-				        <th>Наименование <a href="{% url 'listBroadcastGrid' %}?sort=title&dir=up">&uarr;</a> <a href="{% url 'listBroadcastGrid' %}?sort=title&dir=down">&darr;</a> </th>
-				        <th>Описание <a href="{% url 'listBroadcastGrid' %}?sort=annotation&dir=up">&uarr;</a> <a href="{% url 'listBroadcastGrid' %}?sort=annotation&dir=down">&darr;</a> </th>
+				        <th><div class="block-th"><span class="name-th">Наименование</span><span class="sort-th"><a class="sort-th-up" href="{% url 'listBroadcastGrid' %}?sort=title&dir=up"></a><a class="sort-th-down" href="{% url 'listBroadcastGrid' %}?sort=title&dir=down"></a></span></div></th>
+				        <th><div class="block-th"><span class="name-th">Описание</span><span class="sort-th"><a class="sort-th-up" href="{% url 'listBroadcastGrid' %}?sort=annotation&dir=up"></a><a class="sort-th-down" href="{% url 'listBroadcastGrid' %}?sort=annotation&dir=down"></a></span></div></th>
                 {% if user.is_staff %}
-      					     <th>Пользователь <a href="{% url 'listBroadcastGrid' %}?sort=owner&dir=up">&uarr;</a> <a href="{% url 'listBroadcastGrid' %}?sort=owner&dir=down">&darr;</a> </th>
+      					     <th><div class="block-th"><span class="name-th">Пользователь</span><span class="sort-th"><a class="sort-th-up" href="{% url 'listBroadcastGrid' %}?sort=owner&dir=up"></a><a class="sort-th-down" href="{% url 'listBroadcastGrid' %}?sort=owner&dir=down"></a></span></div></th>
       					{% endif %}
 				    </tr>
 				</thead>
@@ -70,8 +70,8 @@
     </div>
     </section>
 
-                <p class="btn-form"><a class="btn" href="{% url 'addBroadcastGrid' %}"> Добавить сетку вещания </a></p>
-	            <p class="btn-form"><a class="btn" href="{% url 'addElemBroadcastGrid' %}"> Добавить время вещания </a></p>
+                <p class="btn-form"><a class="btn" href="{% url 'addBroadcastGrid' %}">Добавить сетку +</a></p>
+    <!--            <p class="btn-form"><a class="btn" href="{% url 'addElemBroadcastGrid' %}"> Добавить время вещания </a></p> -->
 
             </div>
         </div>

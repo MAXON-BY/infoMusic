@@ -77,9 +77,9 @@
                                         </div>
 
                                         {% if cell.pk in grid_cells_pk %}
-                                        <div class="timeline-title">
+                                        <div class="timeline-title" id="Col0_cellSwitch_{{ cell.pk }}">
                                             {% else %}
-                                            <div class="timeline-title dis-block">
+                                            <div class="timeline-title dis-block" id="Col0_cellSwitch_{{ cell.pk }}">
                                                 {% endif %}
                                                 <input type="text" disabled="disabled" value="{{ cell.playlist.title }}">
                                         </div>

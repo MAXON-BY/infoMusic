@@ -11,33 +11,32 @@
                         <h1>Объекты</h1>
                     </div>
                     <div class="">
-                        <a href="{% url 'listObjects' %}?filter=online"><font color="green">{{ count.online }}</font></a> / <a href="{% url 'listObjects' %}?filter=offline"><font color="red">{{ count.offline }}</font></a>
+                        <a href="{% url 'listObjects' %}?filter=online"><span color="#61D0AF">{{ count.online }}</span></a> / <a href="{% url 'listObjects' %}?filter=offline"><span color="red">{{ count.offline }}</span></a>
                     </div>
 
                     <section>
-
                         <div class="table-wrap">
                             <table cellspacing="2" border="1" cellpadding="5"width="100%">
                                 <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>Наименование <a href="{% url 'listObjects' %}?sort=title&dir=up">&uarr;</a> <a href="{% url 'listObjects' %}?sort=title&dir=down">&darr;</a> </th>
+                                    <th><div class="block-th"><span class="name-th">Наименование</span><span class="sort-th"><a class="sort-th-up" href="{% url 'listObjects' %}?sort=title&dir=up"></a><a class="sort-th-down" href="{% url 'listObjects' %}?sort=title&dir=down"></a></span></div></th>
                                     <th>Включен</th>
-                                    <th>Группа <a href="{% url 'listObjects' %}?sort=group&dir=up">&uarr;</a> <a href="{% url 'listObjects' %}?sort=group&dir=down">&darr;</a> </th>
+                                    <th><div class="block-th"><span class="name-th">Группа</span><span class="sort-th"><a class="sort-th-up" href="{% url 'listObjects' %}?sort=group&dir=up"></a><a class="sort-th-down" href="{% url 'listObjects' %}?sort=group&dir=down"></a></span></div></th>
                                     <!-- <th>IP-адрес</th> -->
                                     <!-- <th>Описание</th> -->
-                                    <th>Область <a href="{% url 'listObjects' %}?sort=state&dir=up">&uarr;</a> <a href="{% url 'listObjects' %}?sort=state&dir=down">&darr;</a> </th>
-                                    <th>Город <a href="{% url 'listObjects' %}?sort=town&dir=up">&uarr;</a> <a href="{% url 'listObjects' %}?sort=town&dir=down">&darr;</a> </th>
+                                    <th><div class="block-th"><span class="name-th">Область</span><span class="sort-th"><a class="sort-th-up" href="{% url 'listObjects' %}?sort=state&dir=up"></a><a class="sort-th-down" href="{% url 'listObjects' %}?sort=state&dir=down"></a></span></div></th>
+                                    <th><div class="block-th"><span class="name-th">Город</span><span class="sort-th"><a class="sort-th-up" href="{% url 'listObjects' %}?sort=town&dir=up"></a><a class="sort-th-down" href="{% url 'listObjects' %}?sort=town&dir=down"></a></span></div></th>
                                     <!-- <th>Формат</th> -->
-                                    <th>Формат <a href="{% url 'listObjects' %}?sort=gentre&dir=up">&uarr;</a> <a href="{% url 'listObjects' %}?sort=gentre&dir=down">&darr;</a> </th>
-                                    <th>Сетка вещания <a href="{% url 'listObjects' %}?sort=broadcast_grid&dir=up">&uarr;</a> <a href="{% url 'listObjects' %}?sort=broadcast_grid&dir=down">&darr;</a> </th>
-                                    <th>Реклама <a href="{% url 'listObjects' %}?sort=adv&dir=up">&uarr;</a> <a href="{% url 'listObjects' %}?sort=adv&dir=down">&darr;</a> </th>
-                                    <th>Открытие <a href="{% url 'listObjects' %}?sort=time_start&dir=up">&uarr;</a> <a href="{% url 'listObjects' %}?sort=time_start&dir=down">&darr;</a> </th>
-                                    <th>Закрытие <a href="{% url 'listObjects' %}?sort=time_stop&dir=up">&uarr;</a> <a href="{% url 'listObjects' %}?sort=time_stop&dir=down">&darr;</a> </th>
+                                    <th><div class="block-th"><span class="name-th">Формат</span><span class="sort-th"><a class="sort-th-up" href="{% url 'listObjects' %}?sort=gentre&dir=up"></a><a class="sort-th-down" href="{% url 'listObjects' %}?sort=gentre&dir=down"></a></span></div></th>
+                                    <th><div class="block-th"><span class="name-th">Сетка вещания</span><span class="sort-th"><a class="sort-th-up" href="{% url 'listObjects' %}?sort=broadcast_grid&dir=up"></a><a class="sort-th-down" href="{% url 'listObjects' %}?sort=broadcast_grid&dir=down"></a></span></div></th>
+                                    <th><div class="block-th"><span class="name-th">Реклама</span><span class="sort-th"><a class="sort-th-up" href="{% url 'listObjects' %}?sort=adv&dir=up"></a><a class="sort-th-down" href="{% url 'listObjects' %}?sort=adv&dir=down"></a></span></div></th>
+                                    <th><div class="block-th"><span class="name-th">Открытие</span><span class="sort-th"><a class="sort-th-up" href="{% url 'listObjects' %}?sort=time_start&dir=up"></a><a class="sort-th-down" href="{% url 'listObjects' %}?sort=time_start&dir=down"></a></span></div></th>
+                                    <th><div class="block-th"><span class="name-th">Закрытие</span><span class="sort-th"><a class="sort-th-up" href="{% url 'listObjects' %}?sort=time_stop&dir=up"></a><a class="sort-th-down" href="{% url 'listObjects' %}?sort=time_stop&dir=down"></a></span></div></th>
                                     <th>Статус</th>
                                     <!-- <th>Проверка</th> -->
                                     {% if user.is_staff %}
-                                      <th>Пользователь <a href="{% url 'listObjects' %}?sort=owner&dir=up">&uarr;</a> <a href="{% url 'listObjects' %}?sort=owner&dir=down">&darr;</a> </th>
+                                      <th><div class="block-th"><span class="name-th">Пользователь</span><span class="sort-th"><a class="sort-th-up" href="{% url 'listObjects' %}?sort=owner&dir=up"></a><a class="sort-th-down" href="{% url 'listObjects' %}?sort=owner&dir=down"></a></span></div></th>
                                     {% endif %}
                                 </tr>
                                 </thead>
@@ -90,9 +89,9 @@
                                     <td> {% if depot.active %}
                                         {% if depot.status == 'online' %}
                                         <a href="{% url 'ObjectStatus' depot.pk %}">
-                                            <font color="green">
+                                            <font color="#61D0AF">
                                                 {% else %}
-                                                <font color="red">
+                                                <font color="#989898">
                                                     {% endif %}
                                                     {{ depot.status }} </font>
                                                 {% if depot.status == 'online' %}
@@ -151,7 +150,7 @@
                     </section>
 
                     {% if user.is_staff %}
-                    <p class="btn-form"><a class="btn" href="/add_object/"> Добавить объект </a> &ensp;</p>
+                    <p class="btn-form"><a class="btn" href="/add_object/">Добавить объект +</a></p>
                     {% endif %}
 
                 </div>

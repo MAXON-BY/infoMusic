@@ -151,6 +151,31 @@ table thead th{
     color: #868686;
     padding: 15px 10px;
 }
+table thead th .block-th{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+table thead th .sort-th{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-left: 7px;
+    height: 19px;
+}
+table thead th .sort-th .sort-th-down,
+table thead th .sort-th .sort-th-up{
+    background-size: cover;
+    background-position: center;
+    width: 9px;
+    height: 6px;
+}
+table thead th .sort-th .sort-th-down{
+    background-image: url("../img/sort_down.png");
+}
+table thead th .sort-th .sort-th-up{
+    background-image: url("../img/sort_up.png");
+}
 table tbody input[type=checkbox]{
     width: 100%;
     height: 0px;

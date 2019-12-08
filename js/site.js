@@ -62,11 +62,13 @@ jQuery(document).on('change', '.checkbox-publish', function(f){
             else {
                 if ($('#'+id_checkbox).is(':checked')) {
                     //alert('#Col_'+id_sw);
-                    $('#Col1_'+id_sw).addClass("bg-info");
-                    $('#Col2_'+id_sw).addClass("bg-info");
+                    $('#Col0_'+id_sw).addClass("dis-block");
+                    $('#Col1_'+id_sw).addClass("dis-block");
+                    $('#Col2_'+id_sw).addClass("dis-block");
                 } else {
-                    $('#Col1_'+id_sw).removeClass("bg-info");
-                    $('#Col2_'+id_sw).removeClass("bg-info");
+                    $('#Col0_'+id_sw).removeClass("dis-block");
+                    $('#Col1_'+id_sw).removeClass("dis-block");
+                    $('#Col2_'+id_sw).removeClass("dis-block");
                 }
                 $('.alert-success').show()
             }
