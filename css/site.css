@@ -719,6 +719,54 @@ footer#footer .footer-contacts p img{
     display: none;
 }
 
+main#main.edit-add .row.timeline-wrap-cell{
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 4px;
+    padding-right: 15px;
+}
+main#main.edit-add .custom-switch {
+    padding-left: 2rem;
+}
+main#main.edit-add .row.timeline-wrap-cell input[type="text"],
+main#main.edit-add .timeline-title {
+    margin-bottom: 0 !important;
+}
+main#main.edit-add .row.timeline-wrap-cell .input-block{
+    display: flex;
+    align-items: center;
+}
+main#main.edit-add .row.timeline-wrap-cell .from-time{
+    width: 65px;
+    text-align: center;
+    margin-left: 6px;
+    margin-right: 7px;
+}
+main#main.edit-add .row.timeline-wrap-cell .timeline-title{
+    max-width: 155px;
+    margin-right: 7px;
+}
+main#main.edit-add .timeline > p {
+    margin-bottom: 7px;
+}
+main#main.edit-add .btn-del-elem{
+    color: #bb3939;
+}
+main#main.edit-add .custom-control-input:checked~.custom-control-label::before {
+    border-color: #61D0AF;
+    background-color: #61D0AF;
+}
+.dis-block{
+    opacity: 0.5;
+}
+.timeline .add-timeline{
+    margin-left: 13px;
+}
+.timeline .btns-msg p:last-child{
+    margin-bottom: 0;
+    margin-top: 15px;
+}
+
 @media (min-width: 992px){
     .modal-lg, .modal-xl {
         max-width: 600px;

@@ -12,6 +12,7 @@
       <change beforePath="$PROJECT_DIR$/advs.html" beforeDir="false" afterPath="$PROJECT_DIR$/advs.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/basic.html" beforeDir="false" afterPath="$PROJECT_DIR$/basic.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/broadcasts.html" beforeDir="false" afterPath="$PROJECT_DIR$/broadcasts.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/css/site.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/site.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/edit_advs.html" beforeDir="false" afterPath="$PROJECT_DIR$/edit_advs.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/edit_broadcast.html" beforeDir="false" afterPath="$PROJECT_DIR$/edit_broadcast.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/edit_group.html" beforeDir="false" afterPath="$PROJECT_DIR$/edit_group.html" afterDir="false" />
@@ -45,13 +46,13 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.35241637">
+    <splitter split-orientation="horizontal" split-proportion="0.6535316">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file pinned="false" current-in-tab="true">
+          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/add_object.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="103">
+                <state relative-caret-position="340">
                   <caret line="20" column="46" selection-start-line="20" selection-start-column="36" selection-end-line="20" selection-end-column="46" />
                   <folding>
                     <element signature="n#div#0;n#div#0;n#form#0;n#section#0;n#div#0;n#div#0;n#div#1;n#main#0;n#!!top" />
@@ -64,17 +65,15 @@
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="false">
+          <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/edit_broadcast.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="253">
-                  <caret line="42" column="17" selection-start-line="42" selection-start-column="17" selection-end-line="42" selection-end-column="17" />
+                <state relative-caret-position="168">
+                  <caret line="66" column="72" lean-forward="true" selection-start-line="66" selection-start-column="72" selection-end-line="66" selection-end-column="72" />
                   <folding>
-                    <element signature="n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" />
-                    <element signature="n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" />
-                    <element signature="n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" />
-                    <element signature="n#div#2;n#div#3;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" />
-                    <element signature="n#div#3;n#div#3;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" />
+                    <element signature="n#div#1;n#div#0;n#div#0;n#section#0;n#div#0;n#div#0;n#div#1;n#main#0;n#!!top" />
+                    <element signature="n#div#0;n#div#0;n#div#2;n#div#0;n#div#0;n#section#0;n#div#0;n#div#0;n#div#1;n#main#0;n#!!top" />
+                    <element signature="n#div#1;n#div#0;n#div#2;n#div#0;n#div#0;n#section#0;n#div#0;n#div#0;n#div#1;n#main#0;n#!!top" />
                   </folding>
                 </state>
               </provider>
@@ -84,11 +83,11 @@
       </split-first>
       <split-second>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file pinned="false" current-in-tab="false">
+          <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/css/site.css">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="578">
-                  <caret line="34" column="26" selection-start-line="34" selection-start-column="26" selection-end-line="34" selection-end-column="26" />
+                <state relative-caret-position="204">
+                  <caret line="725" column="24" selection-start-line="725" selection-start-column="24" selection-end-line="725" selection-end-column="24" />
                 </state>
               </provider>
             </entry>
@@ -102,14 +101,24 @@
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="true">
+          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/add_broadcast.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="238">
-                  <caret line="14" column="26" selection-start-line="14" selection-start-column="26" selection-end-line="14" selection-end-column="26" />
+                <state relative-caret-position="340">
+                  <caret line="20" column="28" selection-start-line="20" selection-start-column="28" selection-end-line="20" selection-end-column="28" />
                   <folding>
+                    <element signature="n#div#0;n#div#0;n#form#0;n#section#0;n#div#0;n#div#0;n#div#1;n#main#0;n#!!top" />
                     <element signature="n#div#1;n#div#0;n#form#0;n#section#0;n#div#0;n#div#0;n#div#1;n#main#0;n#!!top" />
                   </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/add_timebroadcast.html">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="51">
+                  <caret line="3" column="34" selection-start-line="3" selection-start-column="8" selection-end-line="3" selection-end-column="34" />
                 </state>
               </provider>
             </entry>
@@ -138,7 +147,12 @@
       <find>.btn</find>
       <find>Сетки вещания</find>
       <find>вещания</find>
+      <find>add_elembroadcast_grid</find>
+      <find>времени вещания</find>
     </findStrings>
+    <dirStrings>
+      <dir>E:\Projects\mradio</dir>
+    </dirStrings>
   </component>
   <component name="Git.Settings">
     <option name="ROOT_SYNC" value="SYNC" />
@@ -167,9 +181,11 @@
         <option value="$PROJECT_DIR$/basic.html" />
         <option value="$PROJECT_DIR$/edit_playlist.html" />
         <option value="$PROJECT_DIR$/add_playlist.html" />
-        <option value="$PROJECT_DIR$/css/site.css" />
-        <option value="$PROJECT_DIR$/edit_broadcast.html" />
         <option value="$PROJECT_DIR$/add_broadcast.html" />
+        <option value="$PROJECT_DIR$/edit_broadcast-save.html" />
+        <option value="$PROJECT_DIR$/pages/edit_broadcast-save.html" />
+        <option value="$PROJECT_DIR$/edit_broadcast.html" />
+        <option value="$PROJECT_DIR$/css/site.css" />
       </list>
     </option>
   </component>
@@ -185,7 +201,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -207,6 +222,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -217,6 +233,11 @@
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="settings.editor.selected.configurable" value="vcs.Git" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\Projects\mradio\pages" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -259,12 +280,21 @@
       <workItem from="1575730850863" duration="1544000" />
       <workItem from="1575735352575" duration="1796000" />
       <workItem from="1575737170676" duration="1167000" />
-      <workItem from="1575741979355" duration="336000" />
+      <workItem from="1575741979355" duration="1786000" />
+      <workItem from="1575743792403" duration="975000" />
+      <workItem from="1575752274208" duration="1788000" />
+      <workItem from="1575754087154" duration="1586000" />
+      <workItem from="1575755915862" duration="1795000" />
+      <workItem from="1575757734398" duration="1790000" />
+      <workItem from="1575759565334" duration="2052000" />
+      <workItem from="1575761694263" duration="1790000" />
+      <workItem from="1575763508251" duration="1796000" />
+      <workItem from="1575765331663" duration="1439000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="151006000" />
+    <option name="totallyTimeSpent" value="167467000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
@@ -312,9 +342,6 @@
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/add_timebroadcast.html">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/upload_file.html">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -457,16 +484,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/add_group.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="76">
-          <caret line="27" column="57" selection-start-line="27" selection-start-column="32" selection-end-line="27" selection-end-column="57" />
-          <folding>
-            <element signature="n#div#1;n#div#0;n#form#0;n#section#0;n#div#0;n#div#0;n#div#1;n#main#0;n#!!top" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/add_group.html" />
     <entry file="file://$PROJECT_DIR$/edit_playlist.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="323">
@@ -489,37 +507,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/edit_broadcast.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="253">
-          <caret line="42" column="17" selection-start-line="42" selection-start-column="17" selection-end-line="42" selection-end-column="17" />
-          <folding>
-            <element signature="n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" />
-            <element signature="n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" />
-            <element signature="n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" />
-            <element signature="n#div#2;n#div#3;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" />
-            <element signature="n#div#3;n#div#3;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/css/site.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="578">
-          <caret line="34" column="26" selection-start-line="34" selection-start-column="26" selection-end-line="34" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/basic.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="117" selection-start-line="9" selection-start-column="117" selection-end-line="9" selection-end-column="117" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/add_object.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="103">
+        <state relative-caret-position="340">
           <caret line="20" column="46" selection-start-line="20" selection-start-column="36" selection-end-line="20" selection-end-column="46" />
           <folding>
             <element signature="n#div#0;n#div#0;n#form#0;n#section#0;n#div#0;n#div#0;n#div#1;n#main#0;n#!!top" />
@@ -531,13 +521,61 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/basic.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="117" selection-start-line="9" selection-start-column="117" selection-end-line="9" selection-end-column="117" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/add_broadcast.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" column="26" selection-start-line="14" selection-start-column="26" selection-end-line="14" selection-end-column="26" />
+        <state relative-caret-position="340">
+          <caret line="20" column="28" selection-start-line="20" selection-start-column="28" selection-end-line="20" selection-end-column="28" />
           <folding>
+            <element signature="n#div#0;n#div#0;n#form#0;n#section#0;n#div#0;n#div#0;n#div#1;n#main#0;n#!!top" />
             <element signature="n#div#1;n#div#0;n#form#0;n#section#0;n#div#0;n#div#0;n#div#1;n#main#0;n#!!top" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/add_timebroadcast.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="34" selection-start-line="3" selection-start-column="8" selection-end-line="3" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pages/edit_broadcast-save.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="20" column="12" selection-start-line="20" selection-start-column="12" selection-end-line="55" selection-end-column="31" />
+          <folding>
+            <element signature="e#363#369#0" expanded="true" />
+            <element signature="e#386#392#0" expanded="true" />
+            <element signature="e#437#443#0" expanded="true" />
+            <element signature="e#537#543#0" expanded="true" />
+            <element signature="e#561#567#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/edit_broadcast.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="168">
+          <caret line="66" column="72" lean-forward="true" selection-start-line="66" selection-start-column="72" selection-end-line="66" selection-end-column="72" />
+          <folding>
+            <element signature="n#div#1;n#div#0;n#div#0;n#section#0;n#div#0;n#div#0;n#div#1;n#main#0;n#!!top" />
+            <element signature="n#div#0;n#div#0;n#div#2;n#div#0;n#div#0;n#section#0;n#div#0;n#div#0;n#div#1;n#main#0;n#!!top" />
+            <element signature="n#div#1;n#div#0;n#div#2;n#div#0;n#div#0;n#section#0;n#div#0;n#div#0;n#div#1;n#main#0;n#!!top" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/css/site.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="725" column="24" selection-start-line="725" selection-start-column="24" selection-end-line="725" selection-end-column="24" />
         </state>
       </provider>
     </entry>
