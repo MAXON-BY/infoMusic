@@ -1,28 +1,75 @@
 {% extends "basic.html" %}
 
 {% block container %}
-    <h3>Добавление времени вещания</h3>
-    <form action={% url 'addElemBroadcastGrid' %} method="post">
-        {% csrf_token %}
-        <input type="hidden" name="returntoaddbroadcastgrid" value="{{ returntoaddbroadcastgrid }}">
-        <input type="hidden" name="grid" value="{{ grid }}">
-        {{ form.title.label_tag }}&nbsp;{{ form.title }} &nbsp; <br>
-        {{ form.playlist.label_tag }}&nbsp;{{ form.playlist }} &nbsp; <br>
-        {{ form.time_start.label_tag }}&nbsp;{{ form.time_start }} &nbsp; {{ form.time_stop.label_tag }}&nbsp;{{ form.time_stop }} &nbsp;<br>
+<main id="main" class="edit-add">
 
-        {% if user.is_staff %}
-          {{ form.owner.label_tag }} &nbsp; {{ form.owner }} &nbsp; <br>
-        {% else %}
-          <input type="hidden" name="owner" value="{{ user.pk }}" id="id_owner">
-        {% endif %}
+    <div class="bread">
+        <a href="/broadcast_grid">Список объектов</a> / <span>Добавить время вещания</span>
+    </div>
 
-        <input type="submit" value="Создать">
-    </form>
+    <div class="container">
+        <div class="row">
+            <div class="col-8">
 
-{% endblock %}
+                <div class="title-page">
+                    <h1>Добавление вещания</h1>
+                </div>
 
-{% block footer %}
-  <div class="container">
+                <section class="form-wrap">
 
-	</div>
+                    <form action={% url 'addElemBroadcastGrid' %} method="post">
+                        {% csrf_token %}
+                        <input type="hidden" name="returntoaddbroadcastgrid" value="{{ returntoaddbroadcastgrid }}">
+                        <input type="hidden" name="grid" value="{{ grid }}">
+
+                    <div class="inner-form">
+                        <div class="form-part">
+                            <div class="input-title">
+                                {{ form.title }}
+                            </div>
+
+                            <div class="select-wrap">
+                                <div class="item-sel">
+                                    <p>Playlist:</p>
+                                    <span class="select">
+                                        {{ form.playlist }}
+                                    </span>
+                                </div>
+
+                                {% if user.is_staff %}
+                                    <div class="item-sel">
+                                        <p>Owner:</p>
+                                        <span class="select">
+                                            {{ form.owner }}
+                                        </span>
+                                    </div>
+                                {% else %}
+                                    <input type="hidden" name="owner" value="{{ user.pk }}" id="id_owner">
+                                {% endif %}
+                            </div>
+
+                            <div class="input-title">
+                                <p>От</p>
+                                {{ form.time_start }}
+                            </div>
+                            <div class="input-title">
+                                <p>До</p>
+                                {{ form.time_stop }}
+                            </div>
+                        </div>
+
+                        <div class="form-part between">
+                            <div class="form-wrap-btns">
+                                <input class="btn" type="submit" value="Создать">
+                            </div>
+                        </div>
+                    </form>
+
+                </section>
+            </div>
+        </div>
+    </div>
+</main>
+
+
 {% endblock %}
