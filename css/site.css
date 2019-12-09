@@ -42,6 +42,8 @@
 
 body{
     font-family: 'Roboto', sans-serif;
+    color: #868686;
+    min-width: 370px;
 }
 
 input::-moz-placeholder {color: #E3E3E3; !important;}
@@ -286,11 +288,57 @@ main#main.main-authorization{
     justify-content: center;
 }
 main .table-wrap{
-    overflow: hidden;
+    overflow-x: scroll;
     border-radius: 5px;
+    width: 100%;
 }
 main .title-page{
     padding-bottom: 28px;
+    display: flex;
+    align-items: center;
+}
+main .title-page .show-items{
+    padding-left: 25px;
+    display: flex;
+    align-items: center;
+}
+main .title-page .show-items a{
+    color: #fff;
+    background-color: #868686;
+    font-size: 12px;
+    line-height: 25px;
+    height: 25px;
+    width: 20px;
+    text-align: center;
+    border-radius: 3px;
+    margin: 0 10px;
+    display: block;
+}
+main .title-page .show-items a.active,
+main .title-page .show-items a:hover{
+    background-color: #61D0AF;
+    text-decoration: none;
+}
+main .title-page .show-filter-wrap{
+    margin-left: auto;
+}
+main .title-page .show-filter{
+    display: flex;
+    align-items: center;
+}
+main .title-page .show-filter .select{
+    margin: 0 10px;
+}
+main .title-page .show-filter .select select{
+    margin: 0;
+}
+main .title-page .show-filter .btn{
+    width: auto;
+    margin: 0;
+    padding: 6px 10px;
+}
+main .title-page .show-filter .select:after {
+    top: 9px;
 }
 main .btn-form{
     text-align: right;
@@ -791,9 +839,38 @@ main#main.edit-add .custom-control-input:checked~.custom-control-label::before {
     margin-bottom: 0;
     margin-top: 15px;
 }
-
+.edit-add .col-8{
+    max-width: 700px !important;
+    width: 100% !important;
+    display: block;
+    flex: 100%;
+}
 @media (min-width: 992px){
     .modal-lg, .modal-xl {
         max-width: 600px;
+    }
+}
+@media (max-width: 670px){
+    main .title-page .show-filter-wrap {
+        margin-left: 0;
+        margin-top: 20px;
+    }
+    main .title-page {
+        flex-wrap: wrap;
+    }
+    main .form-wrap .inner-form {
+        flex-direction: column;
+    }
+    main .form-wrap .inner-form .form-part {
+        width: 100%;
+    }
+}
+@media (max-width: 576px){
+    footer#footer .footer-info {
+        text-align: left;
+        padding-top: 15px;
+    }
+    footer .footer-block.footer-info .links{
+        padding-bottom: 6px;
     }
 }

@@ -9,9 +9,31 @@
 
                     <div class="title-page">
                         <h1>Объекты</h1>
+
+                        <div class="show-items">
+                            <a class="active" href="#">15</a>
+                            <a href="#">30</a>
+                        </div>
+
+                        <div class="show-filter-wrap">
+                            <form action="">
+                                <div class="show-filter">
+                                    <span>Фильтровать по</span>
+                                    <span class="select">
+                                        <select name="" id="">
+                                            <option value="0">Название</option>
+                                            <option value="1">Ежемесячная</option>
+                                            <option value="2">Ежеквартальная</option>
+                                        </select>
+                                    </span>
+                                    <input class="btn" type="submit" value="Применить">
+                                </div>
+                            </form>
+                        </div>
                     </div>
+
                     <div class="">
-                        <a href="{% url 'listObjects' %}?filter=online"><span color="#61D0AF">{{ count.online }}</span></a> / <a href="{% url 'listObjects' %}?filter=offline"><span color="red">{{ count.offline }}</span></a>
+                        <a href="{% url 'listObjects' %}?filter=online"><span color="red">{{ count.online }}</span></a> / <a href="{% url 'listObjects' %}?filter=offline"><span color="red">{{ count.offline }}</span></a>
                     </div>
 
                     <section>
