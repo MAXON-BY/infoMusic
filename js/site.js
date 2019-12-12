@@ -108,3 +108,250 @@ jQuery(document).on('click','a.btn-del-elem', function(e){
 $(document).on("change", "input[name=file]", function(e){
     $("#res").val( e.target.files[0].name );
 });
+
+// play btn on table
+$('.panel-play').on("click", function () {
+    $('.panel-play').removeClass('panel-pause');
+    $(this).toggleClass('panel-pause');
+});
+
+// profile edit show
+$('#edit-profile').on('click', function () {
+    $(this).hide();
+    $('.profile-descr-noedit').hide();
+    $('.profile-descr-edit').show();
+    $('.profile-form').show();
+});
+
+// Для кнопки "Управление" на странице объекта
+$('#button_control').click(function(){
+  var id_object = jQuery(this).attr('data-object-id');
+  $.ajax(
+    {
+      type:'POST',
+      url: '/object/'+id_object+'/',
+      data:
+      {
+        csrfmiddlewaretoken:jQuery('input[name=csrfmiddlewaretoken]').val()
+      },
+      success: function(data)
+      {
+        var obj = jQuery.parseJSON(data);
+        console.log(obj);
+        if (obj.state == "stop")
+        {
+          $("#button_stop").prop('disabled', true);
+          $("#button_play").prop('disabled', false);
+          $("#button_next").prop('disabled', true);
+          $("#button_prev").prop('disabled', true);
+          $("#lblmpdVolume").html("Громкость: "+obj.volume);
+          $("#mpdVolume").prop('value', obj.volume);
+          $("#mpd_status").html( "<p>Состояние: стоп <br>Текущая композиция: "+
+            obj.file +"</p>" );
+        }
+        if (obj.state == "play")
+        {
+          $("#button_stop").prop('disabled', false);
+          $("#button_play").prop('disabled', true);
+          $("#button_next").prop('disabled', false);
+          $("#button_prev").prop('disabled', false);
+          $("#lblmpdVolume").html("Громкость: "+obj.volume);
+          $("#mpdVolume").prop('value', obj.volume);
+          $("#mpd_status").html( "<p>Состояние: играет <br>Проигрывается файл: "+
+            obj.file +"</p>" );
+        }
+      }
+    }
+  );
+
+});
+
+$('#button_prev').click(function(){
+  var id_object = jQuery(this).attr('data-object-id');
+  $.ajax(
+    {
+      type:'POST',
+      url: '/mpd_prev_next/',
+      data:
+      {
+        csrfmiddlewaretoken:jQuery('input[name=csrfmiddlewaretoken]').val(),
+        object:id_object,
+        control:'prev'
+      },
+      success: function(data)
+      {
+        var obj = jQuery.parseJSON(data);
+        console.log(obj);
+        if (obj.state == "stop")
+        {
+          $("#button_stop").prop('disabled', true);
+          $("#button_play").prop('disabled', false);
+          $("#button_next").prop('disabled', true);
+          $("#button_prev").prop('disabled', true);
+          $("#lblmpdVolume").html("Громкость: "+obj.volume);
+          $("#mpdVolume").prop('value', obj.volume);
+          $("#mpd_status").html( "<p>Состояние: стоп <br>Текущая композия: "+
+            obj.file +"</p>" );
+        }
+        if (obj.state == "play")
+        {
+          $("#button_stop").prop('disabled', false);
+          $("#button_play").prop('disabled', true);
+          $("#button_next").prop('disabled', false);
+          $("#button_prev").prop('disabled', false);
+          $("#mpd_status").html( "<p>Состояние: играет <br>Проигрывается файл: "+
+            obj.file +"</p>" );
+        }
+      }
+    }
+  );
+});
+
+$('#button_play').click(function(){
+  var id_object = jQuery(this).attr('data-object-id');
+  $.ajax(
+    {
+      type:'POST',
+      url: '/mpd_play/',
+      data:
+      {
+        csrfmiddlewaretoken:jQuery('input[name=csrfmiddlewaretoken]').val(),
+        object:id_object
+      },
+      success: function(data)
+      {
+        var obj = jQuery.parseJSON(data);
+        console.log(obj);
+        if (obj.state == "stop")
+        {
+          $("#button_stop").prop('disabled', true);
+          $("#button_play").prop('disabled', false);
+          $("#button_next").prop('disabled', true);
+          $("#button_prev").prop('disabled', true);
+          $("#lblmpdVolume").html("Громкость: "+obj.volume);
+          $("#mpdVolume").prop('value', obj.volume);
+          $("#mpd_status").html( "<p>Состояние: стоп <br>Текущая композия: "+
+            obj.file +"</p>" );
+        }
+        if (obj.state == "play")
+        {
+          $("#button_stop").prop('disabled', false);
+          $("#button_play").prop('disabled', true);
+          $("#button_next").prop('disabled', false);
+          $("#button_prev").prop('disabled', false);
+          $("#lblmpdVolume").html("Громкость: "+obj.volume);
+          $("#mpdVolume").prop('value', obj.volume);
+          $("#mpd_status").html( "<p>Состояние: играет <br>Проигрывается файл: "+
+            obj.file +"</p>" );
+        }
+      }
+    }
+  );
+});
+
+$('#button_stop').click(function(){
+  var id_object = jQuery(this).attr('data-object-id');
+  $.ajax(
+    {
+      type:'POST',
+      url: '/mpd_stop/',
+      data:
+      {
+        csrfmiddlewaretoken:jQuery('input[name=csrfmiddlewaretoken]').val(),
+        object:id_object
+      },
+      success: function(data)
+      {
+        var obj = jQuery.parseJSON(data);
+        console.log(obj);
+        if (obj.state == "stop")
+        {
+          $("#button_stop").prop('disabled', true);
+          $("#button_next").prop('disabled', true);
+          $("#button_prev").prop('disabled', true);
+          $("#button_play").prop('disabled', false);
+          $("#lblmpdVolume").html("Громкость: "+obj.volume);
+          $("#mpdVolume").prop('value', obj.volume);
+          $("#mpd_status").html( "<p>Состояние: стоп <br>Текущая композия: "+
+            obj.file +"</p>" );
+        }
+        if (obj.state == "play")
+        {
+          $("#button_stop").prop('disabled', false);
+          $("#button_play").prop('disabled', true);
+          $("#button_next").prop('disabled', false);
+          $("#button_prev").prop('disabled', false);
+          $("#lblmpdVolume").html("Громкость: "+obj.volume);
+          $("#mpdVolume").prop('value', obj.volume);
+          $("#mpd_status").html( "<p>Состояние: играет <br>Проигрывается файл: "+
+            obj.file +"</p>" );
+        }
+      }
+    }
+  );
+});
+
+$('#button_next').click(function(){
+  var id_object = jQuery(this).attr('data-object-id');
+  $.ajax(
+    {
+      type:'POST',
+      url: '/mpd_prev_next/',
+      data:
+      {
+        csrfmiddlewaretoken:jQuery('input[name=csrfmiddlewaretoken]').val(),
+        object:id_object,
+        control:'next'
+      },
+      success: function(data)
+      {
+        var obj = jQuery.parseJSON(data);
+        console.log(obj);
+        if (obj.state == "stop")
+        {
+          $("#button_stop").prop('disabled', true);
+          $("#button_play").prop('disabled', false);
+          $("#button_next").prop('disabled', true);
+          $("#button_prev").prop('disabled', true);
+          $("#lblmpdVolume").html("Громкость: "+obj.volume);
+          $("#mpdVolume").prop('value', obj.volume);
+          $("#mpd_status").html( "<p>Состояние: стоп <br>Текущая композия: "+
+            obj.file +"</p>" );
+        }
+        if (obj.state == "play")
+        {
+          $("#button_stop").prop('disabled', false);
+          $("#button_play").prop('disabled', true);
+          $("#button_next").prop('disabled', false);
+          $("#button_prev").prop('disabled', false);
+          $("#lblmpdVolume").html("Громкость: "+obj.volume);
+          $("#mpdVolume").prop('value', obj.volume);
+          $("#mpd_status").html( "<p>Состояние: играет <br>Проигрывается файл: "+
+            obj.file +"</p>" );
+        }
+      }
+    }
+  );
+});
+
+$('#mpdVolume').change(function()
+{
+  var id_object = jQuery(this).attr('data-object-id');
+  $.ajax({
+    type:'POST',
+    url: '/mpd_change_volume/',
+    data:
+    {
+      csrfmiddlewaretoken:jQuery('input[name=csrfmiddlewaretoken]').val(),
+      object:id_object,
+      volume:jQuery(this).val()
+    },
+    success: function(data)
+    {
+      var obj = jQuery.parseJSON(data);
+      console.log(obj);
+      $("#lblmpdVolume").html("Громкость: "+obj.volume);
+    }
+  })
+}
+)

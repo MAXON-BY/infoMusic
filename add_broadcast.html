@@ -26,7 +26,7 @@
 
                                 <div class="select-wrap">
                                     <div class="item-sel">
-                                        <p>Группа:</p>
+                                        <!-- <p>Группа:</p>
                                         <span class="select">
                                             <select name="owner" id="id_owner1">
                                               <option value="" selected="">---------</option>
@@ -34,15 +34,15 @@
                                               <option value="2">user1</option>
                                               <option value="3">user2</option>
                                             </select>
-                                        </span>
+                                        </span> -->
                                     </div>
                                     <div class="item-sel">
-                                        <p>_____</p>
-                                        <span>_____</span>
+                                        <!-- <p>_____</p>
+                                        <span>_____</span> -->
                                     </div>
 
                                     <div class="item-sel">
-                                        <p>Объекты:</p>
+                                        <!-- <p>Объекты:</p>
                                         <span class="select">
                                             <select name="owner" id="id_owner2">
                                               <option value="" selected="">---------</option>
@@ -50,12 +50,21 @@
                                               <option value="2">user1</option>
                                               <option value="3">user2</option>
                                             </select>
-                                        </span>
+                                        </span> -->
                                     </div>
                                     <div class="item-sel">
-                                        <p>_____</p>
-                                        <span>_____</span>
+                                        <!-- <p>_____</p>
+                                        <span>_____</span> -->
                                     </div>
+                                    <div class="item-sel">
+                                      {% if user.is_staff %}
+                                        <p>Владелец сетки вещания:</p>
+                                        <span class="select"> {{ form.owner }} </span>
+                                      {% else %}
+                                        <input type="hidden" name="owner" value="{{ user.pk }}" id="id_owner">
+                                      {% endif %}
+                                    </div>
+
                                 </div>
 
                                 <!--  Выбор времени вещания:   -->
@@ -71,7 +80,7 @@
                                 </div>
 
                                 <div class="form-wrap-btns">
-                                    <p><a class="btn" href="{% url 'addElemBroadcastGrid' %}?fromeditbroadcast=true">Создать</a></p>
+                                    <p><input class="btn" type="submit" value="Создать"></p>
                                 </div>
                             </div>
                         </div>

@@ -46,11 +46,16 @@ body{
     min-width: 370px;
 }
 
-input::-moz-placeholder {color: #E3E3E3; !important;}
-input::-webkit-input-placeholder {color: #E3E3E3; !important;}
-input:-ms-input-placeholder {color: #E3E3E3; !important;}
-input::-ms-input-placeholder {color: #E3E3E3; !important;}
-input::placeholder {color: #E3E3E3; !important;}
+textarea, input::-moz-placeholder {color: #E3E3E3; !important;}
+textarea, input::-webkit-input-placeholder {color: #E3E3E3; !important;}
+textarea, input:-ms-input-placeholder {color: #E3E3E3; !important;}
+textarea, input::-ms-input-placeholder {color: #E3E3E3; !important;}
+textarea, input::placeholder {color: #E3E3E3; !important;}
+::-moz-placeholder {color: #E3E3E3; !important;}
+::-webkit-input-placeholder {color: #E3E3E3; !important;}
+:-ms-input-placeholder {color: #E3E3E3; !important;}
+::-ms-input-placeholder {color: #E3E3E3; !important;}
+::placeholder {color: #E3E3E3; !important;}
 
 a{
     color: #61D0AF;
@@ -67,8 +72,49 @@ a:hover {
     text-shadow: none;
     opacity: 1;
 }
+.navbar-toggler-icon{
+    background-image: url("../img/btn.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 20px;
+    height: 20px;
+}
+
 .modal {
     top: 8%;
+}
+
+.profile-form{
+    display: none;
+}
+.panel-delete,
+.panel-pause,
+.panel-play{
+    background-image: url("../img/play.png");
+    background-position: center;
+    color: transparent;
+    background-repeat: no-repeat;
+    width: 20px;
+    height: 20px;
+    display: block;
+}
+.panel-play:hover,
+.panel-play.panel-pause{
+    background-image: url("../img/stop.png");
+}
+.panel-delete{
+    background-image: url("../img/del_btn_list.png");
+}
+.panel-playlist{
+    display: flex;
+    justify-content: space-between;
+    width: 50px;
+    margin-left: 10px;
+}
+.panel-playlist-wrap{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 h1{
@@ -235,6 +281,7 @@ table tbody td span.objects{
     border-radius: 5px;
     padding: 5px 9px;
     margin: 0 1px;
+    line-height: 29px;
 }
 
 header#header{
@@ -612,6 +659,53 @@ main .form-wrap .inner-form .form-part.between{
     justify-content: space-between;
     flex-direction: column;
 }
+main .form-part-playlist{
+    width: calc(100% - 250px);
+    border-radius: 5px;
+    overflow: hidden;
+}
+main .form-part-playlist-btn{
+    width: 240px;
+    justify-content: flex-end;
+    display: flex;
+    flex-direction: column;
+}
+main .form-part-playlist-title{
+    background: #EFEFEF;
+}
+main .form-part-playlist-title p{
+    margin-bottom: 0;
+    padding: 9px 12px;
+}
+main .form-part-playlist .playlist-wrap{
+    padding: 5px 12px;
+    box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.1);
+    height: 260px;
+    overflow-y: auto;
+}
+main .playlist-item{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 6px 0px;
+    border-bottom: 1px solid #E3E3E3;
+}
+main .playlist-item .playlist-item-name{
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+main .form-part-playlist .playlist-item:last-child{
+    border-bottom: none;
+}
+main .playlist-item .time-playlist{
+    margin: 0 20px;
+    font-size: 12px;
+    line-height: 14px;
+}
+main#main.edit-add .form-part-playlist-btn .form-wrap-btns{
+    margin-bottom: 0 !important;
+}
 main#main.edit-add{
     max-width: 1360px;
     background: #E5E5E5;
@@ -713,9 +807,11 @@ main#main.edit-add .check-wrap .checkmark:after {
     -ms-transform: rotate(45deg);
     transform: rotate(45deg);
 }
+main#main .profile-descr-edit{
+    display: none;
+}
 main#main.edit-add textarea {
-    height: auto;
-    min-height: 90px;
+    height: 90px;
 }
 main#main.edit-add .form-wrap-btns{
     text-align: right;
@@ -739,6 +835,15 @@ main#main.edit-add .select-wrap .item-sel > p{
 }
 main#main.edit-add .input-time p{
     margin: 0;
+}
+main#main.edit-add .select-wrap .item-sel .objects{
+    background: #EFEFEF;
+    border-radius: 5px;
+    padding: 6px 8px;
+    font-size: 16px;
+    line-height: 19px;
+    text-decoration-line: underline;
+    margin: 0px 0 10px 0;
 }
 footer#footer{
     background: #868686;
@@ -839,15 +944,73 @@ main#main.edit-add .custom-control-input:checked~.custom-control-label::before {
     margin-bottom: 0;
     margin-top: 15px;
 }
+main#main.edit-add .btn-del-elem{
+    background-image: url("../img/del_btn_list.png");
+    background-position: center;
+    color: transparent;
+    background-repeat: no-repeat;
+}
 .edit-add .col-8{
-    max-width: 700px !important;
+    max-width: 900px !important;
     width: 100% !important;
     display: block;
     flex: 100%;
 }
+.btn-edit-control p:last-child{
+    margin-bottom: 4px;
+}
 @media (min-width: 992px){
     .modal-lg, .modal-xl {
         max-width: 600px;
+    }
+}
+@media (max-width: 992px){
+    .navbar-collapse.collapse li{
+        margin-bottom: 16px;
+    }
+    .navbar-collapse.collapse li a{
+        border-bottom: 3px solid transparent;
+    }
+    .navbar-collapse{
+        position: absolute;
+        top: 52px;
+        z-index: 10;
+        background-color: #61D0AF;
+        right: -15px;
+        min-height: calc(100vh - 52px);
+        transition: 0s;
+        display: flex;
+        flex-direction: column;
+        width: 245px;
+        align-items: flex-start;
+    }
+    header#header .navbar .nav-link {
+        margin: 0 10px;
+        transition: 0s;
+    }
+    .navbar-nav {
+        order: 1;
+        margin: 30px 0;
+    }
+    header#header .navbar .navbar-text {
+        order: 3;
+        padding-left: 0;
+    }
+    header#header .navbar .navbar-text.user-info {
+        order: 0;
+    }
+    header#header .navbar .navbar-text.user-info a {
+        display: flex;
+        align-items: center;
+        flex-direction: row-reverse;
+    }
+    header#header .navbar .navbar-text.user-info a img {
+        margin-left: 0px;
+        margin-right: 8px;
+    }
+    .user-exit{
+        margin-top: auto;
+        margin-bottom: 20px;
     }
 }
 @media (max-width: 670px){
@@ -863,6 +1026,16 @@ main#main.edit-add .custom-control-input:checked~.custom-control-label::before {
     }
     main .form-wrap .inner-form .form-part {
         width: 100%;
+    }
+    main#main.edit-add .select-wrap .item-sel {
+        width: 100%;
+    }
+    main .form-part-playlist {
+        width: 100%;
+    }
+    main .form-part-playlist-btn {
+        width: 100%;
+        margin-top: 25px;
     }
 }
 @media (max-width: 576px){

@@ -7,12 +7,6 @@
             <div class="col-12">
                 <div class="title-page">
                     <h1>Перечень плейлистов</h1>
-
-                    <div class="show-items">
-                        <a class="active" href="#">15</a>
-                        <a href="#">30</a>
-                    </div>
-
                     <div class="show-filter-wrap">
                         <form action="">
                             <div class="show-filter">
@@ -43,6 +37,7 @@
                                     {% if user.is_staff %}
                                       <th><div class="block-th"><span class="name-th">Пользователь</span><span class="sort-th"><a class="sort-th-up" href="{% url 'listPlaylist' %}?sort=owner&dir=up"></a><a class="sort-th-down" href="{% url 'listPlaylist' %}?sort=owner&dir=down"></a></span></div></th>
                                     {% endif %}
+                                    <th><div class="block-th"><span class="name-th">Длительность</span><span class="sort-th"><a class="sort-th-up" href="{% url 'listPlaylist' %}?sort=count_songs&dir=up"></a><a class="sort-th-down" href="{% url 'listPlaylist' %}?sort=count_songs&dir=down"></a></span></div></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -75,6 +70,15 @@
                                   {% if user.is_staff %}
                                     <td> {{ playlist.owner }} </td>
                                   {% endif %}
+                                  <td>
+                                      <div class="panel-playlist-wrap">
+                                          <div class="time-playlist">{{ playlist.duration }}</div>
+                                          <div class="panel-playlist">
+                                              <a class="panel-play" href="#"></a>
+                                              <a class="panel-delete" href="#"></a>
+                                          </div>
+                                      </div>
+                                  </td>
                                 </tr>
                                 {% endfor %}
                             </tbody>

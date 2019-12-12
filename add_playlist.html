@@ -23,27 +23,61 @@
                             <div class="form-part">
                                 <div class="input-title">
                                     <!--  Наименование ролика  -->
-                                    {{ form.title }}
+                                    <input type="text" name="inputPlaylistTitle" class="form-control"
+                                           id="inputPlaylistTitle" value="" placeholder="Наименование ролика"/>
                                 </div>
 
                                 <div class="select-wrap">
                                     <div class="item-sel">
                                         <p>Жанр:</p>
-                                        <span class="select">{{ form.gentre }}</span>
+                                        <input type="text" name="inputPlaylistGentre" class="form-control"
+                                               id="inputPlaylistGentre" value="" placeholder="Жанр"/>
+                                        <!-- <span class="select">
+                                            <select name="" id="">
+                                              <option value="">---------</option>
+                                              <option value=""> Одежда </option>
+                                              <option value="" selected=""> Реклама 1 </option>
+                                              <option value=""> Реклама тестовая </option>
+                                              <option value=""> Тестовая реклама Админ </option>
+                                            </select>
+                                        </span> -->
                                     </div>
                                 </div>
-
-                                <div class="playlist-wrap">
-                                    {{ form.songs }}
-                                </div>
                             </div>
-
                             <div class="form-part between">
                                 <div class="input-descr">
                                     <!--  Описание  -->
-                                    <textarea name="annotation" rows="2" class="form-control" placeholder="Примечание" required="" id="id_annotation">10.8.0.2 Магазин на ходится в Минске</textarea>
+                                    <textarea name="annotation" rows="2" class="form-control" placeholder="Примечание"
+                                              required=""
+                                              id="id_annotation"></textarea>
                                 </div>
+                            </div>
+                        </div>
 
+                        <div class="inner-form">
+                            <div class="form-part-playlist">
+                                <div class="form-part-playlist-title">
+                                    <p>Текущий плейлист</p>
+                                </div>
+                                <div style="background-color: #FFFFFF" class="playlist-wrap">
+                                    {% for p in playlist_songs %}
+                                    <div class="playlist-item" id="del_{{ p.pk }}">
+                                        <div class="playlist-item-name">
+                                            <span class="song-music">{{ p.file_name }}</span>
+                                        </div>
+                                        <div class="panel-playlist-wrap">
+                                            <div class="time-playlist">12:00</div>
+                                            <div class="panel-playlist">
+                                                <a class="panel-play" href="#"></a>
+                                                <a class="panel-delete" href="{% url 'editPlaylistDelSong' playlist.pk p.pk %}"></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+
+                            <div class="form-part-playlist-btn">
                                 <div class="form-wrap-btns">
                                     <p><!-- кнопка вызова окна -->
                                         {% if user.is_staff or user == playlist.owner %}
@@ -55,8 +89,8 @@
                                     <p><input class="btn" type="submit" value="Создать"></p>
                                 </div>
                             </div>
-
                         </div>
+
                     </form>
 
                     <!-- POPUP WINDOW FORM -->

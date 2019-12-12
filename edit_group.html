@@ -32,14 +32,10 @@
                                     <div class="item-sel">
                                       {% if obj_object.depot_set.all %}
                                         {% for g in obj_object.depot_set.all %}
-                                          <p>{{ g.title }}</p>
-                                          <!-- <span class="objects">{{ g.title }}</span> -->
+                                            <p class="objects">{{ g.title }}</p>
+                                            <!-- <span class="objects">{{ g.title }}</span>-->
                                         {% endfor %}
                                       {% endif %}
-                                    </div>
-                                    <div class="item-sel">
-                                        <p>Плейлист:</p>
-                                        <span class="select">{{ form.playlist }}</span>
                                     </div>
                                     <div class="item-sel">
                                         <p>Сетка вещания:</p>
@@ -49,10 +45,7 @@
                                         <p>Рекламный ролик:</p>
                                         <span class="select">{{ form.adv }}</span>
                                     </div>
-                                    <div class="item-sel">
-                                        <p>Частота рекламы:</p>
-                                        <span class="number">{{ form.freq_ad }}</span>
-                                    </div>
+
                                     {% if user.is_staff %}
                                       <div class="item-sel">
                                           <p>Владелец:</p>
@@ -61,6 +54,11 @@
                                     {% else %}
                                       <input type="hidden" name="owner" value="{{ user.pk }}" id="id_owner">
                                     {% endif %}
+
+                                    <div class="item-sel">
+                                        <p>Частота рекламы:</p>
+                                        <span class="number">{{ form.freq_ad }}</span>
+                                    </div>
                                 </div>
                             </div>
 

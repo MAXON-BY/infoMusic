@@ -12,11 +12,23 @@
                 <div class="title-page">
                     <h1>Профиль пользователя <b>{{ user.username }}</b></h1>
                 </div>
+                {% if u_form.errors %}
+                  <div class="alert" role="alert">
+                    {{ u_form.errors }}
+                  </div>
+                {% endif %}
+                {% if prof_form.errors %}
+                  <div class="alert" role="alert">
+                    {{ prof_form.errors }}
+                  </div>
+                {% endif %}
 
                 <section style="background: #F8F8F8;">
                     <div class="profile-user-wrap">
 
+
                         <div class="profile-user">
+
                             <div class="profile-photo-user-wrap">
                                 <div class="profile-photo-user">
                                     <img src="{% static 'img/user-profile.png' %}" alt="phone mradio"/>
@@ -42,7 +54,11 @@
                                     </div>
                                     <div class="row">
                                         <div class="col">
-                                            <p class="profile-text">{{ prof.0.name_company }}</p>
+                                            <p class="profile-text">
+                                              {% if prof.name_company != None %}
+                                                {{ prof.name_company }}
+                                              {% endif %}
+                                            </p>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -52,61 +68,78 @@
                                     </div>
                                     <div class="row">
                                         <div class="col">
-                                            <p class="profile-contacts phone">{{ prof.0.phone }}</p>
+                                            <p class="profile-contacts phone">
+                                              {% if prof.phone != None %}
+                                                {{ prof.phone }}
+                                              {% endif %}
+                                            </p>
                                         </div>
                                     </div>
                                 </div>
 
                                 <div class="profile-descr-edit">
-                                    <form action="">
-                                        <div class="row my-1">
-                                            <div class="col">
-                                                <input value="{{user.username}}" />
-                                            </div>
-                                        </div>
-                                        <div class="row my-1">
-                                            <div class="col">
-                                                <input value="{{ user.first_name }}" />
-                                            </div>
-                                        </div>
-                                        <div class="row my-1">
-                                            <div class="col">
-                                                <input value="{{ user.last_name }}" />
-                                            </div>
-                                        </div>
-                                        <div class="row my-1">
-                                            <div class="col">
-                                                <input value="{{ prof.0.name_company }}">
-                                            </div>
-                                        </div>
-                                        <div class="row my-1">
-                                            <div class="col">
-                                                <input value="{{ user.email }}" />
-                                            </div>
-                                        </div>
-                                        <div class="row my-1">
-                                            <div class="col">
-                                                <input value="{{ prof.0.phone }}" />
-                                            </div>
-                                        </div>
-                                    </form>
+                                  <form id="profile-form" action="{% url 'profile' %}" method="post">
+                                  {% csrf_token %}
+                                      <div class="row my-1">
+                                          <div class="col">
+                                              {{ u_form.username }}
+                                          </div>
+                                      </div>
+                                      <div class="row my-1">
+                                          <div class="col">
+                                              {{ u_form.first_name }}
+                                          </div>
+                                      </div>
+                                      <div class="row my-1">
+                                          <div class="col">
+                                              {{ u_form.last_name }}
+                                          </div>
+                                      </div>
+                                      <div class="row my-1">
+                                          <div class="col">
+                                              {{ prof_form.name_company }}
+                                          </div>
+                                      </div>
+                                      <div class="row my-1">
+                                          <div class="col">
+                                              {{ u_form.email }}
+                                              {% if u_form.errors.email %}
+                                                <div class="alert" role="alert">
+                                                  {{ u_form.errors.email }}
+                                                </div>
+                                              {% endif %}
+                                          </div>
+                                      </div>
+                                      <div class="row my-1">
+                                          <div class="col">
+                                              {{ prof_form.phone }}
+                                              {{ prof_form.user.as_hidden }}
+                                              {% if prof_form.errors.phone %}
+                                                <div class="alert" role="alert">
+                                                  {{ prof_form.errors.phone }}
+                                                </div>
+                                              {% endif %}
+                                          </div>
+                                      </div>
+<!--                                      <p class="btn-form"><input class="btn" type="submit" value="Сохранить"></p>-->
+                                  </form>
                                 </div>
                             </div>
                         </div>
 
                         <div class="profile-edit">
                             <div class="btn-edit-profile">
-                                <button></button>
+                                <button id="edit-profile"></button>
                             </div>
 
                             <div class="btn-edit-control">
-                                <p class="btn-form"><a class="btn" href="#">Загрузить фото</a></p>
-                                <p class="btn-form"><a class="btn" href="#">Сохранить</a></p>
-                                <p class="btn-form"><a class="btn" href="#">Отменить</a></p>
-                                <p class="btn-form"><a class="btn" href="#">Сбросить пароль</a></p>
+                                <p class="btn-form profile-form"><input form="profile-form" class="btn" type="submit" value="Сохранить"></p>
+<!--                                <p class="btn-form"><a class="btn" href="#">Загрузить фото</a></p>-->
+                                <!-- <p class="btn-form"><a class="btn" href="#">Сохранить</a></p> -->
+<!--                                <p class="btn-form"><a class="btn" href="#">Сбросить пароль</a></p>-->
                             </div>
                         </div>
-
+                      <!-- </form> -->
                     </div>
                 </section>
 

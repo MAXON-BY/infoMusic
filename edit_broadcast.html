@@ -12,7 +12,7 @@
             <div class="col-8">
 
                 <div class="title-page">
-                    <h1>Название сетки</h1>
+                    <h1>Тут название сетки</h1>
                 </div>
 
                 <section class="form-wrap">
@@ -28,36 +28,52 @@
 
                                 <div class="select-wrap">
                                         <div class="item-sel">
-                                            <p>Группа:</p>
-                                            <span class="select">
+                                          <p>Группа:</p>
+                                          <!-- <span class="select">
                                             <select name="owner" id="id_owner1">
                                               <option value="" selected="">---------</option>
                                               <option value="1">Administrator</option>
                                               <option value="2">user1</option>
                                               <option value="3">user2</option>
                                             </select>
-                                        </span>
+                                          </span> -->
                                         </div>
-                                        <div class="item-sel">
-                                            <p>_____</p>
-                                            <span>_____</span>
-                                        </div>
+                                        {% if grid_obj.groupdepot_set.all %}
+                                          {% for g in grid_obj.groupdepot_set.all %}
+                                            <div class="item-sel">
+                                              <p class="objects">{{ g.title }}<p>
+                                            </div>
+                                          {% endfor %}
+                                        {% endif %}
 
                                         <div class="item-sel">
-                                            <p>Объекты:</p>
-                                            <span class="select">
+                                          <p>Объекты:</p>
+                                          <!-- <span class="select">
                                             <select name="owner" id="id_owner2">
                                               <option value="" selected="">---------</option>
                                               <option value="1">Administrator</option>
                                               <option value="2">user1</option>
                                               <option value="3">user2</option>
                                             </select>
-                                        </span>
+                                          </span> -->
                                         </div>
+                                        {% if grid_obj.depot_set.all %}
+                                          {% for g in grid_obj.depot_set.all %}
+                                            <div class="item-sel">
+                                              <p class="objects">{{ g.title }}<p>
+                                            </div>
+                                          {% endfor %}
+                                        {% endif %}
+
                                         <div class="item-sel">
-                                            <p>_____</p>
-                                            <span>_____</span>
+                                          {% if user.is_staff %}
+                                            <p>Владелец сетки вещания:</p>
+                                            <span class="select"> {{ form.owner }} </span>
+                                          {% else %}
+                                            <input type="hidden" name="owner" value="{{ user.pk }}" id="id_owner">
+                                          {% endif %}
                                         </div>
+
                                     </div>
 
                                 <!--  Выбор времени вещания:   -->

@@ -9,11 +9,6 @@
                 <div class="title-page">
                     <h1>Сетки вещания</h1>
 
-                    <div class="show-items">
-                        <a class="active" href="#">15</a>
-                        <a href="#">30</a>
-                    </div>
-
                     <div class="show-filter-wrap">
                         <form action="">
                             <div class="show-filter">
@@ -39,6 +34,9 @@
 				        <th>#</th>
 				        <th><div class="block-th"><span class="name-th">Наименование</span><span class="sort-th"><a class="sort-th-up" href="{% url 'listBroadcastGrid' %}?sort=title&dir=up"></a><a class="sort-th-down" href="{% url 'listBroadcastGrid' %}?sort=title&dir=down"></a></span></div></th>
 				        <th><div class="block-th"><span class="name-th">Описание</span><span class="sort-th"><a class="sort-th-up" href="{% url 'listBroadcastGrid' %}?sort=annotation&dir=up"></a><a class="sort-th-down" href="{% url 'listBroadcastGrid' %}?sort=annotation&dir=down"></a></span></div></th>
+                <th><div class="block-th"><span class="name-th">Плейлисты</span></div></th>
+                <th><div class="block-th"><span class="name-th">Группы</span></div></th>
+                <th><div class="block-th"><span class="name-th">Объекты</span></div></th>
                 {% if user.is_staff %}
       					     <th><div class="block-th"><span class="name-th">Пользователь</span><span class="sort-th"><a class="sort-th-up" href="{% url 'listBroadcastGrid' %}?sort=owner&dir=up"></a><a class="sort-th-down" href="{% url 'listBroadcastGrid' %}?sort=owner&dir=down"></a></span></div></th>
       					{% endif %}
@@ -50,6 +48,25 @@
 							<td> {{ grid.pk }} </td>
 							<td><a href="{% url 'editBroadcastGrid' %}?grid={{ grid.pk }}"> {{ grid.title }} </a></td>
 							<td> {{ grid.annotation }} </td>
+              <td>
+                {% for c in grid.cell.select_related %}
+                  <a href="{% url 'editPlaylist' %}?playlist={{ c.playlist.pk }}"> {{ c.playlist }} </a>&#8195;
+                {% endfor %}
+              </td>
+              <td>
+                {% if grid.groupdepot_set.all %}
+                  {% for c in grid.groupdepot_set.all %}
+                    <a href="{% url 'editGrObject' %}?group={{ c.pk }}"> {{ c.title }} </a>&#8195;
+                  {% endfor %}
+                {% endif %}
+              </td>
+              <td>
+                {% if grid.depot_set.all %}
+                  {% for c in grid.depot_set.all %}
+                    <a href="{% url 'addObject' %}?object={{ c.pk }}"> {{ c.title }} </a>&#8195;
+                  {% endfor %}
+                {% endif %}
+              </td>
               {% if user.is_staff %}
         			   <td> {{ grid.owner }} </td>
         			{% endif %}

@@ -13,9 +13,7 @@
 
               {% if user.is_authenticated %}
               <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon">
-                  btn
-                </span>
+                <span class="navbar-toggler-icon"></span>
               </button>
               <div class="collapse navbar-collapse" id="navbarText">
                 <ul class="navbar-nav mr-auto">
@@ -34,7 +32,7 @@
                     <img src="{% static 'img/user.png' %}" alt="user logo" style="width: 30px">
                   </a>
                 </span>
-                <span class="navbar-text">
+                <span class="navbar-text user-exit">
                   <a class="nav-link" href="{% url 'logout' %}">Выход</a>
                 </span>
                 {% endif %}

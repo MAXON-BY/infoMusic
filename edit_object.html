@@ -71,9 +71,10 @@
                                         <span class="select">{{ form.freq_sync_day }}</span>
                                     </div>
                                     <div class="item-sel">
-                                        <p>Плейлист:</p>
-                                        <span class="select">{{ form.playlist }}</span>
+                                        <p>Сетка вещания:</p>
+                                        <span class="select">{{ form.broadcast_grid }}</span>
                                     </div>
+
                                     <div class="item-sel">
                                         <p>Реклама:</p>
                                         <span class="select">{{ form.adv }}</span>
@@ -85,10 +86,6 @@
                                     <div class="item-sel">
                                         <p>Частота рекламы:</p>
                                         <span class="number">{{ form.freq_ad }}</span>
-                                    </div>
-                                    <div class="item-sel">
-                                        <p>Сетка вещания:</p>
-                                        <span class="select">{{ form.broadcast_grid }}</span>
                                     </div>
                                     <div class="item-sel">
                                       {% if user.is_staff %}
@@ -124,19 +121,69 @@
                                 </div>
 
                                 <div class="form-wrap-btns">
-                                  <p><input class="btn" style="margin: 0;" type="submit" value="Обновить"></p>
                                   {% if obj_object.active %}
                                     <p><a href="{% url 'sync_all' obj_object.pk %}" class="btn" role="button" aria-pressed="true">Синхронизация</a></p>
-                                    <p><a href="{% url 'ObjectStatus' obj_object.pk %}" class="btn" role="button" aria-pressed="true">Управление</a></p>
+                                    <p><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#controlModalCenter" aria-pressed="true" data-object-id="{{obj_object.pk}}" id="button_control"> Управление </button></p>
+                                    <!-- <p><a href="{% url 'ObjectStatus' obj_object.pk %}" class="btn" role="button" aria-pressed="true">Управление</a></p> -->
                                   {% endif %}
+                                  <p><a href="#" class="btn" role="button" aria-pressed="true">Удалить</a></p>
+                                  <p><input class="btn" style="margin: 0;" type="submit" value="Обновить"></p>
                                 </div>
                             </div>
                         </div>
                     </form>
                 </section>
 
+                  <!-- Modal -->
+                  <div class="modal fade bd-example-modal-lg" id="controlModalCenter" tabindex="-1" role="dialog" aria-labelledby="controlModalCenterTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="controlModalLongTitle">Управление {{ obj_object.title }} </h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body">
+                          <div class="container-fluid">
+                            <div class="row">
+                              <div class="col" id="mpd_volume">
+                                <label for="mpdVolume" id="lblmpdVolume"> </label>
+                                <input type="range" class="custom-range" id="mpdVolume" data-object-id="{{obj_object.pk}}" value="0">
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="col" id="mpd_status">
+
+                              </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                  <button type="button" class="btn btn-dark" id="button_prev" data-object-id="{{obj_object.pk}}"> <span>Previous</span> </button>
+                                </div>
+                                <div class="col">
+                                  <button type="button" class="btn btn-dark" id="button_play" data-object-id="{{obj_object.pk}}"> <span>Play</span> </button>
+                                </div>
+                                <div class="col">
+                                  <button type="button" class="btn btn-dark" id="button_stop" data-object-id="{{obj_object.pk}}"> <span>Stop</span> </button>
+                                </div>
+                                <div class="col">
+                                  <button type="button" class="btn btn-dark" id="button_next" data-object-id="{{obj_object.pk}}"> <span>Next</span> </button>
+                                </div>
+                            </div>
+                          </div>
+
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- end Modal -->
             </div>
         </div>
     </div>
 </main>
+
 {% endblock %}

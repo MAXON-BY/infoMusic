@@ -28,13 +28,14 @@
                                 <div class="select-wrap">
 
                                     <div class="item-sel">
-                                        <p>Плейлист:</p>
-                                        <span class="select">{{ form.playlist }}</span>
+                                        <p>Рекламный ролик:</p>
+                                        <span class="select">{{ form.adv }}</span>
                                     </div>
                                     <div class="item-sel">
                                         <p>Сетка вещания:</p>
                                         <span class="select">{{ form.broadcast_grid }}</span>
                                     </div>
+
                                     {% if user.is_staff %}
                                       <div class="item-sel">
                                           <p>Владелец:</p>
@@ -43,10 +44,7 @@
                                     {% else %}
                                       <input type="hidden" name="owner" value="{{ user.pk }}" id="id_owner">
                                     {% endif %}
-                                    <div class="item-sel">
-                                        <p>Рекламный ролик:</p>
-                                        <span class="select">{{ form.adv }}</span>
-                                    </div>
+                                    
                                     <div class="item-sel">
                                         <p>Частота рекламы:</p>
                                         <span class="number">{{ form.freq_ad }}</span>

@@ -8,12 +8,6 @@
 
                 <div class="title-page">
                     <h1>Рекламные ролики</h1>
-
-                    <div class="show-items">
-                        <a class="active" href="#">15</a>
-                        <a href="#">30</a>
-                    </div>
-
                     <div class="show-filter-wrap">
                         <form action="">
                             <div class="show-filter">
@@ -39,6 +33,8 @@
                                     <th>#</th>
                                     <th><div class="block-th"><span class="name-th">Наименование</span><span class="sort-th"><a class="sort-th-up" href="{% url 'listAdv' %}?sort=title&dir=up"></a><a class="sort-th-down" href="{% url 'listAdv' %}?sort=title&dir=down"></a></span></div></th>
                                     <th><div class="block-th"><span class="name-th">Описание</span><span class="sort-th"><a class="sort-th-up" href="{% url 'listAdv' %}?sort=annotation&dir=up"></a><a class="sort-th-down" href="{% url 'listAdv' %}?sort=annotation&dir=down"></a></span></div></th>
+                                    <th><div class="block-th"><span class="name-th">Объекты</span></div></th>
+                                    <th><div class="block-th"><span class="name-th">Группы</span></div></th>
                                     <th>#</th>
                                     {% if user.is_staff %}
                                          <th><div class="block-th"><span class="name-th">Пользователь</span><span class="sort-th"><a class="sort-th-up" href="{% url 'listAdv' %}?sort=owner&dir=up"></a><a class="sort-th-down" href="{% url 'listAdv' %}?sort=owner&dir=down"></a></span></div></th>
@@ -51,10 +47,26 @@
                                         <td> {{ adv.pk }} </td>
                                         <td><a href="{% url 'editAdv' %}?adv={{ adv.pk }}"> {{ adv.title }} </a></td>
                                         <td> {{ adv.annotation }} </td>
-                          <td> <a href="{{ adv.file.url }}"> play </a></td>
-                          {% if user.is_staff %}
-                                   <td> {{ adv.owner }} </td>
-                                {% endif %}
+                                        <td>
+                                          {% if adv.depot_set.all %}
+                                            {% for d in adv.depot_set.all %}
+                                              &#8194;<a href="{% url 'addObject' %}?object={{ d.pk }}"> {{ d.title }} </a>
+                                            {% endfor %}
+                                          {% endif %}
+                                        </td>
+                                        <td>
+                                          {% if adv.groupdepot_set.all %}
+                                            {% for d in adv.groupdepot_set.all %}
+                                              &#8194;<a href="{% url 'editGrObject' %}?group={{ d.pk }}"> {{ d.title }} </a>
+                                            {% endfor %}
+                                          {% endif %}
+                                        </td>
+                                        <td>
+                                            <a class="panel-play" href="{{ adv.file.url }}"></a>
+                                        </td>
+                                        {% if user.is_staff %}
+                                           <td> {{ adv.owner }} </td>
+                                        {% endif %}
                                     </tr>
                                 {% endfor %}
                             </tbody>

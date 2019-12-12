@@ -22,30 +22,30 @@
 
                         <div class="inner-form">
                             <div class="form-part">
-
-                                <div class="input-file">
-                                    <p>Название файла:</p>
-                                    <input type="text" id="res" disabled placeholder="Название файла">
-                                    <div>
-                                        <input type="file" name="file" id="file"/>
-                                        <label class="btn" for="file">Загрузить</label>
-                                    </div>
-                                </div>
                                 <div class="input-title">
                                     <!--  Наименование ролика  -->
                                     {{ form.title }}
                                 </div>
 
-                                <div class="select-wrap">
-                                    <div class="item-sel">
-                                        <p>Группы:</p>
-                                        <span class="select">{{ form.owner }}</span>
-                                    </div>
-                                    <div class="item-sel">
-                                        <p>_____</p>
-                                        <span>_____</span>
+                                <div class="input-file">
+                                    <p>Название файла:</p>
+                                    <input style="background: transparent;" type="text" id="res" disabled placeholder="Название файла">
+                                    <div>
+                                        <input type="file" name="file" id="file"/>
+                                        <label class="btn" for="file">Загрузить</label>
                                     </div>
                                 </div>
+
+<!--                                <div class="select-wrap">-->
+<!--                                    <div class="item-sel">-->
+<!--                                        <p>Группы:</p>-->
+<!--                                        <span class="select">{{ form.owner }}</span>-->
+<!--                                    </div>-->
+<!--                                    <div class="item-sel">-->
+<!--                                        <p>_____</p>-->
+<!--                                        <span>_____</span>-->
+<!--                                    </div>-->
+<!--                                </div>-->
 
                             </div>
 

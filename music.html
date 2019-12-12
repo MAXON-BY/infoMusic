@@ -9,11 +9,6 @@
                 <div class="title-page">
                     <h1>Композиции</h1>
 
-                    <div class="show-items">
-                        <a class="active" href="#">15</a>
-                        <a href="#">30</a>
-                    </div>
-
                     <div class="show-filter-wrap">
                         <form action="">
                             <div class="show-filter">
@@ -36,14 +31,14 @@
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>Описание</th>
-                                    <th>Имя файла</th>
-                                    <th>Название</th>
-                                    <th>Исполнитель</th>
-                                    <th>Альбом</th>
-                                    <th>Год</th>
-                                    <th>Жанр</th>
-                                    <th>Коммент.</th>
+                                    <th><div class="block-th"><span class="name-th">Описание</span><span class="sort-th"><a class="sort-th-up" href="{% url 'index' %}?sort=title&dir=up"></a><a class="sort-th-down" href="{% url 'index' %}?sort=title&dir=down"></a></span></div></th>
+                                    <th><div class="block-th"><span class="name-th">Имя файла</span><span class="sort-th"><a class="sort-th-up" href="{% url 'index' %}?sort=file_name&dir=up"></a><a class="sort-th-down" href="{% url 'index' %}?sort=file_name&dir=down"></a></span></div></th>
+                                    <th><div class="block-th"><span class="name-th">Название</span><span class="sort-th"><a class="sort-th-up" href="{% url 'index' %}?sort=tag_name&dir=up"></a><a class="sort-th-down" href="{% url 'index' %}?sort=tag_name&dir=down"></a></span></div></th>
+                                    <th><div class="block-th"><span class="name-th">Исполнитель</span><span class="sort-th"><a class="sort-th-up" href="{% url 'index' %}?sort=tag_artist&dir=up"></a><a class="sort-th-down" href="{% url 'index' %}?sort=tag_artist&dir=down"></a></span></div></th>
+                                    <th><div class="block-th"><span class="name-th">Альбом</span><span class="sort-th"><a class="sort-th-up" href="{% url 'index' %}?sort=tag_albom&dir=up"></a><a class="sort-th-down" href="{% url 'index' %}?sort=tag_albom&dir=down"></a></span></div></th>
+                                    <th><div class="block-th"><span class="name-th">Год</span><span class="sort-th"><a class="sort-th-up" href="{% url 'index' %}?sort=tag_year&dir=up"></a><a class="sort-th-down" href="{% url 'index' %}?sort=tag_year&dir=down"></a></span></div></th>
+                                    <th><div class="block-th"><span class="name-th">Жанр</span><span class="sort-th"><a class="sort-th-up" href="{% url 'index' %}?sort=tag_gentre&dir=up"></a><a class="sort-th-down" href="{% url 'index' %}?sort=tag_gentre&dir=down"></a></span></div></th>
+                                    <th><div class="block-th"><span class="name-th">Коммент.</span><span class="sort-th"><a class="sort-th-up" href="{% url 'index' %}?sort=tag_comment&dir=up"></a><a class="sort-th-down" href="{% url 'index' %}?sort=tag_comment&dir=down"></a></span></div></th>
                                     <th>#</th>
                                 </tr>
                             </thead>
@@ -59,7 +54,12 @@
                                         <td> {{ song.tag_year }} </td>
                                         <td> {{ song.tag_gentre }} </td>
                                         <td> {{ song.tag_comment }} </td>
-                                        <td> <a href="{{ song.file.url }}"> play </a></td>
+                                        <td>
+                                            <div class="panel-playlist" style="margin-left: 0;">
+                                                <a class="panel-play" href="{{ song.file.url }}"></a>
+                                                <a class="panel-delete" href="#"></a>
+                                            </div>
+                                        </td>
                                     </tr>
                                 {% endfor %}
                             </tbody>
@@ -72,26 +72,49 @@
                     <nav aria-label="Page navigation">
                         <ul class="pagination justify-content-center">
                             {% if page.has_previous %}
-                            <li class="page-item">
-                                <a class="page-link" href="?page={{ page.previous_page_number }}" aria-label="Previous">
-                                    <span aria-hidden="true">&laquo;</span>
-                                    <span class="sr-only">Previous</span>
-                                </a>
-                            </li>
+                            {% if sort %}
+                              <li class="page-item"><a class="page-link" href="?page=1&sort={{ sort }}&dir={{ dir }}" aria-label="First">&#171;</a></li>
+                            {% else %}
+                              <li class="page-item"><a class="page-link" href="?page=1" aria-label="First">&#171;</a></li>
+                            {% endif %}
 
-                            <li class="page-item"><a class="page-link" href="?page={{ page.previous_page_number }}">{{page.previous_page_number}}</a></li>
+                              <li class="page-item">
+                                {% if sort %}
+                                  <a class="page-link" href="?page={{ page.previous_page_number }}&sort={{ sort }}&dir={{ dir }}" aria-label="Previous">
+                                {% else %}
+                                  <a class="page-link" href="?page={{ page.previous_page_number }}" aria-label="Previous">
+                                {% endif %}
+                                      <span aria-hidden="true">&#8249;</span>
+                                      <span class="sr-only">Previous</span>
+                                  </a>
+                              </li>
+
+                              <li class="page-item"><a class="page-link" href="?page={{ page.previous_page_number }}">{{page.previous_page_number}}</a></li>
                             {% endif %}
 
                             <li class="page-item active"><a class="page-link" href="#">{{ page.number }}<span class="sr-only">(current)</span></a></li>
 
                             {% if page.has_next %}
-                            <li class="page-item"><a class="page-link" href="?page={{ page.next_page_number }}">{{ page.next_page_number }}</a></li>
-                            <li class="page-item">
-                                <a class="page-link" href="?page={{ page.next_page_number }}" aria-label="Next">
-                                    <span aria-hidden="true">&raquo;</span>
-                                    <span class="sr-only">Next</span>
-                                </a>
-                            </li>
+                              {% if sort %}
+                                <li class="page-item"><a class="page-link" href="?page={{ page.next_page_number }}&sort={{ sort }}&dir={{ dir }}">{{ page.next_page_number }}</a></li>
+                              {% else %}
+                                <li class="page-item"><a class="page-link" href="?page={{ page.next_page_number }}">{{ page.next_page_number }}</a></li>
+                              {% endif %}
+                              <li class="page-item">
+                                  {% if sort %}
+                                    <a class="page-link" href="?page={{ page.next_page_number }}&sort={{ sort }}&dir={{ dir }}" aria-label="Next">
+                                  {% else %}
+                                    <a class="page-link" href="?page={{ page.next_page_number }}" aria-label="Next">
+                                  {% endif %}
+                                      <span aria-hidden="true">&#8250;</span>
+                                      <span class="sr-only">Next</span>
+                                  </a>
+                              </li>
+                              {% if sort %}
+                                <li class="page-item"><a class="page-link" href="?page={{ page.paginator.num_pages }}&sort={{ sort }}&dir={{ dir }}" aria-label="End">&#187;</a></li>
+                              {% else %}
+                                <li class="page-item"><a class="page-link" href="?page={{ page.paginator.num_pages }}" aria-label="End">&#187;</a></li>
+                              {% endif %}
                             {% endif %}
                         </ul>
                     </nav>

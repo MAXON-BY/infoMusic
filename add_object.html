@@ -67,8 +67,8 @@
                                         <span class="select">{{ form.freq_sync_day }}</span>
                                     </div>
                                     <div class="item-sel">
-                                        <p>Плейлист:</p>
-                                        <span class="select">{{ form.playlist }}</span>
+                                        <p>Сетка вещания:</p>
+                                        <span class="select">{{ form.broadcast_grid }}</span>
                                     </div>
                                     <div class="item-sel">
                                         <p>Реклама:</p>
@@ -81,10 +81,6 @@
                                     <div class="item-sel">
                                         <p>Частота рекламы:</p>
                                         <span class="number">{{ form.freq_ad }}</span>
-                                    </div>
-                                    <div class="item-sel">
-                                        <p>Сетка вещания:</p>
-                                        <span class="select">{{ form.broadcast_grid }}</span>
                                     </div>
                                     <div class="item-sel">
                                       {% if user.is_staff %}
