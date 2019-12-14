@@ -126,7 +126,7 @@
                                     <p><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#controlModalCenter" aria-pressed="true" data-object-id="{{obj_object.pk}}" id="button_control"> Управление </button></p>
                                     <!-- <p><a href="{% url 'ObjectStatus' obj_object.pk %}" class="btn" role="button" aria-pressed="true">Управление</a></p> -->
                                   {% endif %}
-                                  <p><a href="#" class="btn" role="button" aria-pressed="true">Удалить</a></p>
+                                  <p><button type="button" class="btn" role="button" aria-pressed="true" data-toggle="modal" data-target="#deleteModal" id="btn_del_obj">Удалить</button></p>
                                   <p><input class="btn" style="margin: 0;" type="submit" value="Обновить"></p>
                                 </div>
                             </div>
@@ -156,8 +156,8 @@
                           <div class="container-fluid vol-wrap">
                             <div class="row">
                               <div class="col" id="mpd_volume">
-                                <label for="mpdVolume">
-                                    <input type="range" id="mpdVolume" data-object-id="{{obj_object.pk}}" value="0">
+                                <label for="mpdVolume" id="lblmpdVolume">
+                                    <input type="range" class="custom-range" id="mpdVolume" data-object-id="{{obj_object.pk}}" value="0">
                                 </label>
                                   <div class="volume-icons">
                                       <span class="vol-0"></span>
@@ -219,6 +219,37 @@
                     </div>
                   </div>
                   <!-- end Modal -->
+
+                  <!-- Modal 2  "Удалить" -->
+                  <div class="modal fade bd-example-modal-lg modalcontrol" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="deleteModalTitle">Удаление объекта &#171;{{ obj_object.title }}&#187; </h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body">
+                          <div class="container-fluid">
+                            <div class="row">
+                              <div style="background-color: #FFFFFF" class="playlist-wrap col">
+                                Вы уверены? Восстановление будет невозможно!<br>
+                                Продолжить?
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="modal-footer">
+                          <a href="{% url 'delObject' obj_object.pk %}" class="btn btn-white" role="button" aria-pressed="true">Удалить</a>
+                          <!-- <button type="button" class="btn btn-white" data-dismiss="modal">Удалить</button> -->
+                          <button type="button" class="btn btn-white" data-dismiss="modal">Отменить</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- end Modal 2 -->
+
             </div>
         </div>
     </div>

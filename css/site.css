@@ -80,9 +80,110 @@ a:hover {
     height: 20px;
 }
 
-.modal {
-    top: 8%;
+
+
+label[for="mpdVolume"]{
+    width: 100%;
 }
+input[type=range] {
+    -webkit-appearance: none; /* Hides the slider so that custom slider can be made */
+    width: 100%; /* Specific width is required for Firefox. */
+    background: #FFFFFF; /* Otherwise white in Chrome */
+    box-shadow: none;
+    padding: 0;
+}
+
+input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+}
+
+input[type=range]:focus {
+    outline: none; /* Removes the blue border. You should probably do some kind of focus styling for accessibility reasons though. */
+}
+
+input[type=range]::-ms-track {
+    width: 100%;
+    cursor: pointer;
+    background: transparent;
+    border-color: transparent;
+    color: transparent;
+}
+
+input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    height: 10px;
+    width: 10px;
+    border-radius: 50%;
+    background: #868686;
+    cursor: pointer;
+    margin-top: -2px; /* You need to specify a margin in Chrome, but in Firefox and IE it is automatic */
+}
+
+/* All the same stuff for Firefox */
+input[type=range]::-moz-range-thumb {
+    height: 10px;
+    width: 10px;
+    border-radius: 50%;
+    background: #868686;
+    cursor: pointer;
+    margin-top: -2px; /* You need to specify a margin in Chrome, but in Firefox and IE it is automatic */
+}
+
+/* All the same stuff for IE */
+input[type=range]::-ms-thumb {
+    height: 10px;
+    width: 10px;
+    border-radius: 50%;
+    background: #868686;
+    cursor: pointer;
+    margin-top: -2px; /* You need to specify a margin in Chrome, but in Firefox and IE it is automatic */
+}
+
+input[type=range]::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 5px;
+    cursor: pointer;
+    background: #FFFFFF;
+    border-radius: 2px;
+}
+
+input[type=range]:focus::-webkit-slider-runnable-track {
+    background: #FFFFFF;
+}
+
+input[type=range]::-moz-range-track {
+    width: 100%;
+    height: 5px;
+    cursor: pointer;
+    background: #FFFFFF;
+    border-radius: 2px;
+}
+
+input[type=range]::-ms-track {
+    width: 100%;
+    height: 5px;
+    cursor: pointer;
+    background: transparent;
+    border-color: transparent;
+    border-width: 5px 0;
+    color: transparent;
+}
+input[type=range]::-ms-fill-lower {
+    background: #FFFFFF;
+    border-radius: 2px;
+}
+input[type=range]:focus::-ms-fill-lower {
+    background: #FFFFFF;
+}
+input[type=range]::-ms-fill-upper {
+    background: #FFFFFF;
+    border-radius: 2px;
+}
+input[type=range]:focus::-ms-fill-upper {
+    background: #FFFFFF;
+}
+
+
 
 .profile-form{
     display: none;
@@ -116,7 +217,114 @@ a:hover {
     align-items: center;
     justify-content: space-between;
 }
-
+.modalcontrol .form-part-playlist{
+    width: 100%;
+    font-size: 12px;
+    line-height: 14px;
+}
+.modalcontrol .playnow,
+.modalcontrol .status{
+    font-size: 12px;
+    line-height: 14px;
+    margin: 0;
+    color: #fff;
+}
+.modalcontrol .status{
+    text-align: center;
+    margin-bottom: 7px;
+}
+.modalcontrol .playnow{
+    display: flex;
+    white-space: pre;
+}
+.modalcontrol .playnow > span{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-left: 5px;
+}
+.modalcontrol .volume-icons{
+    display: flex;
+    /*align-items: center;*/
+    justify-content: space-between;
+}
+.modalcontrol .volume-icons .vol-0{
+    background-image: url("../img/vol_0.png");
+    background-size: cover;
+    background-position: center;
+    width: 12px;
+    height: 14px;
+}
+.modalcontrol .volume-icons .vol-100{
+    background-image: url("../img/vol_100.png");
+    background-size: cover;
+    background-position: center;
+    width: 19px;
+    height: 19px;
+}
+.modalcontrol #lblmpdVolume{
+    display: block;
+    margin: 0;
+    margin-bottom: -6px;
+}
+.modalcontrol #playlist-btn{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.modalcontrol #button_prev{
+    background-image: url("../img/btn-prev.png");
+    background-size: contain;
+    background-color: transparent;
+    background-repeat: no-repeat;
+    border: none;
+    background-position: center;
+    width: 40px;
+    height: 29px;
+    outline: none;
+}
+.modalcontrol #button_next{
+    background-image: url("../img/btn-next.png");
+    background-size: contain;
+    background-color: transparent;
+    background-repeat: no-repeat;
+    border: none;
+    background-position: center;
+    width: 40px;
+    height: 29px;
+    outline: none;
+}
+.modalcontrol #button_play{
+    background-image: url("../img/btn-play.png");
+    background-size: contain;
+    background-color: transparent;
+    background-repeat: no-repeat;
+    border: none;
+    background-position: center;
+    width: 63px;
+    height: 63px;
+    outline: none;
+    margin: 0 5px;
+}
+.modalcontrol #button_stop{
+    background-image: url("../img/btn-stop.png");
+    background-size: contain;
+    background-color: transparent;
+    background-repeat: no-repeat;
+    border: none;
+    background-position: center;
+    width: 63px;
+    height: 63px;
+    display: none;
+    outline: none;
+    margin: 0 5px;
+}
+.modalcontrol .vol-wrap{
+    margin: 10px 0;
+}
+.modalcontrol #mpd_volume{
+    margin-top: 20px;
+}
 h1{
     font-size: 24px;
     line-height: 28px;
@@ -708,7 +916,7 @@ main#main.edit-add .form-part-playlist-btn .form-wrap-btns{
 }
 main#main.edit-add{
     max-width: 1360px;
-    background: #E5E5E5;
+    background: #efefef;
     margin: 0 auto;
     display: flex;
     position: relative;

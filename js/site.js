@@ -123,6 +123,16 @@ $('#edit-profile').on('click', function () {
     $('.profile-form').show();
 });
 
+// show play\stop on panel
+$('#button_play').on('click', function () {
+    $(this).hide();
+    $('#button_stop').show();
+});
+$('#button_stop').on('click', function () {
+    $(this).hide();
+    $('#button_play').show();
+})
+
 // Для кнопки "Управление" на странице объекта
 $('#button_control').click(function(){
   var id_object = jQuery(this).attr('data-object-id');
