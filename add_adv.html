@@ -4,7 +4,7 @@
 <main id="main" class="edit-add">
 
     <div class="bread">
-        <a href="/adv">Сетки вещания</a> / <span>Добавить рекламу</span>
+        <a href="/adv">Реклама</a> / <span>Добавить рекламу</span>
     </div>
 
     <div class="container">
@@ -32,27 +32,24 @@
                                     <input style="background: transparent;" type="text" id="res" disabled placeholder="Название файла">
                                     <div>
                                         <input type="file" name="file" id="file"/>
-                                        <label class="btn" for="file">Загрузить</label>
+                                        <label class="btn" for="file">Выбрать файл</label>
                                     </div>
                                 </div>
-
-<!--                                <div class="select-wrap">-->
-<!--                                    <div class="item-sel">-->
-<!--                                        <p>Группы:</p>-->
-<!--                                        <span class="select">{{ form.owner }}</span>-->
-<!--                                    </div>-->
-<!--                                    <div class="item-sel">-->
-<!--                                        <p>_____</p>-->
-<!--                                        <span>_____</span>-->
-<!--                                    </div>-->
-<!--                                </div>-->
-
                             </div>
 
                             <div class="form-part between">
                                 <div class="input-descr">
                                     <!--  Описание  -->
                                     {{ form.annotation }}
+                                </div>
+                                
+                                <div class="item-sel">
+                                  {% if user.is_staff %}
+                                    <p>Владелец рекламы:</p>
+                                    <span class="select"> {{ form.owner }} </span>
+                                  {% else %}
+                                    <input type="hidden" name="owner" value="{{ user.pk }}" id="id_owner">
+                                  {% endif %}
                                 </div>
 
                                 <div class="form-wrap-btns">

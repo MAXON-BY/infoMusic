@@ -10,17 +10,17 @@
                     <h1>Сетки вещания</h1>
 
                     <div class="show-filter-wrap">
-                        <form action="">
+                        <form action="{% url 'listBroadcastGrid' %}" metod="get">
                             <div class="show-filter">
-                                <span>Фильтровать по</span>
-                                <span class="select">
-                                        <select name="" id="">
-                                            <option value="0">Название</option>
-                                            <option value="1">Ежемесячная</option>
-                                            <option value="2">Ежеквартальная</option>
-                                        </select>
-                                    </span>
-                                <input class="btn" type="submit" value="Применить">
+                              <span>Фильтровать по</span>
+                              <span class="select">
+                                <select name="filter" id="">
+                                  <option value="title">Наименование</option>
+                                  <option value="annotation">Описание</option>
+                                </select>
+                              </span>
+                              <span><input type="text" name="filter-field" style="margin-top: 6px;"></span>
+                              <input class="btn" type="submit" value="Применить">
                             </div>
                         </form>
                     </div>
@@ -34,9 +34,9 @@
 				        <th>#</th>
 				        <th><div class="block-th"><span class="name-th">Наименование</span><span class="sort-th"><a class="sort-th-up" href="{% url 'listBroadcastGrid' %}?sort=title&dir=up"></a><a class="sort-th-down" href="{% url 'listBroadcastGrid' %}?sort=title&dir=down"></a></span></div></th>
 				        <th><div class="block-th"><span class="name-th">Описание</span><span class="sort-th"><a class="sort-th-up" href="{% url 'listBroadcastGrid' %}?sort=annotation&dir=up"></a><a class="sort-th-down" href="{% url 'listBroadcastGrid' %}?sort=annotation&dir=down"></a></span></div></th>
-                <th><div class="block-th"><span class="name-th">Плейлисты</span></div></th>
-                <th><div class="block-th"><span class="name-th">Группы</span></div></th>
-                <th><div class="block-th"><span class="name-th">Объекты</span></div></th>
+                        <th><div class="block-th"><span class="name-th">Группы</span></div></th>
+						<th><div class="block-th"><span class="name-th">Объекты</span></div></th>
+						<th><div class="block-th"><span class="name-th">Плейлисты</span></div></th>
                 {% if user.is_staff %}
       					     <th><div class="block-th"><span class="name-th">Пользователь</span><span class="sort-th"><a class="sort-th-up" href="{% url 'listBroadcastGrid' %}?sort=owner&dir=up"></a><a class="sort-th-down" href="{% url 'listBroadcastGrid' %}?sort=owner&dir=down"></a></span></div></th>
       					{% endif %}
@@ -49,23 +49,23 @@
 							<td><a href="{% url 'editBroadcastGrid' %}?grid={{ grid.pk }}"> {{ grid.title }} </a></td>
 							<td> {{ grid.annotation }} </td>
               <td>
-                {% for c in grid.cell.select_related %}
-                  <a href="{% url 'editPlaylist' %}?playlist={{ c.playlist.pk }}"> {{ c.playlist }} </a>&#8195;
-                {% endfor %}
-              </td>
-              <td>
                 {% if grid.groupdepot_set.all %}
                   {% for c in grid.groupdepot_set.all %}
-                    <a href="{% url 'editGrObject' %}?group={{ c.pk }}"> {{ c.title }} </a>&#8195;
+                    <span class="objects"><a href="{% url 'editGrObject' %}?group={{ c.pk }}"> {{ c.title }} </a></span>&#8195;
                   {% endfor %}
                 {% endif %}
               </td>
               <td>
                 {% if grid.depot_set.all %}
                   {% for c in grid.depot_set.all %}
-                    <a href="{% url 'addObject' %}?object={{ c.pk }}"> {{ c.title }} </a>&#8195;
+                    <span class="objects"><a href="{% url 'addObject' %}?object={{ c.pk }}"> {{ c.title }} </a></span>&#8195;
                   {% endfor %}
                 {% endif %}
+              </td>
+			  <td>
+                {% for c in grid.cell.select_related %}
+                  <span class="objects"><a href="{% url 'editPlaylist' %}?playlist={{ c.playlist.pk }}"> {{ c.playlist }} </a></span>&#8195;
+                {% endfor %}
               </td>
               {% if user.is_staff %}
         			   <td> {{ grid.owner }} </td>
@@ -108,7 +108,7 @@
     </div>
     </section>
 
-                <p class="btn-form"><a class="btn" href="{% url 'addBroadcastGrid' %}">Добавить сетку +</a></p>
+                <p class="btn-form"><a class="btn" href="{% url 'addBroadcastGrid' %}">Добавить</a></p>
     <!--            <p class="btn-form"><a class="btn" href="{% url 'addElemBroadcastGrid' %}"> Добавить время вещания </a></p> -->
 
             </div>

@@ -11,21 +11,24 @@
                         <h1>Объекты</h1>
 
                         <div class="show-items">
-                            <a class="active" href="{% url 'listObjects' %}?filter=online">{{ count.online }}</a>
-                            <a href="{% url 'listObjects' %}?filter=offline">{{ count.offline }}</a>
+                            <a title="Всего Online" class="active" href="{% url 'listObjects' %}?filter=online">{{ count.online }}</a>
+                            <a title="Всего Offline" href="{% url 'listObjects' %}?filter=offline">{{ count.offline }}</a>
                         </div>
 
                         <div class="show-filter-wrap">
-                            <form action="">
+                            <form action="{% url 'listObjects' %}" metod="get">
+
                                 <div class="show-filter">
                                     <span>Фильтровать по</span>
                                     <span class="select">
-                                        <select name="" id="">
-                                            <option value="0">Название</option>
-                                            <option value="1">Ежемесячная</option>
-                                            <option value="2">Ежеквартальная</option>
+                                        <select name="filter" id="">
+                                            <option value="title">Наименование</option>
+                                            <option value="dep_format">Формат</option>
+                                            <option value="state">Область</option>
+                                            <option value="town">Город</option>
                                         </select>
                                     </span>
+                                    <span><input type="text" name="filter-field" style="margin-top: 6px;"></span>
                                     <input class="btn" type="submit" value="Применить">
                                 </div>
                             </form>
@@ -43,18 +46,21 @@
                                     <th><div class="block-th"><span class="name-th">Группа</span><span class="sort-th"><a class="sort-th-up" href="{% url 'listObjects' %}?sort=group&dir=up"></a><a class="sort-th-down" href="{% url 'listObjects' %}?sort=group&dir=down"></a></span></div></th>
                                     <!-- <th>IP-адрес</th> -->
                                     <!-- <th>Описание</th> -->
+
+                                    <!-- <th>Формат</th> -->
+                                    <th><div class="block-th"><span class="name-th">Сетка вещания</span><span class="sort-th"><a class="sort-th-up" href="{% url 'listObjects' %}?sort=broadcast_grid&dir=up"></a><a class="sort-th-down" href="{% url 'listObjects' %}?sort=broadcast_grid&dir=down"></a></span></div></th>
+                  									<th><div class="block-th"><span class="name-th">Реклама</span><span class="sort-th"><a class="sort-th-up" href="{% url 'listObjects' %}?sort=adv&dir=up"></a><a class="sort-th-down" href="{% url 'listObjects' %}?sort=adv&dir=down"></a></span></div></th>
+                  									<th><div class="block-th"><span class="name-th">Формат</span><span class="sort-th"><a class="sort-th-up" href="{% url 'listObjects' %}?sort=gentre&dir=up"></a><a class="sort-th-down" href="{% url 'listObjects' %}?sort=gentre&dir=down"></a></span></div></th>
+
+
                                     <th><div class="block-th"><span class="name-th">Область</span><span class="sort-th"><a class="sort-th-up" href="{% url 'listObjects' %}?sort=state&dir=up"></a><a class="sort-th-down" href="{% url 'listObjects' %}?sort=state&dir=down"></a></span></div></th>
                                     <th><div class="block-th"><span class="name-th">Город</span><span class="sort-th"><a class="sort-th-up" href="{% url 'listObjects' %}?sort=town&dir=up"></a><a class="sort-th-down" href="{% url 'listObjects' %}?sort=town&dir=down"></a></span></div></th>
-                                    <!-- <th>Формат</th> -->
-                                    <th><div class="block-th"><span class="name-th">Формат</span><span class="sort-th"><a class="sort-th-up" href="{% url 'listObjects' %}?sort=gentre&dir=up"></a><a class="sort-th-down" href="{% url 'listObjects' %}?sort=gentre&dir=down"></a></span></div></th>
-                                    <th><div class="block-th"><span class="name-th">Сетка вещания</span><span class="sort-th"><a class="sort-th-up" href="{% url 'listObjects' %}?sort=broadcast_grid&dir=up"></a><a class="sort-th-down" href="{% url 'listObjects' %}?sort=broadcast_grid&dir=down"></a></span></div></th>
-                                    <th><div class="block-th"><span class="name-th">Реклама</span><span class="sort-th"><a class="sort-th-up" href="{% url 'listObjects' %}?sort=adv&dir=up"></a><a class="sort-th-down" href="{% url 'listObjects' %}?sort=adv&dir=down"></a></span></div></th>
-                                    <th><div class="block-th"><span class="name-th">Открытие</span><span class="sort-th"><a class="sort-th-up" href="{% url 'listObjects' %}?sort=time_start&dir=up"></a><a class="sort-th-down" href="{% url 'listObjects' %}?sort=time_start&dir=down"></a></span></div></th>
-                                    <th><div class="block-th"><span class="name-th">Закрытие</span><span class="sort-th"><a class="sort-th-up" href="{% url 'listObjects' %}?sort=time_stop&dir=up"></a><a class="sort-th-down" href="{% url 'listObjects' %}?sort=time_stop&dir=down"></a></span></div></th>
+                  									<th><div class="block-th"><span class="name-th">Откр.</span><span class="sort-th"><a class="sort-th-up" href="{% url 'listObjects' %}?sort=time_start&dir=up"></a><a class="sort-th-down" href="{% url 'listObjects' %}?sort=time_start&dir=down"></a></span></div></th>
+                                    <th><div class="block-th"><span class="name-th">Закр.</span><span class="sort-th"><a class="sort-th-up" href="{% url 'listObjects' %}?sort=time_stop&dir=up"></a><a class="sort-th-down" href="{% url 'listObjects' %}?sort=time_stop&dir=down"></a></span></div></th>
                                     <th>Статус</th>
                                     <!-- <th>Проверка</th> -->
                                     {% if user.is_staff %}
-                                      <th><div class="block-th"><span class="name-th">Пользователь</span><span class="sort-th"><a class="sort-th-up" href="{% url 'listObjects' %}?sort=owner&dir=up"></a><a class="sort-th-down" href="{% url 'listObjects' %}?sort=owner&dir=down"></a></span></div></th>
+                                      <th><div class="block-th"><span class="name-th">Польз.</span><span class="sort-th"><a class="sort-th-up" href="{% url 'listObjects' %}?sort=owner&dir=up"></a><a class="sort-th-down" href="{% url 'listObjects' %}?sort=owner&dir=down"></a></span></div></th>
                                     {% endif %}
                                 </tr>
                                 </thead>
@@ -72,26 +78,23 @@
                                     <td> <a href="{% url 'editGrObject' %}?group={{depot.group.pk}}">{{ depot.group.title }}</a> </td>
                                     <!-- <td> {{ depot.ip_address }} </td> -->
                                     <!-- <td> {{ depot.annotation }} </td> -->
-                                    <td> {{ depot.state }} </td>
-                                    <td> {{ depot.town }} </td>
-                                    <!-- <td> {{ depot.dep_format }} </td> -->
-                                    <td> {{ depot.dep_format }} </td>
-                                    <td>
-                                      {% if depot.broadcast_grid == None %}
+                                    <td> {% if depot.broadcast_grid == None %}
                                         &ensp;
                                       {% else %}
                                         <a href="{% url 'editBroadcastGrid' %}?grid={{ depot.broadcast_grid.pk }}">{{ depot.broadcast_grid }}</a>
                                       {% endif %}
-                                    </td>
-                                    <td>
-                                      {% if depot.adv == None %}
+                									  </td>
+                                    <td> {% if depot.adv == None %}
                                         &ensp;
                                       {% else %}
                                         <a href="{% url 'editAdv' %}?adv={{ depot.adv.pk }}">{{ depot.adv }}</a>
                                       {% endif %}
-                                    </td>
-                                    <td>
-                                      {% if depot.time_start == None %}
+                  									</td>
+                                    <!-- <td> {{ depot.dep_format }} </td> -->
+                                    <td> {{ depot.dep_format }} </td>
+                                    <td> {{ depot.state }} </td>
+                                    <td>{{ depot.town }} </td>
+                                    <td> {% if depot.time_start == None %}
                                         &ensp;
                                       {% else %}
                                         {{ depot.time_start }}
@@ -168,7 +171,7 @@
                     </section>
 
                     {% if user.is_staff %}
-                    <p class="btn-form"><a class="btn" href="/add_object/">Добавить объект +</a></p>
+                    <p class="btn-form"><a class="btn" href="/add_object/">Добавить</a></p>
                     {% endif %}
 
                 </div>

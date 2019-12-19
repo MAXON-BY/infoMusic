@@ -1,4 +1,4 @@
-{% extends "basic.html" %}
+{% extends "basic_player.html" %}
 
 {% block container %}
 <main id="main">
@@ -7,18 +7,18 @@
             <div class="col-12">
 
                 <div class="title-page">
-                    <h1>Рекламные ролики</h1>
+                    <h1>Реклама</h1>
                     <div class="show-filter-wrap">
-                        <form action="">
+                        <form action="{% url 'listAdv' %}" metod="get">
                             <div class="show-filter">
                                 <span>Фильтровать по</span>
                                 <span class="select">
-                                        <select name="" id="">
-                                            <option value="0">Название</option>
-                                            <option value="1">Ежемесячная</option>
-                                            <option value="2">Ежеквартальная</option>
+                                        <select name="filter" id="">
+                                            <option value="title">Наименование</option>
+                                            <option value="annotation">Описание</option>
                                         </select>
                                     </span>
+                                <span><input type="text" name="filter-field" style="margin-top: 6px;"></span>
                                 <input class="btn" type="submit" value="Применить">
                             </div>
                         </form>
@@ -50,19 +50,21 @@
                                         <td>
                                           {% if adv.depot_set.all %}
                                             {% for d in adv.depot_set.all %}
-                                              &#8194;<a href="{% url 'addObject' %}?object={{ d.pk }}"> {{ d.title }} </a>
+                                              &#8194;<span class="objects"><a href="{% url 'addObject' %}?object={{ d.pk }}"> {{ d.title }} </a></span>
                                             {% endfor %}
                                           {% endif %}
                                         </td>
                                         <td>
                                           {% if adv.groupdepot_set.all %}
                                             {% for d in adv.groupdepot_set.all %}
-                                              &#8194;<a href="{% url 'editGrObject' %}?group={{ d.pk }}"> {{ d.title }} </a>
+                                              &#8194;<span class="objects"><a href="{% url 'editGrObject' %}?group={{ d.pk }}"> {{ d.title }} </a></span>
                                             {% endfor %}
                                           {% endif %}
                                         </td>
                                         <td>
-                                            <a class="panel-play" href="{{ adv.file.url }}"></a>
+                                          <button type="button" class="panel-play" data-toggle="modal" data-target="#ModalPlayer"
+                                          aria-pressed="true" data-whatever="{{ adv.file.url }}" data-songname="{{ adv.title }}"> </button>
+                                            <!-- <a class="panel-play" href="{{ adv.file.url }}"></a> -->
                                         </td>
                                         {% if user.is_staff %}
                                            <td> {{ adv.owner }} </td>
@@ -103,9 +105,35 @@
             </ul>
         </nav>
     </div>
+    <!-- Modal player -->
+      <div class="modal fade bd-modal-lg modalcontrol" id="ModalPlayer" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="ModalPlayerTitle"> Проигрывается рекламный ролик ... </h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div class="container-fluid">
+                <hr>
+                <div class="container-audio">
+                  <audio id="player" controls loop preload="none" autoplay>
+                    <source id="ModalPlayerSource" src="" type="audio/mp3">
+                       Your browser dose not Support the audio Tag
+                  </audio>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+<!-- end Modal player -->
+
     </section>
 
-                <p class="btn-form"><a class="btn" href="{% url 'addAdv' %}">Добавить ролик +</a></p>
+                <p class="btn-form"><a class="btn" href="{% url 'addAdv' %}">Добавить</a></p>
 
             </div>
         </div>

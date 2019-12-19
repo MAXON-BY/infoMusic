@@ -1,17 +1,59 @@
 {% extends "basic.html" %}
 
 {% block container %}
-    <h3>Загрузка файлов музыкальной композиции</h3>
-    <form enctype="multipart/form-data" method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <input type="submit" value="Загрузить файл">
-    </form>
+<main id="main" class="edit-add">
 
-{% endblock %}
+    <div class="bread">
+        <a href="/adv">Композиции</a> / <span>Загрузка композиции</span>
+    </div>
 
-{% block footer %}
     <div class="container">
+        <div class="row">
+            <div class="col-8">
 
-	</div>
+                <div class="title-page">
+                    <h1>Загрузка файлов музыкальной композиции</h1>
+                </div>
+
+                <section class="form-wrap">
+                    <form enctype="multipart/form-data" method="post">
+                        {% csrf_token %}
+<!--                        {{ form.as_p }}-->
+<!--                        <input type="submit" value="Загрузить файл">-->
+
+                        <div class="inner-form">
+                            <div class="form-part">
+                                <div class="input-title">
+                                    <!--  Наименование файла  -->
+                                    <input type="text" name="title" placeholder="Наименование файла" required="" id="id_title">
+                                </div>
+
+                                <div class="input-file">
+                                    <p>Название файла:</p>
+                                    <input style="background: transparent;" type="text" id="res" disabled placeholder="Название файла">
+                                    <div>
+                                        <input type="file" name="file" id="file"/>
+                                        <label class="btn" for="file">Выбрать файл</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-part between">
+                                <div class="input-descr">
+                                    <!--  Описание  -->
+                                    <textarea name="annotation" cols="40" rows="10" placeholder="Примечание" id="id_annotation"></textarea>
+                                </div>
+
+                                <div class="form-wrap-btns">
+                                    <p><input class="btn" type="submit" value="Создать"></p>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </section>
+
+            </div>
+        </div>
+    </div>
+</main>
 {% endblock %}

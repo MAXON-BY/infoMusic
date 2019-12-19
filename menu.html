@@ -17,12 +17,37 @@
               </button>
               <div class="collapse navbar-collapse" id="navbarText">
                 <ul class="navbar-nav mr-auto">
-                  <li class="nav-item active"><a class="nav-link" href="{% url 'listObjects' %}"> Главная </a></li>
-                  <li class="nav-item"><a class="nav-link" href="{% url 'listGrObjects' %}"> Группы объектов </a></li>
-				  <li class="nav-item"><a class="nav-link" href="{% url 'listBroadcastGrid' %}"> Сетки вещания </a></li>
-                  <li class="nav-item"><a class="nav-link" href="{% url 'listPlaylist' %}"> Плейлисты </a></li>
-				  <li class="nav-item"><a class="nav-link" href="{% url 'listAdv' %}"> Реклама </a></li>
-                  <li class="nav-item"><a class="nav-link" href="{% url 'index' %}"> Композиции </a></li>
+                  {% if mnu == 'main' %}
+                    <li class="nav-item active"><a class="nav-link" href="{% url 'listObjects' %}"> Главная </a></li>
+                  {% else %}
+                    <li class="nav-item"><a class="nav-link" href="{% url 'listObjects' %}"> Главная </a></li>
+                  {% endif %}
+                  {% if mnu == 'gr' %}
+                    <li class="nav-item active"><a class="nav-link" href="{% url 'listGrObjects' %}"> Группы объектов </a></li>
+                  {% else %}
+                    <li class="nav-item"><a class="nav-link" href="{% url 'listGrObjects' %}"> Группы объектов </a></li>
+                  {% endif %}
+                  {% if mnu == 'broadcast' %}
+                    <li class="nav-item active"><a class="nav-link" href="{% url 'listBroadcastGrid' %}"> Сетки вещания </a></li>
+                  {% else %}
+                    <li class="nav-item"><a class="nav-link" href="{% url 'listBroadcastGrid' %}"> Сетки вещания </a></li>
+                  {% endif %}
+                  {% if mnu == 'playlist' %}
+                    <li class="nav-item active"><a class="nav-link" href="{% url 'listPlaylist' %}"> Плейлисты </a></li>
+                  {% else %}
+                    <li class="nav-item"><a class="nav-link" href="{% url 'listPlaylist' %}"> Плейлисты </a></li>
+                  {% endif %}
+                  {% if mnu == 'adv' %}
+                    <li class="nav-item active"><a class="nav-link" href="{% url 'listAdv' %}"> Реклама </a></li>
+                  {% else %}
+              		  <li class="nav-item"><a class="nav-link" href="{% url 'listAdv' %}"> Реклама </a></li>
+                  {% endif %}
+                  {% if mnu == 'music' %}
+                    <li class="nav-item active"><a class="nav-link" href="{% url 'index' %}"> Композиции </a></li>
+                  {% else %}
+                    <li class="nav-item"><a class="nav-link" href="{% url 'index' %}"> Композиции </a></li>
+                  {% endif %}
+
                 </ul>
 
                 {% if user.is_authenticated %}

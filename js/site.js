@@ -123,15 +123,53 @@ $('#edit-profile').on('click', function () {
     $('.profile-form').show();
 });
 
-// show play\stop on panel
-$('#button_play').on('click', function () {
-    $(this).hide();
-    $('#button_stop').show();
-});
-$('#button_stop').on('click', function () {
-    $(this).hide();
-    $('#button_play').show();
-})
+function ifstop(in_obj, input)
+{
+  var playlist_html = ""
+
+  $("#button_stop").prop('disabled', true);
+  $("#button_stop").hide()
+  $("#button_play").prop('disabled', false);
+  $("#button_play").show()
+  $("#button_next").prop('disabled', true);
+  $("#button_prev").prop('disabled', true);
+  $("#lblmpdVolume").html(in_obj.volume);
+  $("#mpdVolume").prop('value', in_obj.volume);
+  $("#mpd_status").html(" Статус: stop ");
+  $("#mpd_playnow").html("  ");
+  if (input == 0)
+  {
+    $.each(in_obj.playlist, function( key, value ) {
+      playlist_html = playlist_html + "<div class='playlist-item'><div class='playlist-item-name'><span class='song-music'>"+value+"</span></div></div>"
+    })
+    $("#current_playlist").html(playlist_html);
+  }
+
+}
+
+function ifplay(in_obj, input)
+{
+  var playlist_html = ""
+
+  $("#button_stop").prop('disabled', false);
+  $("#button_stop").show()
+  $("#button_play").prop('disabled', true);
+  $("#button_play").hide()
+  $("#button_next").prop('disabled', false);
+  $("#button_prev").prop('disabled', false);
+  $("#lblmpdVolume").html(in_obj.volume);
+  $("#mpdVolume").prop('value', in_obj.volume);
+  $("#mpd_status").html( " Статус: play " );
+  // Эта жесть всего-навсего показывает длительность игры / длительность файла
+  $("#mpd_playnow").html(" Сейчас играет: <span>"+in_obj.file+"<span>"+ Math.floor(in_obj.elapsed/60)+":"+parseInt(in_obj.elapsed%60)+" / "+Math.floor(in_obj.duration/60)+":"+parseInt(in_obj.duration%60)+"</span></span> ");
+  if (input == 0)
+  {
+    $.each(in_obj.playlist, function( key, value ) {
+      playlist_html = playlist_html + "<div class='playlist-item'><div class='playlist-item-name'><span class='song-music'>"+value+"</span></div></div>"
+    })
+    $("#current_playlist").html(playlist_html);
+  }
+}
 
 // Для кнопки "Управление" на странице объекта
 $('#button_control').click(function(){
@@ -147,28 +185,15 @@ $('#button_control').click(function(){
       success: function(data)
       {
         var obj = jQuery.parseJSON(data);
+
         console.log(obj);
         if (obj.state == "stop")
         {
-          $("#button_stop").prop('disabled', true);
-          $("#button_play").prop('disabled', false);
-          $("#button_next").prop('disabled', true);
-          $("#button_prev").prop('disabled', true);
-          $("#lblmpdVolume").html("Громкость: "+obj.volume);
-          $("#mpdVolume").prop('value', obj.volume);
-          $("#mpd_status").html( "<p>Состояние: стоп <br>Текущая композиция: "+
-            obj.file +"</p>" );
+          ifstop(obj, 0);
         }
         if (obj.state == "play")
         {
-          $("#button_stop").prop('disabled', false);
-          $("#button_play").prop('disabled', true);
-          $("#button_next").prop('disabled', false);
-          $("#button_prev").prop('disabled', false);
-          $("#lblmpdVolume").html("Громкость: "+obj.volume);
-          $("#mpdVolume").prop('value', obj.volume);
-          $("#mpd_status").html( "<p>Состояние: играет <br>Проигрывается файл: "+
-            obj.file +"</p>" );
+          ifplay(obj, 0);
         }
       }
     }
@@ -194,23 +219,11 @@ $('#button_prev').click(function(){
         console.log(obj);
         if (obj.state == "stop")
         {
-          $("#button_stop").prop('disabled', true);
-          $("#button_play").prop('disabled', false);
-          $("#button_next").prop('disabled', true);
-          $("#button_prev").prop('disabled', true);
-          $("#lblmpdVolume").html("Громкость: "+obj.volume);
-          $("#mpdVolume").prop('value', obj.volume);
-          $("#mpd_status").html( "<p>Состояние: стоп <br>Текущая композия: "+
-            obj.file +"</p>" );
+          ifstop(obj, 1);
         }
         if (obj.state == "play")
         {
-          $("#button_stop").prop('disabled', false);
-          $("#button_play").prop('disabled', true);
-          $("#button_next").prop('disabled', false);
-          $("#button_prev").prop('disabled', false);
-          $("#mpd_status").html( "<p>Состояние: играет <br>Проигрывается файл: "+
-            obj.file +"</p>" );
+          ifplay(obj, 1);
         }
       }
     }
@@ -234,25 +247,11 @@ $('#button_play').click(function(){
         console.log(obj);
         if (obj.state == "stop")
         {
-          $("#button_stop").prop('disabled', true);
-          $("#button_play").prop('disabled', false);
-          $("#button_next").prop('disabled', true);
-          $("#button_prev").prop('disabled', true);
-          $("#lblmpdVolume").html("Громкость: "+obj.volume);
-          $("#mpdVolume").prop('value', obj.volume);
-          $("#mpd_status").html( "<p>Состояние: стоп <br>Текущая композия: "+
-            obj.file +"</p>" );
+          ifstop(obj, 1);
         }
         if (obj.state == "play")
         {
-          $("#button_stop").prop('disabled', false);
-          $("#button_play").prop('disabled', true);
-          $("#button_next").prop('disabled', false);
-          $("#button_prev").prop('disabled', false);
-          $("#lblmpdVolume").html("Громкость: "+obj.volume);
-          $("#mpdVolume").prop('value', obj.volume);
-          $("#mpd_status").html( "<p>Состояние: играет <br>Проигрывается файл: "+
-            obj.file +"</p>" );
+          ifplay(obj, 1);
         }
       }
     }
@@ -276,25 +275,11 @@ $('#button_stop').click(function(){
         console.log(obj);
         if (obj.state == "stop")
         {
-          $("#button_stop").prop('disabled', true);
-          $("#button_next").prop('disabled', true);
-          $("#button_prev").prop('disabled', true);
-          $("#button_play").prop('disabled', false);
-          $("#lblmpdVolume").html("Громкость: "+obj.volume);
-          $("#mpdVolume").prop('value', obj.volume);
-          $("#mpd_status").html( "<p>Состояние: стоп <br>Текущая композия: "+
-            obj.file +"</p>" );
+          ifstop(obj, 1);
         }
         if (obj.state == "play")
         {
-          $("#button_stop").prop('disabled', false);
-          $("#button_play").prop('disabled', true);
-          $("#button_next").prop('disabled', false);
-          $("#button_prev").prop('disabled', false);
-          $("#lblmpdVolume").html("Громкость: "+obj.volume);
-          $("#mpdVolume").prop('value', obj.volume);
-          $("#mpd_status").html( "<p>Состояние: играет <br>Проигрывается файл: "+
-            obj.file +"</p>" );
+          ifplay(obj, 1);
         }
       }
     }
@@ -319,25 +304,11 @@ $('#button_next').click(function(){
         console.log(obj);
         if (obj.state == "stop")
         {
-          $("#button_stop").prop('disabled', true);
-          $("#button_play").prop('disabled', false);
-          $("#button_next").prop('disabled', true);
-          $("#button_prev").prop('disabled', true);
-          $("#lblmpdVolume").html("Громкость: "+obj.volume);
-          $("#mpdVolume").prop('value', obj.volume);
-          $("#mpd_status").html( "<p>Состояние: стоп <br>Текущая композия: "+
-            obj.file +"</p>" );
+          ifstop(obj, 1);
         }
         if (obj.state == "play")
         {
-          $("#button_stop").prop('disabled', false);
-          $("#button_play").prop('disabled', true);
-          $("#button_next").prop('disabled', false);
-          $("#button_prev").prop('disabled', false);
-          $("#lblmpdVolume").html("Громкость: "+obj.volume);
-          $("#mpdVolume").prop('value', obj.volume);
-          $("#mpd_status").html( "<p>Состояние: играет <br>Проигрывается файл: "+
-            obj.file +"</p>" );
+          ifplay(obj, 1);
         }
       }
     }
@@ -360,8 +331,8 @@ $('#mpdVolume').change(function()
     {
       var obj = jQuery.parseJSON(data);
       console.log(obj);
-      $("#lblmpdVolume").html("Громкость: "+obj.volume);
+      $("#lblmpdVolume").html(obj.volume);
     }
-  })
+  });
 }
 )

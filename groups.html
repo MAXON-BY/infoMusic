@@ -12,16 +12,15 @@
 
 
                         <div class="show-filter-wrap">
-                            <form action="">
+                              <form action="{% url 'listGrObjects' %}" metod="get">
                                 <div class="show-filter">
                                     <span>Фильтровать по</span>
                                     <span class="select">
-                                        <select name="" id="">
-                                            <option value="0">Название</option>
-                                            <option value="1">Ежемесячная</option>
-                                            <option value="2">Ежеквартальная</option>
+                                        <select name="filter" id="">
+                                            <option value="title">Наименование</option>
                                         </select>
                                     </span>
+                                    <span><input type="text" name="filter-field" style="margin-top: 6px;"></span>
                                     <input class="btn" type="submit" value="Применить">
                                 </div>
                             </form>
@@ -36,7 +35,7 @@
                                         <th><div class="block-th"><span class="name-th">Наименование</span><span class="sort-th"><a class="sort-th-up" href="{% url 'listGrObjects' %}?sort=title&dir=up"></a><a class="sort-th-down" href="{% url 'listGrObjects' %}?sort=title&dir=down"></a></span></div></th>
                                         <th>Объекты</th>
                                         <th><div class="block-th"><span class="name-th">Сетка вещания</span><span class="sort-th"><a class="sort-th-up" href="{% url 'listGrObjects' %}?sort=broadcast_grid&dir=up"></a><a class="sort-th-down" href="{% url 'listGrObjects' %}?sort=broadcast_grid&dir=down"></a></span></div></th>
-                                        <th><div class="block-th"><span class="name-th">Рекламный ролик</span><span class="sort-th"><a class="sort-th-up" href="{% url 'listGrObjects' %}?sort=adv&dir=up"></a><a class="sort-th-down" href="{% url 'listGrObjects' %}?sort=adv&dir=down"></a></span></div></th>
+                                        <th><div class="block-th"><span class="name-th">Реклама</span><span class="sort-th"><a class="sort-th-up" href="{% url 'listGrObjects' %}?sort=adv&dir=up"></a><a class="sort-th-down" href="{% url 'listGrObjects' %}?sort=adv&dir=down"></a></span></div></th>
                                         {% if user.is_staff %}
                                              <th><div class="block-th"><span class="name-th">Пользователь</span><span class="sort-th"><a class="sort-th-up" href="{% url 'listGrObjects' %}?sort=owner&dir=up"></a><a class="sort-th-down" href="{% url 'listGrObjects' %}?sort=owner&dir=down"></a></span></div></th>
                                         {% endif %}
@@ -48,28 +47,30 @@
                                             <td> {{ forloop.counter }} </td>
                                             <td><a href="{% url 'editGrObject' %}?group={{ group.pk }}"> {{ group.title }} </a></td>
                                               <!-- <td> {{ group.depot_set.all }} </td> -->
-                                              <td>
-                                                  {% if group.depot_set.all %}
+                                            <td>
+                                                {% if group.depot_set.all %}
                                                   {% for g in group.depot_set.all|slice:'0:2' %}
-                                                  <span class="objects">{{ g.title }}</span>&#8194;
+                                                    <span class="objects"><a href="{% url 'addObject' %}?object={{ g.pk }}">{{ g.title }}</a></span>
                                                   {% endfor %}
                                                   {% if group.depot_set.all|length > 2 %}
-                                                  &hellip;
+                                                    &hellip;
                                                   {% endif %}
-                                                  {% else %}
-                                                  &#8194;
-                                                  {% endif %}
-                                              </td>
-                                              <td>
-                                                {% if group.broadcast_grid %}
+                                                {% endif %}
+                                            </td>
+                                            <td>
+                                              {% if group.broadcast_grid %}
+                                                <span class="objects"><a href="{% url 'editBroadcastGrid' %}?grid={{ group.broadcast_grid.pk }}">
                                                   {{ group.broadcast_grid }}
-                                                {% endif %}
-                                              </td>
-                                              <td> 
-                                                {% if group.adv %}
+                                                </a></span>
+                                              {% endif %}
+                                            </td>
+                                            <td>
+                                              {% if group.adv %}
+                                                <span class="objects"><a href="{% url 'editAdv' %}?adv={{ group.adv.pk }}">
                                                   {{ group.adv }}
-                                                {% endif %}
-                                              </td>
+                                                </a></span>
+                                              {% endif %}
+                                            </td>
 
                                               {% if user.is_staff %}
                                             <td> {{ group.owner }} </td>
@@ -112,7 +113,7 @@
                         </div>
                     </section>
 
-                    <p class="btn-form"><a class="btn" href="{% url 'addGrObject' %}">Добавить группу +</a></p>
+                    <p class="btn-form"><a class="btn" href="{% url 'addGrObject' %}">Добавить</a></p>
                 </div>
             </div>
         </div>

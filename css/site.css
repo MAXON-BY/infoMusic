@@ -46,11 +46,24 @@ body{
     min-width: 370px;
 }
 
-textarea, input::-moz-placeholder {color: #E3E3E3; !important;}
-textarea, input::-webkit-input-placeholder {color: #E3E3E3; !important;}
-textarea, input:-ms-input-placeholder {color: #E3E3E3; !important;}
-textarea, input::-ms-input-placeholder {color: #E3E3E3; !important;}
-textarea, input::placeholder {color: #E3E3E3; !important;}
+.form-control::-webkit-input-placeholder{color: #E3E3E3; !important;}
+.form-control::-moz-placeholder{color: #E3E3E3; !important;}
+.form-control:-ms-input-placeholder{color: #E3E3E3; !important;}
+.form-control::-ms-input-placeholder{color: #E3E3E3; !important;}
+.form-control::placeholder{color: #E3E3E3; !important;}
+
+textarea::-moz-placeholder {color: #E3E3E3; !important;}
+textarea::-webkit-input-placeholder {color: #E3E3E3; !important;}
+textarea:-ms-input-placeholder {color: #E3E3E3; !important;}
+textarea::-ms-input-placeholder {color: #E3E3E3; !important;}
+textarea::placeholder {color: #E3E3E3; !important;}
+
+input::-moz-placeholder {color: #E3E3E3; !important;}
+input::-webkit-input-placeholder {color: #E3E3E3; !important;}
+input:-ms-input-placeholder {color: #E3E3E3; !important;}
+input::-ms-input-placeholder {color: #E3E3E3; !important;}
+input::placeholder {color: #E3E3E3; !important;}
+
 ::-moz-placeholder {color: #E3E3E3; !important;}
 ::-webkit-input-placeholder {color: #E3E3E3; !important;}
 :-ms-input-placeholder {color: #E3E3E3; !important;}
@@ -198,6 +211,8 @@ input[type=range]:focus::-ms-fill-upper {
     width: 20px;
     height: 20px;
     display: block;
+    border: none;
+    background-color: transparent;
 }
 .panel-play:hover,
 .panel-play.panel-pause{
@@ -364,6 +379,17 @@ input[type=number]::-webkit-outer-spin-button {
 input[type=number]{
     -moz-appearance: textfield;
 }
+span.number{
+    position: relative;
+}
+span.number:after{
+    content: 'мин.';
+    position: absolute;
+    color: #868686; !important;
+    right: 7px;
+    top: -2px;
+    background-color: #fff;
+}
 .select {
     position: relative;
 }
@@ -379,7 +405,11 @@ input[type=number]{
     pointer-events: none;
     box-sizing: border-box;
 }
-
+#deleteModal .playlist-wrap{
+    background-color: transparent !important;
+    text-align: center;
+    color: #fff;
+}
 textarea, .form-control {
     width: 100%;
     background: #FFFFFF;
@@ -580,6 +610,7 @@ main .title-page .show-filter-wrap{
 main .title-page .show-filter{
     display: flex;
     align-items: center;
+    flex-wrap: wrap;
 }
 main .title-page .show-filter .select{
     margin: 0 10px;
@@ -591,6 +622,7 @@ main .title-page .show-filter .btn{
     width: auto;
     margin: 0;
     padding: 6px 10px;
+    margin-left: 10px;
 }
 main .title-page .show-filter .select:after {
     top: 9px;
@@ -916,7 +948,7 @@ main#main.edit-add .form-part-playlist-btn .form-wrap-btns{
 }
 main#main.edit-add{
     max-width: 1360px;
-    background: #efefef;
+    background: rgba(239, 239, 239, 0.5);
     margin: 0 auto;
     display: flex;
     position: relative;
@@ -1220,6 +1252,17 @@ main#main.edit-add .btn-del-elem{
         margin-top: auto;
         margin-bottom: 20px;
     }
+
+}
+@media (max-width: 700px){
+    main .profile-user-wrap {
+        flex-direction: column;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+    main .profile-user {
+        padding-right: 0;
+    }
 }
 @media (max-width: 670px){
     main .title-page .show-filter-wrap {
@@ -1234,6 +1277,7 @@ main#main.edit-add .btn-del-elem{
     }
     main .form-wrap .inner-form .form-part {
         width: 100%;
+        margin-top: 20px;
     }
     main#main.edit-add .select-wrap .item-sel {
         width: 100%;
@@ -1245,6 +1289,13 @@ main#main.edit-add .btn-del-elem{
         width: 100%;
         margin-top: 25px;
     }
+    main .title-page .show-filter span:first-child {
+        width: 100%;
+    }
+    main .title-page .show-filter span,
+    main .title-page .show-filter input{
+        margin: 5px;
+    }
 }
 @media (max-width: 576px){
     footer#footer .footer-info {
@@ -1253,5 +1304,22 @@ main#main.edit-add .btn-del-elem{
     }
     footer .footer-block.footer-info .links{
         padding-bottom: 6px;
+    }
+    main .profile-user {
+        flex-direction: column;
+        align-items: center;
+    }
+    main .profile-user-wrap {
+        padding: 30px 20px 30px;
+    }
+    main#main.edit-add .custom-switch {
+        padding-left: 3.5rem;
+        position: relative;
+    }
+    main#main.edit-add input[type="checkbox"] {
+        position: absolute;
+    }
+    main#main.edit-add .row.timeline-wrap-cell {
+        flex-wrap: nowrap;
     }
 }

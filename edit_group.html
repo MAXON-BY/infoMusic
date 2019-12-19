@@ -38,14 +38,17 @@
                                       {% endif %}
                                     </div>
                                     <div class="item-sel">
-                                        <p>Сетка вещания:</p>
-                                        <span class="select">{{ form.broadcast_grid }}</span>
-                                    </div>
-                                    <div class="item-sel">
                                         <p>Рекламный ролик:</p>
                                         <span class="select">{{ form.adv }}</span>
                                     </div>
-
+									<div class="item-sel">
+                                        <p>Сетка вещания:</p>
+                                        <span class="select">{{ form.broadcast_grid }}</span>
+                                    </div>
+									<div class="item-sel">
+                                        <p>Периодичность рекламы:</p>
+                                        <span class="number">{{ form.freq_ad }}</span>
+                                    </div>
                                     {% if user.is_staff %}
                                       <div class="item-sel">
                                           <p>Владелец:</p>
@@ -54,11 +57,6 @@
                                     {% else %}
                                       <input type="hidden" name="owner" value="{{ user.pk }}" id="id_owner">
                                     {% endif %}
-
-                                    <div class="item-sel">
-                                        <p>Частота рекламы:</p>
-                                        <span class="number">{{ form.freq_ad }}</span>
-                                    </div>
                                 </div>
                             </div>
 
@@ -69,7 +67,8 @@
                                 </div>
 
                                 <div class="form-wrap-btns">
-                                    <p><input class="btn" type="submit" value="Обновить"></p>
+                                    <p><input class="btn" type="submit" value="Сохранить"></p>
+                                    <p><button type="button" class="btn" role="button" aria-pressed="true" data-toggle="modal" data-target="#deleteModal" id="btn_del_obj">Удалить</button></p>
                                 </div>
                             </div>
                         </div>
@@ -79,6 +78,35 @@
                       {{ form.errors }}
                     {% endif %}
                 </section>
+
+                <!-- Modal 2  "Удалить" -->
+                <div class="modal fade bd-example-modal-lg modalcontrol" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+                  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                          <h5 class="modal-title" id="deleteModalTitle">Удаление группы объектов &#171;{{ obj_object.title }}&#187; </h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        <div class="container-fluid">
+                          <div class="row">
+                            <div style="background-color: #FFFFFF" class="playlist-wrap col">
+                              Восстановление будет невозможно! Продолжить?
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="modal-footer">
+                        <a href="{% url 'delGrObject' obj_object.pk %}" class="btn btn-white" role="button" aria-pressed="true">Удалить</a>
+                        <!-- <button type="button" class="btn btn-white" data-dismiss="modal">Удалить</button> -->
+                        <button type="button" class="btn btn-white" data-dismiss="modal">Отменить</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- end Modal 2 -->
 
             </div>
         </div>

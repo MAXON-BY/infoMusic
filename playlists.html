@@ -6,18 +6,19 @@
         <div class="row">
             <div class="col-12">
                 <div class="title-page">
-                    <h1>Перечень плейлистов</h1>
+                    <h1>Плейлисты</h1>
                     <div class="show-filter-wrap">
-                        <form action="">
+                        <form action="{% url 'listPlaylist' %}" metod="get">
                             <div class="show-filter">
                                 <span>Фильтровать по</span>
                                 <span class="select">
-                                        <select name="" id="">
-                                            <option value="0">Название</option>
-                                            <option value="1">Ежемесячная</option>
-                                            <option value="2">Ежеквартальная</option>
-                                        </select>
-                                    </span>
+                                  <select name="filter" id="">
+                                    <option value="title">Наименование</option>
+                                    <option value="gentre">Жанр</option>
+                                    <option value="count_songs">Композиций</option>
+                                  </select>
+                                </span>
+                                <span><input type="text" name="filter-field" style="margin-top: 6px;"></span>
                                 <input class="btn" type="submit" value="Применить">
                             </div>
                         </form>
@@ -53,7 +54,7 @@
                                       {% for e in playlist.elembroadcastgrid_set.all %}
                                         {% if e.broadcastgrid_set.all %}
                                           {% for ee in e.broadcastgrid_set.all|slice:'0:2' %}
-                                            <a href="{% url 'editBroadcastGrid' %}?grid={{ ee.pk }}">{{ ee.title }}</a> &#8194;
+                                            <span class="objects"><a href="{% url 'editBroadcastGrid' %}?grid={{ ee.pk }}">{{ ee.title }}</a></span> &#8194;
                                           {% endfor %}
                                           {% if e.broadcastgrid_set.all|length >= 3 %}
                                             &hellip;
@@ -117,7 +118,7 @@
                 </div>
                 </section>
 
-                <p class="btn-form"><a class="btn" href="/add_playlist/">Добавить плейлист +</a></p>
+                <p class="btn-form"><a class="btn" href="/add_playlist/">Добавить</a></p>
             </div>
         </div>
     </div>

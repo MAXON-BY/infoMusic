@@ -1,4 +1,4 @@
-{% extends "basic.html" %}
+{% extends "basic_player.html" %}
 
 {% block container %}
 <main id="main" class="edit-add">
@@ -12,7 +12,7 @@
             <div class="col-8">
 
                 <div class="title-page">
-                    <h1>Изменить плейлист</h1>
+                    <h1>{{ playlist.title }}</h1>
                 </div>
 
                 <section class="form-wrap">
@@ -67,9 +67,9 @@
                             <div class="form-part between">
                                 <div class="input-descr">
                                     <!--  Описание  -->
-                                    <textarea name="annotation" rows="2" class="form-control" placeholder="Примечание"
+                                    <!-- <textarea name="annotation" rows="2" class="form-control" placeholder="Примечание"
                                               required=""
-                                              id="id_annotation">10.8.0.2 Магазин на ходится в Минске</textarea>
+                                              id="id_annotation">10.8.0.2 Магазин на ходится в Минске</textarea> -->
                                 </div>
                             </div>
                         </div>
@@ -88,8 +88,10 @@
                                         <div class="panel-playlist-wrap">
                                             <div class="time-playlist">{{ p.tag_duration }}</div>
                                             <div class="panel-playlist">
-                                                <a class="panel-play" href="#"></a>
-                                                <a class="panel-delete" href="{% url 'editPlaylistDelSong' playlist.pk p.pk %}"></a>
+                                              <button type="button" class="panel-play" data-toggle="modal" data-target="#ModalPlayer"
+                                                aria-pressed="true" data-whatever="{{ p.file.url }}" data-songname="{{ p.title }}"> </button>
+                                                <!-- <a class="panel-play" href="#"></a> -->
+                                              <a class="panel-delete" href="{% url 'editPlaylistDelSong' playlist.pk p.pk %}"></a>
                                             </div>
                                         </div>
                                     </div>
@@ -104,7 +106,8 @@
                                                 data-target="#exampleModalLong">Добавить композиции
                                         </button>
                                     </p>
-                                    <p><input class="btn" type="submit" value="Изменить"></p>
+                                    <p><input class="btn" type="submit" value="Сохранить"></p>
+                                    <p><button type="button" class="btn" role="button" aria-pressed="true" data-toggle="modal" data-target="#deleteModal" id="btn_del_obj">Удалить</button></p>
                                     {% endif %}
                                 </div>
                             </div>
@@ -179,6 +182,62 @@
                         </div>
                     </div>
                     <!-- END POPUP WINDOW FORM -->
+                    <!-- Modal 2  "Удалить" -->
+                    <div class="modal fade bd-example-modal-lg modalcontrol" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+                      <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                              <h5 class="modal-title" id="deleteModalTitle">Удаление плейлиста &#171;{{ playlist.title }}&#187; </h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div class="modal-body">
+                            <div class="container-fluid">
+                              <div class="row">
+                                <div style="background-color: #FFFFFF" class="playlist-wrap col">
+									Восстановление будет невозможно! Продолжить?
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="modal-footer">
+                            <a href="{% url 'delPlaylist' playlist.pk %}" class="btn btn-white" role="button" aria-pressed="true">Удалить</a>
+                            <!-- <button type="button" class="btn btn-white" data-dismiss="modal">Удалить</button> -->
+                            <button type="button" class="btn btn-white" data-dismiss="modal">Отменить</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- end Modal 2 -->
+
+                    <!-- Modal player -->
+                    <div class="modal fade bd-modal-lg modalcontrol" id="ModalPlayer" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+                      <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                              <h5 class="modal-title" id="ModalPlayerTitle"> Проигрывается композиция ... </h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div class="modal-body">
+                            <div class="container-fluid">
+                              <hr>
+                              <div class="container-audio">
+                                <audio id="player" controls loop preload="none" autoplay>
+                                  <source id="ModalPlayerSource" src="" type="audio/mp3">
+                                     Your browser dose not Support the audio Tag
+                                </audio>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- end Modal player -->
+
+
                 </section>
 
             </div>

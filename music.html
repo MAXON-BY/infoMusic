@@ -1,6 +1,7 @@
-{% extends "basic.html" %}
+{% extends "basic_player.html" %}
 
 {% block container %}
+
 <main id="main">
     <div class="container">
         <div class="row">
@@ -10,16 +11,22 @@
                     <h1>Композиции</h1>
 
                     <div class="show-filter-wrap">
-                        <form action="">
+                        <form action="{% url 'index' %}" metod="get">
                             <div class="show-filter">
                                 <span>Фильтровать по</span>
                                 <span class="select">
-                                        <select name="" id="">
-                                            <option value="0">Название</option>
-                                            <option value="1">Ежемесячная</option>
-                                            <option value="2">Ежеквартальная</option>
-                                        </select>
-                                    </span>
+                                  <select name="filter" id="">
+                                      <option value="title">Название</option>
+                                      <option value="file_name">Имя файла</option>
+                                      <option value="tag_name">Название композиции</option>
+                                      <option value="tag_artis">Исполнитель</option>
+                                      <option value="tag_albom">Альбом</option>
+                                      <option value="tag_year">Год</option>
+                                      <option value="tag_gentre">Жанр</option>
+                                      <option value="tag_comment">Коммент.</option>
+                                  </select>
+                                </span>
+                                <span><input type="text" name="filter-field" style="margin-top: 6px;"></span>
                                 <input class="btn" type="submit" value="Применить">
                             </div>
                         </form>
@@ -31,9 +38,9 @@
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th><div class="block-th"><span class="name-th">Описание</span><span class="sort-th"><a class="sort-th-up" href="{% url 'index' %}?sort=title&dir=up"></a><a class="sort-th-down" href="{% url 'index' %}?sort=title&dir=down"></a></span></div></th>
-                                    <th><div class="block-th"><span class="name-th">Имя файла</span><span class="sort-th"><a class="sort-th-up" href="{% url 'index' %}?sort=file_name&dir=up"></a><a class="sort-th-down" href="{% url 'index' %}?sort=file_name&dir=down"></a></span></div></th>
-                                    <th><div class="block-th"><span class="name-th">Название</span><span class="sort-th"><a class="sort-th-up" href="{% url 'index' %}?sort=tag_name&dir=up"></a><a class="sort-th-down" href="{% url 'index' %}?sort=tag_name&dir=down"></a></span></div></th>
+                                    <th><div class="block-th"><span class="name-th">Название</span><span class="sort-th"><a class="sort-th-up" href="{% url 'index' %}?sort=title&dir=up"></a><a class="sort-th-down" href="{% url 'index' %}?sort=title&dir=down"></a></span></div></th>
+                                    <!-- <th><div class="block-th"><span class="name-th">Имя файла</span><span class="sort-th"><a class="sort-th-up" href="{% url 'index' %}?sort=file_name&dir=up"></a><a class="sort-th-down" href="{% url 'index' %}?sort=file_name&dir=down"></a></span></div></th> -->
+                                    <th><div class="block-th"><span class="name-th">Название композиции</span><span class="sort-th"><a class="sort-th-up" href="{% url 'index' %}?sort=tag_name&dir=up"></a><a class="sort-th-down" href="{% url 'index' %}?sort=tag_name&dir=down"></a></span></div></th>
                                     <th><div class="block-th"><span class="name-th">Исполнитель</span><span class="sort-th"><a class="sort-th-up" href="{% url 'index' %}?sort=tag_artist&dir=up"></a><a class="sort-th-down" href="{% url 'index' %}?sort=tag_artist&dir=down"></a></span></div></th>
                                     <th><div class="block-th"><span class="name-th">Альбом</span><span class="sort-th"><a class="sort-th-up" href="{% url 'index' %}?sort=tag_albom&dir=up"></a><a class="sort-th-down" href="{% url 'index' %}?sort=tag_albom&dir=down"></a></span></div></th>
                                     <th><div class="block-th"><span class="name-th">Год</span><span class="sort-th"><a class="sort-th-up" href="{% url 'index' %}?sort=tag_year&dir=up"></a><a class="sort-th-down" href="{% url 'index' %}?sort=tag_year&dir=down"></a></span></div></th>
@@ -47,7 +54,7 @@
                                     <tr>
                                         <td> {{ song.pk }} </td>
                                         <td> {{ song.title }} </td>
-                                        <td> {{ song.file_name }} </td>
+                                        <!-- <td> {{ song.file_name }} </td> -->
                                         <td> {{ song.tag_name }} </td>
                                         <td> {{ song.tag_artist }} </td>
                                         <td> {{ song.tag_albom }} </td>
@@ -56,7 +63,10 @@
                                         <td> {{ song.tag_comment }} </td>
                                         <td>
                                             <div class="panel-playlist" style="margin-left: 0;">
-                                                <a class="panel-play" href="{{ song.file.url }}"></a>
+                                                <button type="button" class="panel-play" data-toggle="modal" data-target="#ModalPlayer"
+                                                  aria-pressed="true" data-whatever="{{ song.file.url }}" data-songname="{{ song.title }}"> </button>
+
+                                                <!-- <a class="panel-play" href="{{ song.file.url }}"></a> -->
                                                 <a class="panel-delete" href="#"></a>
                                             </div>
                                         </td>
@@ -72,15 +82,19 @@
                     <nav aria-label="Page navigation">
                         <ul class="pagination justify-content-center">
                             {% if page.has_previous %}
-                            {% if sort %}
-                              <li class="page-item"><a class="page-link" href="?page=1&sort={{ sort }}&dir={{ dir }}" aria-label="First">&#171;</a></li>
-                            {% else %}
-                              <li class="page-item"><a class="page-link" href="?page=1" aria-label="First">&#171;</a></li>
-                            {% endif %}
+                              {% if sort %}
+                                <li class="page-item"><a class="page-link" href="?page=1&sort={{ sort }}&dir={{ dir }}" aria-label="First">&#171;</a></li>
+                              {% elif filter %}
+                                <li class="page-item"><a class="page-link" href="?page=1&filter={{ filter }}&filter-field={{ filter_field }}" aria-label="First">&#171;</a></li>
+                              {% else %}
+                                <li class="page-item"><a class="page-link" href="?page=1" aria-label="First">&#171;</a></li>
+                              {% endif %}
 
                               <li class="page-item">
                                 {% if sort %}
                                   <a class="page-link" href="?page={{ page.previous_page_number }}&sort={{ sort }}&dir={{ dir }}" aria-label="Previous">
+                                {% elif filter %}
+                                  <a class="page-link" href="?page={{ page.previous_page_number }}&filter={{ filter }}&filter-field={{ filter_field }}" aria-label="Previous">
                                 {% else %}
                                   <a class="page-link" href="?page={{ page.previous_page_number }}" aria-label="Previous">
                                 {% endif %}
@@ -97,12 +111,16 @@
                             {% if page.has_next %}
                               {% if sort %}
                                 <li class="page-item"><a class="page-link" href="?page={{ page.next_page_number }}&sort={{ sort }}&dir={{ dir }}">{{ page.next_page_number }}</a></li>
+                              {% elif filter %}
+                                <li class="page-item"><a class="page-link" href="?page={{ page.next_page_number }}&filter={{ filter }}&filter-field={{ filter_field }}">{{ page.next_page_number }}</a></li>
                               {% else %}
                                 <li class="page-item"><a class="page-link" href="?page={{ page.next_page_number }}">{{ page.next_page_number }}</a></li>
                               {% endif %}
                               <li class="page-item">
                                   {% if sort %}
                                     <a class="page-link" href="?page={{ page.next_page_number }}&sort={{ sort }}&dir={{ dir }}" aria-label="Next">
+                                  {% elif filter %}
+                                    <a class="page-link" href="?page={{ page.next_page_number }}&filter={{ filter }}&filter-field={{ filter_field }}" aria-label="Next">
                                   {% else %}
                                     <a class="page-link" href="?page={{ page.next_page_number }}" aria-label="Next">
                                   {% endif %}
@@ -112,6 +130,8 @@
                               </li>
                               {% if sort %}
                                 <li class="page-item"><a class="page-link" href="?page={{ page.paginator.num_pages }}&sort={{ sort }}&dir={{ dir }}" aria-label="End">&#187;</a></li>
+                              {% elif filter %}
+                                <li class="page-item"><a class="page-link" href="?page={{ page.paginator.num_pages }}&filter={{ filter }}&filter-field={{ filter_field }}" aria-label="End">&#187;</a></li>
                               {% else %}
                                 <li class="page-item"><a class="page-link" href="?page={{ page.paginator.num_pages }}" aria-label="End">&#187;</a></li>
                               {% endif %}
@@ -120,8 +140,33 @@
                     </nav>
                 </div>
                 </section>
+                <!-- Modal player -->
+                <div class="modal fade bd-modal-lg modalcontrol" id="ModalPlayer" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+                  <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                          <h5 class="modal-title" id="ModalPlayerTitle"> Проигрывается композиция ... </h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        <div class="container-fluid">
+                          <hr>
+                          <div class="container-audio">
+                            <audio id="player" controls loop preload="none" autoplay>
+                              <source id="ModalPlayerSource" src="" type="audio/mp3">
+                                 Your browser dose not Support the audio Tag
+                            </audio>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- end Modal player -->
                   {% if user.is_staff %}
-                    <p class="btn-form"><a class="btn" href="{% url 'addSong' %}" role="button" aria-pressed="true">Загрузить композицию</a></p>
+                    <p class="btn-form"><a class="btn" href="{% url 'addSong' %}" role="button" aria-pressed="true">Добавить</a></p>
                     <p class="btn-form"><a class="btn" href="{% url 'addSongFromDir' %}" role="button" aria-pressed="true">Добавить все файлы из каталога &laquo;new_songs&raquo;</a></p>
                   {% endif %}
             </div>

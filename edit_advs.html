@@ -4,7 +4,7 @@
 <main id="main" class="edit-add">
 
     <div class="bread">
-        <a href="/adv">Сетки вещания</a> / <span>Название рекламы</span>
+        <a href="/adv">Реклама</a> / <span>Изменить рекламу</span>
     </div>
 
     <div class="container">
@@ -12,7 +12,7 @@
             <div class="col-8">
 
                 <div class="title-page">
-                    <h1>Изменение рекламного ролика</h1>
+                    <h1>{{ advs.title }}</h1>
                 </div>
 
                 <section class="form-wrap">
@@ -32,7 +32,7 @@
                                     <input style="background: transparent;" type="text" id="res" disabled placeholder="Название файла">
                                     <div>
                                         <input type="file" name="file" id="file"/>
-                                        <label class="btn" for="file">Загрузить</label>
+                                        <label class="btn" for="file">Выбрать файл</label>
                                     </div>
                                 </div>
 
@@ -54,9 +54,18 @@
                                     <!--  Описание  -->
                                     {{ form.annotation }}
                                 </div>
-
+                                <div class="input-descr">
+                                  {% if user.is_staff %}
+                                    <div class="item-sel">
+                                        <p>Владелец:</p>
+                                        <span class="select">{{ form.owner }}</span>
+                                    </div>
+                                  {% else %}
+                                    <input type="hidden" name="owner" value="{{ user.pk }}" id="id_owner">
+                                  {% endif %}
+                                </div>
                                 <div class="form-wrap-btns">
-                                    <p><input class="btn" type="reset" value="Удалить"></p>
+                                    <p><button type="button" class="btn" role="button" aria-pressed="true" data-toggle="modal" data-target="#deleteModal" id="btn_del_obj">Удалить</button></p>
                                     <p><input class="btn" type="submit" value="Сохранить"></p>
                                 </div>
                             </div>
@@ -70,6 +79,36 @@
                         {% endfor %}
                     </ol>
                     {% endif %}
+                    <!-- Modal 2  "Удалить" -->
+
+                    <div class="modal fade bd-example-modal-lg modalcontrol" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+                      <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                              <h5 class="modal-title" id="deleteModalTitle">Удаление рекламного ролика &#171;{{ advs.title }}&#187; </h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div class="modal-body">
+                            <div class="container-fluid">
+                              <div class="row">
+                                <div style="background-color: #FFFFFF" class="playlist-wrap col">
+									Восстановление будет невозможно! Продолжить?
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="modal-footer">
+                            <a href="{% url 'delAdv' advs.pk %}" class="btn btn-white" role="button" aria-pressed="true">Удалить</a>
+                            <!-- <button type="button" class="btn btn-white" data-dismiss="modal">Удалить</button> -->
+                            <button type="button" class="btn btn-white" data-dismiss="modal">Отменить</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- end Modal 2 -->
+
                 </section>
 
             </div>

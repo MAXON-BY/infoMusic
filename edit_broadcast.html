@@ -4,7 +4,7 @@
 <main id="main" class="edit-add">
 
     <div class="bread">
-        <a href="/broadcast_grid">Сетки вещания</a> / <span>Добавить сетку</span>
+        <a href="/broadcast_grid">Сетки вещания</a> / <span>Изменить сетку</span>
     </div>
 
     <div class="container">
@@ -12,7 +12,7 @@
             <div class="col-8">
 
                 <div class="title-page">
-                    <h1>Тут название сетки</h1>
+                    <h1>{{ grid_obj.title }}</h1>
                 </div>
 
                 <section class="form-wrap">
@@ -28,7 +28,12 @@
 
                                 <div class="select-wrap">
                                         <div class="item-sel">
-                                          <p>Группа:</p>
+                                          <p>Группы:</p>
+                                            {% if grid_obj.groupdepot_set.all %}
+                                                {% for g in grid_obj.groupdepot_set.all %}
+                                                    <p class="objects">{{ g.title }}<p>
+                                                {% endfor %}
+                                            {% endif %}
                                           <!-- <span class="select">
                                             <select name="owner" id="id_owner1">
                                               <option value="" selected="">---------</option>
@@ -38,16 +43,21 @@
                                             </select>
                                           </span> -->
                                         </div>
-                                        {% if grid_obj.groupdepot_set.all %}
-                                          {% for g in grid_obj.groupdepot_set.all %}
-                                            <div class="item-sel">
-                                              <p class="objects">{{ g.title }}<p>
-                                            </div>
-                                          {% endfor %}
-                                        {% endif %}
+<!--                                        {% if grid_obj.groupdepot_set.all %}-->
+<!--                                          {% for g in grid_obj.groupdepot_set.all %}-->
+<!--                                            <div class="item-sel">-->
+<!--                                              <p class="objects">{{ g.title }}<p>-->
+<!--                                            </div>-->
+<!--                                          {% endfor %}-->
+<!--                                        {% endif %}-->
 
                                         <div class="item-sel">
                                           <p>Объекты:</p>
+                                            {% if grid_obj.depot_set.all %}
+                                                {% for g in grid_obj.depot_set.all %}
+                                                    <p class="objects">{{ g.title }}<p>
+                                                {% endfor %}
+                                            {% endif %}
                                           <!-- <span class="select">
                                             <select name="owner" id="id_owner2">
                                               <option value="" selected="">---------</option>
@@ -57,13 +67,13 @@
                                             </select>
                                           </span> -->
                                         </div>
-                                        {% if grid_obj.depot_set.all %}
-                                          {% for g in grid_obj.depot_set.all %}
-                                            <div class="item-sel">
-                                              <p class="objects">{{ g.title }}<p>
-                                            </div>
-                                          {% endfor %}
-                                        {% endif %}
+<!--                                        {% if grid_obj.depot_set.all %}-->
+<!--                                          {% for g in grid_obj.depot_set.all %}-->
+<!--                                            <div class="item-sel">-->
+<!--                                              <p class="objects">{{ g.title }}<p>-->
+<!--                                            </div>-->
+<!--                                          {% endfor %}-->
+<!--                                        {% endif %}-->
 
                                         <div class="item-sel">
                                           {% if user.is_staff %}
@@ -139,13 +149,42 @@
                                 </div>
 
                                 <div class="form-wrap-btns">
-                                    <p><a class="btn" href="#">Удалить</a></p>
-                                    <p><input class="btn" type="submit" value="Сохранить"></p>
+                                  <p><button type="button" class="btn" role="button" aria-pressed="true" data-toggle="modal" data-target="#deleteModal" id="btn_del_obj">Удалить</button></p>
+                                  <p><input class="btn" type="submit" value="Сохранить"></p>
                                 </div>
                             </div>
                         </div>
                     </form>
                 </section>
+
+                <!-- Modal 2  "Удалить" -->
+                <div class="modal fade bd-example-modal-lg modalcontrol" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+                  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                          <h5 class="modal-title" id="deleteModalTitle">Удаление сетки &#171;{{ grid_obj.title }}&#187; </h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        <div class="container-fluid">
+                          <div class="row">
+                            <div style="background-color: #FFFFFF" class="playlist-wrap col">
+                              Восстановление будет невозможно! Продолжить?
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="modal-footer">
+                        <a href="{% url 'delBroadcastGrid' grid_obj.pk %}" class="btn btn-white" role="button" aria-pressed="true">Удалить</a>
+                        <!-- <button type="button" class="btn btn-white" data-dismiss="modal">Удалить</button> -->
+                        <button type="button" class="btn btn-white" data-dismiss="modal">Отменить</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- end Modal 2 -->
 
             </div>
         </div>

@@ -5,7 +5,7 @@
 <main id="main" class="edit-add">
 
     <div class="bread">
-        <a href="/objects">Список объектов</a> / <span>{{ obj_object.title }}</span>
+        <a href="/objects">Список объектов</a> / <span>Изменить объект</span>
     </div>
 
     <div class="container">
@@ -84,7 +84,7 @@
                                         <span class="select">{{ form.group }}</span>
                                     </div>
                                     <div class="item-sel">
-                                        <p>Частота рекламы:</p>
+                                        <p>Периодичность рекламы:</p>
                                         <span class="number">{{ form.freq_ad }}</span>
                                     </div>
                                     <div class="item-sel">
@@ -126,8 +126,8 @@
                                     <p><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#controlModalCenter" aria-pressed="true" data-object-id="{{obj_object.pk}}" id="button_control"> Управление </button></p>
                                     <!-- <p><a href="{% url 'ObjectStatus' obj_object.pk %}" class="btn" role="button" aria-pressed="true">Управление</a></p> -->
                                   {% endif %}
-                                  <p><a href="#" class="btn" role="button" aria-pressed="true">Удалить</a></p>
-                                  <p><input class="btn" style="margin: 0;" type="submit" value="Обновить"></p>
+                                  <p><button type="button" class="btn" role="button" aria-pressed="true" data-toggle="modal" data-target="#deleteModal" id="btn_del_obj">Удалить</button></p>
+                                  <p><input class="btn" style="margin: 0;" type="submit" value="Сохранить"></p>
                                 </div>
                             </div>
                         </div>
@@ -148,8 +148,8 @@
                             <div class="container-fluid">
                                 <div class="row">
                                     <div class="col">
-                                        <p class="status">Статус: online</p>
-                                        <p class="playnow">Сейчас играет: <span>Полное наименование композиции <span>0:23</span></span></p>
+                                        <p class="status" id="mpd_status">Статус: online</p>
+                                        <p class="playnow" id="mpd_playnow">Сейчас играет: <span>Полное наименование композиции <span>0:23</span></span></p>
                                     </div>
                                 </div>
                             </div>
@@ -157,10 +157,11 @@
                             <div class="row">
                               <div class="col" id="mpd_volume">
                                 <label for="mpdVolume">
-                                    <input type="range" id="mpdVolume" data-object-id="{{obj_object.pk}}" value="0">
+                                    <input type="range" class="custom-range" id="mpdVolume" data-object-id="{{obj_object.pk}}" value="0">
                                 </label>
                                   <div class="volume-icons">
                                       <span class="vol-0"></span>
+                                      <span class="playnow" id="lblmpdVolume"></span>
                                       <span class="vol-100"></span>
                                   </div>
                               </div>
@@ -185,7 +186,7 @@
                                           <div class="form-part-playlist-title">
                                               <p>Текущий плейлист</p>
                                           </div>
-                                          <div style="background-color: #FFFFFF" class="playlist-wrap">
+                                          <div style="background-color: #FFFFFF" class="playlist-wrap" id="current_playlist">
 
                                               <div class="playlist-item" id="del_88">
                                                   <div class="playlist-item-name">
@@ -219,6 +220,36 @@
                     </div>
                   </div>
                   <!-- end Modal -->
+
+                  <!-- Modal 2 -->
+                  <div class="modal fade bd-example-modal-lg modalcontrol" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="deleteModalTitle">Удаление объекта &#171;{{ obj_object.title }}&#187; </h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body">
+                          <div class="container-fluid">
+                            <div class="row">
+                              <div style="background-color: #FFFFFF" class="playlist-wrap col">
+                                Восстановление будет невозможно! Продолжить?               
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="modal-footer">
+                          <a href="{% url 'delObject' obj_object.pk %}" class="btn btn-white" role="button" aria-pressed="true">Удалить</a>
+                          <!-- <button type="button" class="btn btn-white" data-dismiss="modal">Удалить</button> -->
+                          <button type="button" class="btn btn-white" data-dismiss="modal">Отменить</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- end Modal 2 -->
+
             </div>
         </div>
     </div>
